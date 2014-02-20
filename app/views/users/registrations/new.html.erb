@@ -3,142 +3,146 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div>
-  	<%= f.label :role, "Register Me As:" %><br/>
-  	<%= f.select(:role, options_for_select(["Corporate","NGO","Socialist","Analyst"]),{prompt: "Select Your Role"}) %>
-  </div>
+  <table align="center">
+  	<tr>
+  		<th><%= f.label :role, "Register Me As: " %></th>
+  		<td><%= f.select(:role, options_for_select(["Corporate","NGO","Socialist","Analyst"]),{prompt: "Select Your Role"}) %></td>
+  	</tr>
 
-  <div>
-  	<%= f.label :name %><br/>
-  	<%= f.text_field :name %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :name %></th>
+	  	<td><%= f.text_field :name %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :address %><br/>
-  	<%= f.text_area :address %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :address %></th>
+	  	<td><%= f.text_area :address %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :pin_code %><br/>
-  	<%= f.number_field :pin_code %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :pin_code %></th>
+	  	<td><%= f.number_field :pin_code %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :city %><br/>
-  	<%= f.text_field :city %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :city %></th>
+	  	<td><%= f.text_field :city %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :state %><br/>
-  	<%= f.text_field :state %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :state %></th>
+	  	<td><%= f.text_field :state %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :country %><br/>
-  	<%= f.text_field :state %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :country %></th>
+	  	<td><%= f.text_field :state %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :mobile_number %><br/>
-  	<%= f.text_field :mobile_number %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :mobile_number %></th>
+	  	<td><%= f.text_field :mobile_number %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :phone_number %><br/>
-  	<%= f.text_field :phone_number %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :phone_number %></th>
+	  	<td><%= f.text_field :phone_number %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :fax_number %><br/>
-  	<%= f.text_field :fax_number %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :fax_number %></th>
+	  	<td><%= f.text_field :fax_number %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :email %><br />
-  	<%= f.email_field :email, :autofocus => true %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :email %></th>
+	  	<td><%= f.email_field :email, :autofocus => true %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :password %><br />
-  	<%= f.password_field :password %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :password %></th>
+	  	<td><%= f.password_field :password %></td>
+	  </tr>
 
-  <div>
-  	<%= f.label :password_confirmation %><br />
-  	<%= f.password_field :password_confirmation %>
-  </div>
+	  <tr>
+	  	<th><%= f.label :password_confirmation %></th>
+	  	<td><%= f.password_field :password_confirmation %></td>
+	  </tr>
 
-  <div id="company_details">
-	  <div>
-  		<%= f.label :company_group %><br/>
-  		<%= f.text_field :company_group %>
-		</div>
+	  <div id="company_details">
+		  <tr>
+		  	<th><%= f.label :company_group %></th>
+	  		<td><%= f.text_field :company_group %></td>
+			</tr>
 
-	  <div>
-  		<%= f.label :tan_number %><br/>
-  		<%= f.text_field :tan_number %>
-		</div>
- 	
-	  <div>
-  		<%= f.label :no_of_employees %><br/>
-  		<%= f.number_field :no_of_employees %>
-		</div>
- 	 	
-  </div>
+		  <tr>
+		  	<th><%= f.label :tan_number %></th>
+	  		<td><%= f.text_field :tan_number %></td>
+			</tr>
+	 	
+		  <tr>
+		  	<th><%= f.label :no_of_employees %></th>
+	  		<td><%= f.number_field :no_of_employees %></td>
+			</tr>
+	 	 	
+	  </div>
 
-  <div id="ngo_details">
-  </div>
+	  <div id="ngo_details">
+	  </div>
 
-  <div id="socialist_details">
-	  <div>
-  		<%= f.label :age %><br/>
-  		<%= f.number_field :age %>
-		</div>
+	  <div id="socialist_details">
+		  <tr>
+		  	<th><%= f.label :age %></th>
+	  		<td><%= f.number_field :age %></td>
+			</tr>
 
-	  <div>
-  		<%= f.label :gender %><br/>
-  		<%= f.text_field :gender %>
-		</div>
+		  <tr>
+		  	<th><%= f.label :gender %></th>
+	  		<td><%= f.text_field :gender %></td>
+			</tr>
 
-	  <div>
-  		<%= f.label :adhaar_number %><br/>
-  		<%= f.text_field :adhaar_number %>
-		</div>
+		  <tr>
+		  	<th><%= f.label :adhaar_number %></th>
+	  		<td><%= f.text_field :adhaar_number %></td>
+			</tr>
 
-	  <div>
-  		<%= f.label :voter_id %><br/>
-  		<%= f.text_field :voter_id %>
-		</div>  	
+		  <tr>
+		  	<th><%= f.label :voter_id %></th>
+	  		<td><%= f.text_field :voter_id %></td>
+			</tr>  	
 
-	  <div>
-  		<%= f.label :nationality %><br/>
-  		<%= f.text_field :nationality %>
-		</div>  	
-  </div>
+		  <tr>
+		  	<th><%= f.label :nationality %></th>
+	  		<td><%= f.text_field :nationality %></td>
+			</tr>  	
+	  </div>
 
-  <div id="ngo_company">
- 	  <div>
-	  	<%= f.label :owner %><br/>
-	  	<%= f.text_field :owner %>
-  	</div>
+	  <div id="ngo_company">
+	 	  <tr>
+	 	  	<th><%= f.label :owner %></th>
+		  	<td><%= f.text_field :owner %></td>
+	  	</tr>
 
- 	  <div>
-	  	<%= f.label :year_established %><br/>
-	  	<%= f.number_field :year_established %>
-  	</div>
+	 	  <tr>
+	 	  	<th><%= f.label :year_established %></th>
+		  	<td><%= f.number_field :year_established %></td>
+	  	</tr>
 
- 	  <div>
-	  	<%= f.label :service_type %><br/>
-	  	<%= f.text_field :service_type %>
-  	</div>
+	 	  <tr>
+	 	  	<th><%= f.label :service_type %></th>
+		  	<td><%= f.text_field :service_type %></td>
+	  	</tr>
 
- 	  <div>
-	  	<%= f.label :pan_number %><br/>
-	  	<%= f.text_field :pan_number %>
-  	</div>
-  </div>
+	 	  <tr>
+	 	  	<th><%= f.label :pan_number %></th>
+		  	<td><%= f.text_field :pan_number %></td>
+	  	</tr>
+	  </div>
 
-  <div><%= f.submit "Sign up" %></div>
+	  <tr>
+	  	<th><%= f.submit "Sign up" %></th>
+	  </tr>
+  </table>
 <% end %>
 
 <%= render "users/shared/links" %>

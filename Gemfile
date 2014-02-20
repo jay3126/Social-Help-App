@@ -6,6 +6,8 @@ gem 'rails', '4.0.3'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+gem 'devise'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -42,4 +44,4 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]

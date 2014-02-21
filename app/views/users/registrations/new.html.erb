@@ -3,7 +3,7 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <table align="center">
+  <table>
   	<tr>
   		<th><%= f.label :role, "Register Me As: " %></th>
   		<td><%= f.select(:role, options_for_select(["Corporate","NGO","Socialist","Analyst"]),{prompt: "Select Your Role"}) %></td>
@@ -140,7 +140,7 @@
 	  </div>
 
 	  <tr>
-	  	<th><%= f.submit "Sign up" %></th>
+	  	<th><%= f.submit "Sign up", :class => 'btn btn-primary' %></th>
 	  </tr>
   </table>
 <% end %>

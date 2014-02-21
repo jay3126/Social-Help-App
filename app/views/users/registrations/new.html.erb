@@ -1,148 +1,193 @@
-<h2>Sign up</h2>
+<div class="panel expand-600 float-right">
+	<div class="panel-heading">
+		<h4>Sign Up</h4>
+	</div>
+	<div class="panel-body">
+		<div class="form-wrapper">
+			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
+				<%= devise_error_messages! %>
+				<div class="control-group">
+					<%= f.label :role, "Register Me As: ", class: "control-label" %>
+					<div class="controls">
+						<%= f.select(:role, options_for_select(["Corporate","NGO","Socialist","Analyst"]),{prompt: "Select Your Role"}) %>
+					</div>
+				</div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+				<div class="control-group">
+					<%= f.label :name,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :name %>
+					</div>
+				</div>
 
-  <table>
-  	<tr>
-  		<th><%= f.label :role, "Register Me As: " %></th>
-  		<td><%= f.select(:role, options_for_select(["Corporate","NGO","Socialist","Analyst"]),{prompt: "Select Your Role"}) %></td>
-  	</tr>
+				<div class="control-group">
+					<%= f.label :address,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_area :address %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :name %></th>
-	  	<td><%= f.text_field :name %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :city,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.number_field :pin_code %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :address %></th>
-	  	<td><%= f.text_area :address %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :pin_code,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :city %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :pin_code %></th>
-	  	<td><%= f.number_field :pin_code %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :state,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :state %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :city %></th>
-	  	<td><%= f.text_field :city %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :country,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :country %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :state %></th>
-	  	<td><%= f.text_field :state %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :mobile_number,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :mobile_number %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :country %></th>
-	  	<td><%= f.text_field :state %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :phone_number,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :phone_number %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :mobile_number %></th>
-	  	<td><%= f.text_field :mobile_number %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :fax_number,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :fax_number %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :phone_number %></th>
-	  	<td><%= f.text_field :phone_number %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :email,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.email_field :email, :autofocus => true %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :fax_number %></th>
-	  	<td><%= f.text_field :fax_number %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :password,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.password_field :password %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :email %></th>
-	  	<td><%= f.email_field :email, :autofocus => true %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :password_confirmation,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.password_field :password_confirmation %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :password %></th>
-	  	<td><%= f.password_field :password %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :company_group,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :company_group %>
+					</div>
+				</div>
 
-	  <tr>
-	  	<th><%= f.label :password_confirmation %></th>
-	  	<td><%= f.password_field :password_confirmation %></td>
-	  </tr>
+				<div class="control-group">
+					<%= f.label :tan_number,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :tan_number %>
+					</div>
+				</div>
 
-	  <div id="company_details">
-		  <tr>
-		  	<th><%= f.label :company_group %></th>
-	  		<td><%= f.text_field :company_group %></td>
-			</tr>
+				<div class="control-group">
+					<%= f.label :no_of_employees,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.number_field :no_of_employees %>
+					</div>
+				</div>
 
-		  <tr>
-		  	<th><%= f.label :tan_number %></th>
-	  		<td><%= f.text_field :tan_number %></td>
-			</tr>
-	 	
-		  <tr>
-		  	<th><%= f.label :no_of_employees %></th>
-	  		<td><%= f.number_field :no_of_employees %></td>
-			</tr>
-	 	 	
-	  </div>
+				<div class="control-group">
+					<%= f.label :age,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.number_field :age %>
+					</div>
+				</div>
 
-	  <div id="ngo_details">
-	  </div>
+				<div class="control-group">
+					<%= f.label :gender,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :gender %>
+					</div>
+				</div>
 
-	  <div id="socialist_details">
-		  <tr>
-		  	<th><%= f.label :age %></th>
-	  		<td><%= f.number_field :age %></td>
-			</tr>
+				<div class="control-group">
+					<%= f.label :adhaar_number,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :adhaar_number %>
+					</div>
+				</div>
 
-		  <tr>
-		  	<th><%= f.label :gender %></th>
-	  		<td><%= f.text_field :gender %></td>
-			</tr>
+				<div class="control-group">
+					<%= f.label :voter_id,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :voter_id %>
+					</div>
+				</div>
 
-		  <tr>
-		  	<th><%= f.label :adhaar_number %></th>
-	  		<td><%= f.text_field :adhaar_number %></td>
-			</tr>
+				<div class="control-group">
+					<%= f.label :nationality,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :nationality %>
+					</div>
+				</div>
 
-		  <tr>
-		  	<th><%= f.label :voter_id %></th>
-	  		<td><%= f.text_field :voter_id %></td>
-			</tr>  	
+				<div class="control-group">
+					<%= f.label :owner,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :owner %>
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<%= f.label :year_established,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.number_field :year_established %>
+					</div>
+				</div>
 
-		  <tr>
-		  	<th><%= f.label :nationality %></th>
-	  		<td><%= f.text_field :nationality %></td>
-			</tr>  	
-	  </div>
+				<div class="control-group">
+					<%= f.label :service_type,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :service_type %>
+					</div>
+				</div>
 
-	  <div id="ngo_company">
-	 	  <tr>
-	 	  	<th><%= f.label :owner %></th>
-		  	<td><%= f.text_field :owner %></td>
-	  	</tr>
+				<div class="control-group">
+					<%= f.label :pan_number,"", class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :pan_number %>
+					</div>
+				</div>
 
-	 	  <tr>
-	 	  	<th><%= f.label :year_established %></th>
-		  	<td><%= f.number_field :year_established %></td>
-	  	</tr>
-
-	 	  <tr>
-	 	  	<th><%= f.label :service_type %></th>
-		  	<td><%= f.text_field :service_type %></td>
-	  	</tr>
-
-	 	  <tr>
-	 	  	<th><%= f.label :pan_number %></th>
-		  	<td><%= f.text_field :pan_number %></td>
-	  	</tr>
-	  </div>
-
-	  <tr>
-	  	<th><%= f.submit "Sign up", :class => 'btn btn-primary' %></th>
-	  </tr>
-  </table>
-<% end %>
-
-<%= render "users/shared/links" %>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Sign Up</button>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<%= render "users/shared/links" %>
+	</div>
+</div>

@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220122418) do
+ActiveRecord::Schema.define(version: 20140221055750) do
+
+  create_table "fiscal_stats", force: true do |t|
+    t.integer  "fiscal_year"
+    t.decimal  "opening_blnc",          precision: 15, scale: 2
+    t.decimal  "closing_blnc",          precision: 15, scale: 2
+    t.string   "currency_type"
+    t.decimal  "total_revenue",         precision: 15, scale: 2
+    t.decimal  "net_profit",            precision: 15, scale: 2
+    t.decimal  "available_social_fund", precision: 15, scale: 2
+    t.integer  "user_id"
+    t.boolean  "eligibility_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                             default: "", null: false

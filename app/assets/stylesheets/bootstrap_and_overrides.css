@@ -6,7 +6,6 @@
   =require twitter-bootstrap-static/fontawesome
   */
 .panel{
-	width: 500px;
 	border: 1px solid #000;
 	border-radius: 15px;
 	margin: 0 auto;
@@ -48,4 +47,15 @@
 	font-family: sans-serif;
 	font-size: small;
 	font-weight: bold;
+}
+#wrap {
+  min-height: 70%;
+  margin-top: 70px;
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
 }

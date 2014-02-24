@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-	
+
+	def create 
+	end
+
 	def dashboard
-		debugger
-		puts "adfasdf"
 	end
 end

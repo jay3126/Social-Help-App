@@ -10,5 +10,11 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
+ *= require ace-fonts
+ *= require ace-rtl.min
+ *= require ace-skins.min
+ *= require ace.min
+ *= require bootstrap.min
+ *= require font-awesome.min
  *= require_tree .
  */

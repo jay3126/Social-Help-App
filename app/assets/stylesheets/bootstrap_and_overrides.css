@@ -5,13 +5,13 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
-.panel{
+.panel-sign-in{
 	border: 1px solid #D3D3D3;
 	border-radius: 15px;
 	margin: 0 auto;
 }
 
-.panel-heading{
+.panel-heading-sign-in{
 	color: white;
 	background-color: #428bca;
 	padding: 2px 15px;
@@ -20,12 +20,12 @@
 	border-top-left-radius: 14px;
 }
 
-.panel-body{
+.panel-body-sign-in{
 	padding: 10px;
 
 }
 
-.panel-body .form-wrapper{
+.panel-body-sign-in .form-wrapper{
 	margin-top: 25px;
 }
 

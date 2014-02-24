@@ -1,4 +1,4 @@
-class UsersController < Devise::RegistrationsController
+class UsersController < ApplicationController
 	def create 
 		debugger
 		puts "adfasdfl"

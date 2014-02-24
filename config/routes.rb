@@ -1,7 +1,6 @@
 SocialHelpApp::Application.routes.draw do
-  devise_for :users do 
-    get 'dashboard'
-  end
+  devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,6 +8,8 @@ SocialHelpApp::Application.routes.draw do
   devise_scope :user do
     root to: "devise/sessions#new"
   end
+
+  get "/users/dashboard", to: "users#dashboard"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

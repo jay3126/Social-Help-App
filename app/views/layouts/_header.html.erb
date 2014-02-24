@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top" style="background: #fff">
 	<div class="navbar-inner">
 		<div class="container">
 			
@@ -9,21 +9,22 @@
       </a>
 
 			<a class="brand" href="/">Social Application</a>
-			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<li><a href="/">Home</a></li>
-					<li class="divider-vertical"></li>
-					<li><a href="/">Stats</a></li>
-					<li class="divider-vertical"></li>
-					<li><a href="/">Bar</a></li>
-					<li class="divider-vertical"></li>
-					<li><a href="">Pie</a></li>
-				</ul>
-			</div>
-			<% if defined? current_user and current_user.present? %>
-				<div style="float:right; margin-top:10px;" class="nav">
-					<span>welcome, <%= current_user.name %></span> | 
-					<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+			<div class="nav-collapse collapse-header">
+				<% if defined? current_user and current_user.present? %>
+					<ul class="nav">
+						<li><a href="/">Home</a></li>
+						<li class="divider-vertical"></li>
+						<li><a href="/">Stats</a></li>
+						<li class="divider-vertical"></li>
+						<li><a href="/">Bar</a></li>
+						<li class="divider-vertical"></li>
+						<li><a href="">Pie</a></li>
+					</ul>
+
+					<div style="float:right; margin-top:10px;" class="nav">
+						<span>Welcome, <%= current_user.name %></span> | 
+						<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+					</div>
 				</div>
 			<%end%>
 		</div>

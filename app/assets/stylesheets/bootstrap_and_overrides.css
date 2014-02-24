@@ -48,9 +48,7 @@
 	font-size: small;
 	font-weight: bold;
 }
-#wrap {
-  min-height: 70%;
-  margin-top: 70px;
+.footer-wrap {
 	border-top: 1px solid #e5e5e5;
 	background-color: #f5f5f5;
 }
@@ -59,4 +57,12 @@
   overflow:auto;
   text-align: center;
 	padding: 10px;
+}
+
+.img-container{
+	border: 1px solid #D3D3D3;
+}
+.img-140{
+	width: 160px;
+	height: 140px;
 }

@@ -1,34 +1,46 @@
-<div class="panel" style="width: 500px;">
-	<div class="panel-heading">
-		<h4>Sign In</h4>
-	</div>
-	<div class="panel-body">
-		<div class="form-wrapper">
-			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
-				<div class="control-group">
-					<label class="control-label" for="inputEmail">Email</label>
-					<div class="controls">
-			      <%= f.email_field :email, :autofocus => true %>
-			    </div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputEmail">Password</label>
-					<div class="controls">
-			      <%= f.password_field :password %>
-			    </div>
-				</div>
-				<div class="control-group">
-			    <div class="controls">
-						<% if devise_mapping.rememberable? -%>
-				      <label class="checkbox">
-				        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-				      </label>
-			      <% end%>
-			      <button type="submit" class="btn">Sign in</button>
-			    </div>
-			  </div>
-			<% end %>
+<div>
+	<div class="panel" style="width: 500px;">
+		<div class="panel-heading">
+			<h4>Sign In</h4>
 		</div>
-		<%= render "users/shared/links" %>
+		<div class="panel-body">
+			<div class="form-wrapper">
+				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
+					<div class="control-group">
+						<label class="control-label" for="inputEmail">Email</label>
+						<div class="controls">
+				      <%= f.email_field :email, :autofocus => true %>
+				    </div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputEmail">Password</label>
+						<div class="controls">
+				      <%= f.password_field :password %>
+				    </div>
+					</div>
+					<div class="control-group">
+				    <div class="controls">
+							<% if devise_mapping.rememberable? -%>
+					      <label class="checkbox">
+					        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+					      </label>
+				      <% end%>
+				      <button type="submit" class="btn">Sign in</button>
+				    </div>
+				  </div>
+				<% end %>
+			</div>
+			<%= render "users/shared/links" %>
+		</div>
+	</div>
+
+	<div style="margin-top: 60px;text-align: center">
+		<ul class="inline">
+			<li><div class="img-container"><%= link_to image_tag("ngo_1.jpg", class: "img-140"), "http://www.eco-people.co.uk" %></div></li>
+			<li><div class="img-container"><%= link_to image_tag("ngo_2.jpg", class: "img-140"), "http://www.letshelp.co.uk" %></div></li>
+			<li><div class="img-container"><%= link_to image_tag("ngo_3.jpg", class: "img-140"), "http://www.ilo.org" %></div></li>
+			<li><div class="img-container"><%= link_to image_tag("ngo_6.jpg", class: "img-140"), "http://www.greenpeace.org" %></div></li>
+			<li><div class="img-container"><%= link_to image_tag("ngo_5.jpg", class: "img-140"), "http://www.econnectproject.eu/?" %></div></li>
+		</ul>
 	</div>
 </div>

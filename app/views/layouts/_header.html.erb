@@ -20,6 +20,12 @@
 					<li><a href="">Pie</a></li>
 				</ul>
 			</div>
+			<% if defined? current_user and current_user.present? %>
+				<div style="float:right; margin-top:10px;" class="nav">
+					<span>welcome, <%= current_user.name %></span> | 
+					<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+				</div>
+			<%end%>
 		</div>
 	</div>
 </div>

@@ -11,6 +11,10 @@
 	margin: 0 auto;
 }
 
+.panel-detail{
+	border: 1px solid #D3D3D3;
+}
+
 .panel-heading-sign-in{
 	color: white;
 	background-color: #428bca;

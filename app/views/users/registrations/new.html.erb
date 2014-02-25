@@ -72,7 +72,7 @@
 						<div class="control-group">
 							<%= f.label :pin_code,"", class: "control-label" %>
 							<div class="controls">
-								<%= f.number_field :pin_code %>
+								<%= f.text_field :pin_code, maxlength: 6, onkeypress: "return isNumber(event)" %>
 							</div>
 						</div>
 
@@ -93,7 +93,7 @@
 						<div class="control-group">
 							<%= f.label :mobile_number,"", class: "control-label" %>
 							<div class="controls">
-								<%= f.text_field :mobile_number %>
+								<%= f.text_field :mobile_number, maxlength: 10, onkeypress: "return isNumber(event)" %>
 							</div>
 						</div>
 
@@ -132,7 +132,7 @@
 						<div class="control-group">
 							<%= f.label :no_of_employees,"", class: "control-label" %>
 							<div class="controls">
-								<%= f.number_field :no_of_employees %>
+								<%= f.text_field :no_of_employees %>
 							</div>
 						</div>
 						</fieldset>
@@ -144,7 +144,7 @@
 							<div class="control-group">
 								<%= f.label :age,"", class: "control-label" %>
 								<div class="controls">
-									<%= f.number_field :age %>
+									<%= f.text_field :age %>
 								</div>
 							</div>
 
@@ -208,7 +208,7 @@
 						<div class="control-group">
 							<%= f.label :year_established,"", class: "control-label" %>
 							<div class="controls">
-								<%= f.number_field :year_established %>
+								<%= f.text_field :year_established, maxlength: 4, onkeypress: "return isNumber(event)" %>
 							</div>
 						</div>
 					</div>

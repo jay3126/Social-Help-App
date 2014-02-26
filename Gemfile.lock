@@ -28,6 +28,7 @@ GEM
     arel (4.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    bootstrap-datetimepicker-rails (0.0.11)
     builder (3.1.4)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -147,6 +148,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-datetimepicker-rails
   coffee-rails (~> 4.0.0)
   debugger
   devise

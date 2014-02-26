@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225105539) do
+ActiveRecord::Schema.define(version: 20140225110255) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -33,6 +33,25 @@ ActiveRecord::Schema.define(version: 20140225105539) do
     t.string   "issue_area"
     t.integer  "issue_area_code",   limit: 8
     t.boolean  "issue_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "project_name"
+    t.string   "project_type"
+    t.string   "area"
+    t.integer  "project_est_cost"
+    t.integer  "project_actual_cost"
+    t.date     "est_start_date"
+    t.date     "actual_start_date"
+    t.date     "est_completion_date"
+    t.date     "actual_completion_date"
+    t.integer  "assigned_to"
+    t.integer  "assigned_by"
+    t.integer  "verified_by"
+    t.integer  "closed_by"
+    t.string   "project_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

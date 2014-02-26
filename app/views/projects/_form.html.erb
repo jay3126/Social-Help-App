@@ -1,0 +1,139 @@
+<div class="panel-body-sign-in">
+  <div class="form-wrapper">
+		<%= form_for(@project, html: {class: "form-horizontal"}) do |f| %>
+			<% if @project.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+					<ul>
+						<% @project.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+
+			<div class="control-group">
+			  <%= f.label :project_name,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.text_field :project_name %>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :project_type,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.text_field :project_type %>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :area,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.text_field :area %>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :project_est_cost,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.text_field :project_est_cost, onkeypress: "return isNumber(event)" %>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :project_actual_cost,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.text_field :project_actual_cost, onkeypress: "return isNumber(event)" %>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :est_start_date,"", class: "control-label" %>
+			  <div class="controls">
+  				<div id="datetimepicker1" class="input-append date">
+    				<input name="est_start_date" data-format="dd/MM/yyyy" type="text"></input>
+    				<span class="add-on">
+	      			<i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar" >
+	      			</i>
+    				</span>
+  				</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :actual_start_date,"", class: "control-label" %>
+			  <div class="controls">
+			  	<div id="datetimepicker2" class="input-append date">
+    				<input name="actual_start_date" data-format="dd/MM/yyyy" type="text"></input>
+    				<span class="add-on">
+	      			<i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar" >
+	      			</i>
+    				</span>
+  				</div>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :est_completion_date,"", class: "control-label" %>
+			  <div class="controls">
+			  	<div id="datetimepicker3" class="input-append date">
+    				<input name="est_completion_date" data-format="dd/MM/yyyy" type="text"></input>
+    				<span class="add-on">
+	      			<i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar" >
+	      			</i>
+    				</span>
+  				</div>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :actual_completion_date,"", class: "control-label" %>
+			  <div class="controls">
+			  	<div id="datetimepicker4" class="input-append date">
+    				<input name="actual_completion_date" data-format="dd/MM/yyyy" type="text"></input>
+    				<span class="add-on">
+	      			<i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar" >
+	      			</i>
+    				</span>
+  				</div>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :assigned_to,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.select(:assigned_to, options_for_select(User.where(role: "NGO").map{|x| [x.name, x.id]}, { prompt: "Select NGO"})) %>
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <%= f.label :project_duration,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.text_field :project_duration %>
+			  </div>
+			</div>
+
+			<div class="actions">
+			  <%= f.submit %>
+			  <%= link_to 'Back', users_dashboard_path, class: 'btn btn-primary' %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<script>
+	$(function() {
+    $( "#datetimepicker1" ).datetimepicker({
+    	pickTime: false
+    });
+    $( "#datetimepicker2" ).datetimepicker({
+    	pickTime: false
+    });
+    $( "#datetimepicker3" ).datetimepicker({
+    	pickTime: false
+    });
+    $( "#datetimepicker4" ).datetimepicker({
+    	pickTime: false
+    });
+  });
+</script>

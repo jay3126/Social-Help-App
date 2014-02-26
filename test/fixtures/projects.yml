@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_name: MyString
+  project_type: MyString
+  area: MyString
+  project_est_cost: 1
+  project_actual_cost: 1
+  est_start_date: 2014-02-25
+  actual_start_date: 2014-02-25
+  est_completion_date: 2014-02-25
+  actual_completion_date: 2014-02-25
+  assigned_to: 1
+  assigned_by: 1
+  verified_by: 1
+  closed_by: 1
+  project_duration: MyString
+
+two:
+  project_name: MyString
+  project_type: MyString
+  area: MyString
+  project_est_cost: 1
+  project_actual_cost: 1
+  est_start_date: 2014-02-25
+  actual_start_date: 2014-02-25
+  est_completion_date: 2014-02-25
+  actual_completion_date: 2014-02-25
+  assigned_to: 1
+  assigned_by: 1
+  verified_by: 1
+  closed_by: 1
+  project_duration: MyString

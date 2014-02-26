@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project name:</strong>
+  <%= @project.project_name %>
+</p>
+
+<p>
+  <strong>Project type:</strong>
+  <%= @project.project_type %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @project.area %>
+</p>
+
+<p>
+  <strong>Project est cost:</strong>
+  <%= @project.project_est_cost %>
+</p>
+
+<p>
+  <strong>Project actual cost:</strong>
+  <%= @project.project_actual_cost %>
+</p>
+
+<p>
+  <strong>Est start date:</strong>
+  <%= @project.est_start_date %>
+</p>
+
+<p>
+  <strong>Actual start date:</strong>
+  <%= @project.actual_start_date %>
+</p>
+
+<p>
+  <strong>Est completion date:</strong>
+  <%= @project.est_completion_date %>
+</p>
+
+<p>
+  <strong>Actual completion date:</strong>
+  <%= @project.actual_completion_date %>
+</p>
+
+<p>
+  <strong>Assigned to:</strong>
+  <%= @project.assigned_to %>
+</p>
+
+<p>
+  <strong>Assigned by:</strong>
+  <%= @project.assigned_by %>
+</p>
+
+<p>
+  <strong>Verified by:</strong>
+  <%= @project.verified_by %>
+</p>
+
+<p>
+  <strong>Closed by:</strong>
+  <%= @project.closed_by %>
+</p>
+
+<p>
+  <strong>Project duration:</strong>
+  <%= @project.project_duration %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

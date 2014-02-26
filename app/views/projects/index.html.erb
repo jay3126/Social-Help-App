@@ -1,0 +1,53 @@
+<h1>Listing projects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project name</th>
+      <th>Project type</th>
+      <th>Area</th>
+      <th>Project est cost</th>
+      <th>Project actual cost</th>
+      <th>Est start date</th>
+      <th>Actual start date</th>
+      <th>Est completion date</th>
+      <th>Actual completion date</th>
+      <th>Assigned to</th>
+      <th>Assigned by</th>
+      <th>Verified by</th>
+      <th>Closed by</th>
+      <th>Project duration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.project_name %></td>
+        <td><%= project.project_type %></td>
+        <td><%= project.area %></td>
+        <td><%= project.project_est_cost %></td>
+        <td><%= project.project_actual_cost %></td>
+        <td><%= project.est_start_date %></td>
+        <td><%= project.actual_start_date %></td>
+        <td><%= project.est_completion_date %></td>
+        <td><%= project.actual_completion_date %></td>
+        <td><%= project.assigned_to %></td>
+        <td><%= project.assigned_by %></td>
+        <td><%= project.verified_by %></td>
+        <td><%= project.closed_by %></td>
+        <td><%= project.project_duration %></td>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project', new_project_path %>

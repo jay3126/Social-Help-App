@@ -28,4 +28,5 @@
 //= require jquery.sparkline.min
 //= require jquery.ui.touch-punch.min
 //= require typeahead-bs2.min
+//= require bootstrap-datetimepicker
 //= require_tree .

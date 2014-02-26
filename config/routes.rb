@@ -8,6 +8,7 @@ SocialHelpApp::Application.routes.draw do
   get "issues/completed_issues"
 
   resources :fiscal_stats
+  resources :projects
 
   devise_for :users
 

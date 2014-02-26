@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 20140225105539) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
-    t.decimal  "opening_blnc",          precision: 15, scale: 2
-    t.decimal  "closing_blnc",          precision: 15, scale: 2
+    t.decimal  "opening_blnc",          precision: 15, scale: 2, default: 0.0
+    t.decimal  "closing_blnc",          precision: 15, scale: 2, default: 0.0
     t.string   "currency_type"
     t.decimal  "total_revenue",         precision: 15, scale: 2
     t.decimal  "net_profit",            precision: 15, scale: 2
     t.decimal  "available_social_fund", precision: 15, scale: 2
     t.integer  "user_id"
-    t.boolean  "eligibility_status"
+    t.boolean  "eligibility_status",                             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

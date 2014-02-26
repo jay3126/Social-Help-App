@@ -7,6 +7,8 @@ SocialHelpApp::Application.routes.draw do
   get "issues/pending_issues"
   get "issues/completed_issues"
 
+  resources :fiscal_stats
+
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.

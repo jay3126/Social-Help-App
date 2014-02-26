@@ -1,0 +1,25 @@
+<h1>Listing fiscal_stats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fiscal_stats.each do |fiscal_stat| %>
+      <tr>
+        <td><%= link_to 'Show', fiscal_stat %></td>
+        <td><%= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat) %></td>
+        <td><%= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fiscal stat', new_fiscal_stat_path %>

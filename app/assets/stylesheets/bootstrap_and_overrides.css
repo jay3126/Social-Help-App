@@ -80,3 +80,15 @@
 	-o-transition: height 0.35s ease;
 	transition: height 0.35s ease;
 }
+
+.pdl-10{
+	padding-left: 10px;
+}
+
+.pdl-20{
+	padding-left: 20px;
+}
+
+.pdt-20{
+	padding-top: 20px;
+}

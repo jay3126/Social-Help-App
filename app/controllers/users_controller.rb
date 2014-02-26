@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 			render "users/as_ngo.html.erb"
 			return
 		elsif current_user.role == "Socialist"
+			@issues = Issues.where(users_id: current_user.id)
 			render "users/as_socialist"
 			return
 		end

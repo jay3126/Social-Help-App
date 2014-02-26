@@ -11,16 +11,6 @@
 			<a class="brand" href="/">Social Application</a>
 			<div class="nav-collapse collapse-header">
 				<% if defined? current_user and current_user.present? %>
-					<ul class="nav">
-						<li><a href="/">Home</a></li>
-						<li class="divider-vertical"></li>
-						<li><a href="/">Stats</a></li>
-						<li class="divider-vertical"></li>
-						<li><a href="/">Bar</a></li>
-						<li class="divider-vertical"></li>
-						<li><a href="">Pie</a></li>
-					</ul>
-
 					<div style="float:right; margin-top:10px;" class="nav">
 						<span>Welcome, <%= current_user.name %></span> | 
 						<%= link_to "Log out", destroy_user_session_path, :method => :delete %>

@@ -1,4 +1,12 @@
 SocialHelpApp::Application.routes.draw do
+  get "issues/new"
+  post "issues/create"
+  get "issues/edit"
+  get "issues/show"
+  put "issues/update"
+  get "issues/pending_issues"
+  get "issues/completed_issues"
+
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.

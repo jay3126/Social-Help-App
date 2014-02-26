@@ -1,0 +1,47 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/socialist_right_panel"%>
+	</div>
+	<div class="panel-sign-in span9" style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>Create New Issue</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= form_tag issues_create_path, id: "newIssue", class: "form-horizontal" do %>
+					<div class="control-group">
+						<%= label :desc, "Issue Description", class: "control-label" %>
+						<div class="controls">
+							<%= text_area_tag "issue[issue_description]",nil, style: "width: 350px;"%>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<%= label :area, "Issue Area/Locality", class: "control-label" %>
+						<div class="controls">
+							<%= text_field_tag "issue[issue_area]"%>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<%= label :area_code, "Area/Locality Pin", class: "control-label" %>
+						<div class="controls">
+							<%= text_field_tag "issue[issue_area_code]"%>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="controls">
+							<button type="button" onclick="submitNewIssueForm();" class="btn">Create Issue</button>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function submitNewIssueForm(){
+		$("#newIssue").submit();
+	}
+</script>

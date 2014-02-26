@@ -1,0 +1,43 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/socialist_right_panel"%>
+	</div>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>Edit Isssue</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= form_for @issue, url: issues_update_path(id: params[:id]), html: {class: "form-horizontal", method: :put} do |f| %>
+					<div class="control-group">
+						<%= label :desc, "Issue Description", class: "control-label" %>
+						<div class="controls">
+							<%= f.text_area :issue_description, style: "width: 350px;"%>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<%= label :area, "Issue Area/Locality", class: "control-label" %>
+						<div class="controls">
+							<%= f.text_field :issue_area %>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<%= label :area_code, "Area/Locality Pin", class: "control-label" %>
+						<div class="controls">
+							<%= f.text_field :issue_area_code %>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn btn-warning">Update Issue</button>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

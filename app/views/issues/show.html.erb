@@ -1,0 +1,53 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/socialist_right_panel"%>
+	</div>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4><%= truncate(@issue.issue_description) %></h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<table class="table">
+				<thead>
+					<th></th>
+					<th><th>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Issue Description</th>
+						<td><%= @issue.issue_description %></td>
+					</tr>
+					<tr>
+						<th>Related Area/Locality</th>
+						<td><%= @issue.issue_area %></td>
+					</tr>
+					<tr>
+						<th>Area Code</th>
+						<td><%= @issue.issue_area_code %></td>
+					</tr>
+					<tr>
+						<th>Status</th>
+						<td><%= @issue.issue_status ? "Open" : "Closed" %></td>
+					</tr>
+					<tr>
+						<th>Issue Start Date</th>
+						<td><%= @issue.created_at.to_date %></td>
+					</tr>
+					<tr>
+						<th>Issue Closed Date</th>
+						<% if @issue.issue_status %>
+							<td>Pending</td>
+						<% else %>
+							<td><%= @issue.created_at.to_date %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<th>Work Done By</th>
+						<td>Anonymous NGO</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

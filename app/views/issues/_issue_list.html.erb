@@ -1,0 +1,35 @@
+<% if @issues.present? %>
+	<table class="table">
+		<thead>
+			<th>S. No.</th>
+			<th>Issue Description</th>
+			<th>Related Area</th>
+			<th>Area Pin Code</th>
+			<th>Issue Status</th>
+			<th colspan="2"></th>
+		</thead>
+		<tbody>						
+			<% @issues.each_with_index do |iss,i| %>
+				<tr>
+					<td><%= i + 1 %></td>
+					<td><%= iss.issue_description %></td>
+					<td><%= iss.issue_area %></td>
+					<td><%= iss.issue_area_code %></td>
+					<td><%= iss.issue_status ? "Open" : "Closed" %></td>
+					<td><%= link_to "View", issues_show_path(id: iss.id), class: "btn btn-primary" %></td>
+					<% if iss.issue_status%>
+						<td><%= link_to "Edit", issues_edit_path(id: iss.id), class: "btn btn-warning" %></td>
+					<% else %>
+						<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<% if @comp %>
+		<p>No completed issue(s)</p>
+	<% else %>
+		<p>You have not submitted any issue(s)</p>
+	<% end %>
+<% end %>

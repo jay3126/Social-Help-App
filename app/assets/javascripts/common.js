@@ -26,12 +26,12 @@ function resetAll(){
 	}
 }
 
-function submitNewUserForm(){
+function submitUserForm(){
 	var role = $("#user_role").val();
 	if(role == '' || role == undefined){
 		alert("Please select a role");
 	}else{
-		$("#new_user").submit();
+		$("#user_form").submit();
 	}
 	return false;
 }

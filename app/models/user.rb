@@ -66,4 +66,20 @@ class User < ActiveRecord::Base
     user.present? ? user.name : ""
   end
 
+  def corporate?
+    self.role.to_s.downcase == "corporate"
+  end
+
+  def socialist?
+    self.role.to_s.downcase == "socialist"
+  end
+
+  def analyst?
+    self.role.to_s.downcase == "analyst"
+  end
+
+  def ngo?
+    self.role.to_s.downcase == "ngo"
+  end
+
 end

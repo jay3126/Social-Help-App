@@ -1,29 +1,34 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>
+<div class="row-fluid">
+	<div class="span3">
+		<% if current_user.corporate? %>
+			<%= render "navs/corp_left_panel"%>
+		<% elsif current_user.socialist? %>
+			<%= render "navs/socialist_right_panel"%>
+		<% elsif current_user.ngo? %>
+			<%= render "navs/ngo_left_panel"%>
+		<% else %>
+			<%= render "nav/analyst_left_panel"%>
+		<% end %>
+	</div>
+	<div class="panel-sign-in span9">
+		<div class="panel-heading-sign-in">
+			<h4>Edit Details</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= render "form"%>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	<% if current_user.corporate? %>
+		$("#company-fields").removeClass("hide");
+		$("#company-ngo-common").removeClass("hide");
+	<% elsif current_user.socialist? %>
+		$("#individual-details").removeClass("hide")
+	<% elsif current_user.ngo? %>
+		$("#ngo-details").removeClass("hide");
+		$("#company-ngo-common").removeClass("hide");
+	<% end %>
+</script>

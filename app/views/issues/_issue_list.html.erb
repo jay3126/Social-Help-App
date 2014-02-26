@@ -16,9 +16,9 @@
 					<td><%= iss.issue_area %></td>
 					<td><%= iss.issue_area_code %></td>
 					<td><%= iss.issue_status ? "Open" : "Closed" %></td>
-					<td><%= link_to "View", issues_show_path(id: iss.id), class: "btn btn-primary" %></td>
+					<td><%= link_to "View", issue_path(iss.id), class: "btn btn-primary" %></td>
 					<% if iss.issue_status%>
-						<td><%= link_to "Edit", issues_edit_path(id: iss.id), class: "btn btn-warning" %></td>
+						<td><%= link_to "Edit", edit_issue_path(id: iss.id), class: "btn btn-warning" %></td>
 					<% else %>
 						<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
 					<% end %>

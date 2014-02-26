@@ -26,16 +26,20 @@ class IssuesController < ApplicationController
   def update
   	@issue = Issues.where(id: params[:id]).first
   	@issue.update(issue_params)
-  	redirect_to issues_show_path(id: params[:id])
+  	redirect_to issue_path(params[:id])
   end
 
   def pending_issues
-  	@issues = Issues.where(users_id: current_user.id, issue_status: false)
+  	@issues = Issues.where(users_id: current_user.id, issue_status: true)
   end
 
   def completed_issues
-  	@issues = Issues.where(users_id: current_user.id, issue_status: true)
+  	@issues = Issues.where(users_id: current_user.id, issue_status: false)
   	@comp = true
+  end
+
+  def profile
+    @user = current_user
   end
 
   private

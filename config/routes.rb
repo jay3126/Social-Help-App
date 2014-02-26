@@ -1,11 +1,11 @@
 SocialHelpApp::Application.routes.draw do
-  get "issues/new"
-  post "issues/create"
-  get "issues/edit"
-  get "issues/show"
-  put "issues/update"
-  get "issues/pending_issues"
-  get "issues/completed_issues"
+  resources :issues do
+    collection do
+      get "pending_issues"
+      get "completed_issues"
+      get "profile"
+    end
+  end
 
   resources :fiscal_stats
   resources :projects do

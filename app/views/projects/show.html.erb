@@ -67,9 +67,9 @@
 						<td><%= @project.project_duration %></td>
 					</tr>
 				</tbody>
-				<%= link_to 'Edit', edit_project_path(@project) %> |
-				<%= link_to 'Back', projects_path %>
 			</table>
+			<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %> |
+			<%= link_to 'Back', users_dashboard_path, class: "btn btn-primary" %>
 		</div>
 	</div>
 </div>

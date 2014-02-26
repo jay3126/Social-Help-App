@@ -14,8 +14,10 @@
           <th>Financial Year</th>
           <th>Total Revenue</th>
           <th>Net Profit</th>
+          <th>Currency Type</th>
           <th>Eligibility Status</th>
-          <th>Currency Type</th>  
+          <th></th>
+          <th></th>
         </thead>
         <tbody>
           <% @fiscal_stats.each do |fiscal_stat| %>
@@ -23,11 +25,11 @@
               <td><%= fiscal_stat.fiscal_year %></td>
               <td><%= fiscal_stat.total_revenue %></td>
               <td><%= fiscal_stat.net_profit %></td>
-              <td><%= fiscal_stat.eligibility_status %></td>
-              <td><%= fiscal_stat.currency_type %></td>     
-              <td><%= link_to 'Show', fiscal_stat %></td>
-              <td><%= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat) %></td>
-              <td><%= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= fiscal_stat.currency_type %></td>
+              <td><%= fiscal_stat.eligibility_status %></td>     
+              <td><%= link_to 'View', fiscal_stat, class: "btn btn-primary" %></td>
+              <td><%= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat), class: "btn btn-primary" %></td>
+              <!--<td><%#= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
             </tr>
           <% end %>
         </tbody>

@@ -27,7 +27,7 @@
     <%= f.label :currency_type,"Currency Type", class: "control-label" %>
     <div class='controls'><%= f.select(:currency_type, options_for_select(["INR", "USD"]), prompt: "Select Currency") %></div>
   </div>
-  <div class="">
+  <div class="ml-180">
     <%= f.submit "Save", class: "btn btn-primary"%>
   </div>
 <% end %>

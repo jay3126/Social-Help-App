@@ -100,3 +100,7 @@
 .nav-list>li>a {
 	padding: 0 16px 0 7px !important;
 }
+
+.ml-180{
+	margin-left: 180px;
+}

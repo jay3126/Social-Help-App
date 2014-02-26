@@ -1,20 +1,27 @@
-<div>
-	<div class="panel-heading-sign-in">
-		<h4>NGO Details</h4>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/ngo_left_panel"%>
 	</div>
-	<div class="panel-body-sign-in panel-detail">
-		<%= render '/common_fields'%>
-		<div class="control-group">
-			<%= label :service_type, "Service Type: "%>
-			<span class="controls"><%= @user.service_type%></span>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>NGO Details</h4>
 		</div>
-		<div class="control-group">
-			<%= label :owner, "Owner: "%>
-			<span class="controls"><%= @user.owner%></span>
+
+		<div class="panel-body-sign-in">
+			<%= render '/common_fields'%>
+			<div class="control-group">
+				<%= label :service_type, "Service Type: "%>
+				<span class="controls"><%= @user.service_type%></span>
+			</div>
+			<div class="control-group">
+				<%= label :owner, "Owner: "%>
+				<span class="controls"><%= @user.owner%></span>
+			</div>
+			<div class="control-group">
+				<%= label :year_established, "Year Established: "%>
+				<span class="controls"><%= @user.year_established%></span>
+			</div>
 		</div>
-		<div class="control-group">
-			<%= label :year_established, "Year Established: "%>
-			<span class="controls"><%= @user.year_established%></span>
-		</div>		
 	</div>
 </div>

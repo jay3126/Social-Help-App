@@ -113,6 +113,13 @@
 			  </div>
 			</div>
 
+			<div class="control-group">
+			  <%= f.label :verified,"", class: "control-label" %>
+			  <div class="controls">
+			  	<%= f.check_box :verified %>
+			  </div>
+			</div>
+
 			<div class="actions">
 			  <%= f.submit %>
 			  <%= link_to 'Back', users_dashboard_path, class: 'btn btn-primary' %>

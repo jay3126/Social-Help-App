@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225110255) do
+ActiveRecord::Schema.define(version: 20140226071402) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20140225110255) do
     t.string   "project_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "verified",               default: false
+    t.string   "project_status"
   end
 
   create_table "users", force: true do |t|

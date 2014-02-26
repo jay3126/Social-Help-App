@@ -11,31 +11,23 @@
     </div>
   <% end %>
 
-  <div style="padding-top:20px;">
-    <div class="panel-heading-sign-in">
-      <h4>Add Financial Details</h4>
-    </div>
-    <div class="panel-body-sign-in panel-detail">
-      <div class="control-group">
-        <%= f.label :fiscal_year,"Financial Year", class: "control-label" %>
-        <div class='controls'><%= f.select(:fiscal_year, options_for_select(["2011-2012","2012-2013"]), prompt: "Select Period") %></div>
-      </div>
-      <div class="control-group">
-        <%= f.label :total_revenue,"Total Revenue", class: "control-label" %>
-        <div class='controls'><%= f.text_field :total_revenue %></div>
-      </div>
-      <div class="control-group">
-        <%= f.label :net_profit,"Net Profit", class: "control-label" %>
-        <div class='controls'><%= f.text_field :net_profit %></div>
-      </div>
-      <div class="control-group">
-        <%= f.label :currency_type,"Currency Type", class: "control-label" %>
-        <div class='controls'><%= f.select(:currency_type, options_for_select(["INR", "USD"]), prompt: "Select Currency") %></div>
-      </div>
-      <div class="">
-        <%= f.submit "Save", class: "btn btn-primary"%>
-      </div>
-    </div>
+  <div class="control-group">
+    <%= f.label :fiscal_year,"Financial Year", class: "control-label" %>
+    <div class='controls'><%= f.select(:fiscal_year, options_for_select(["2011-2012","2012-2013"]), prompt: "Select Period") %></div>
   </div>
-
+  <div class="control-group">
+    <%= f.label :total_revenue,"Total Revenue", class: "control-label" %>
+    <div class='controls'><%= f.text_field :total_revenue %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :net_profit,"Net Profit", class: "control-label" %>
+    <div class='controls'><%= f.text_field :net_profit %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :currency_type,"Currency Type", class: "control-label" %>
+    <div class='controls'><%= f.select(:currency_type, options_for_select(["INR", "USD"]), prompt: "Select Currency") %></div>
+  </div>
+  <div class="">
+    <%= f.submit "Save", class: "btn btn-primary"%>
+  </div>
 <% end %>

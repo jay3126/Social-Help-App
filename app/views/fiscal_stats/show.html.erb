@@ -1,4 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/corp_left_panel"%>
+	</div>
 
-<%= link_to 'Edit', edit_fiscal_stat_path(@fiscal_stat) %> |
-<%= link_to 'Back', fiscal_stats_path %>
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>Details For Financial Year <%= @fiscal_stat.fiscal_year %></h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<table class="table">
+				<thead>
+					<th></th>
+					<th><th>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Financial Year</th>
+						<td><%= @fiscal_stat.fiscal_year %></td>
+					</tr>
+					<tr>
+						<th>Total Revenue</th>
+						<td><%= @fiscal_stat.total_revenue %></td>
+					</tr>
+					<tr>
+						<th>Net Profit</th>
+						<td><%= @fiscal_stat.net_profit %></td>
+					</tr>
+					<tr>
+						<th>Eligibility Status</th>
+						<td><%= @fiscal_stat.eligibility_status %></td>
+					</tr>
+					<tr>
+						<th>Currency Type</th>
+						<td><%= @fiscal_stat.currency_type %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="panel-body-sign-in">
+			<%= link_to 'back', fiscal_stats_path %>
+		</div>
+	</div>
+</div>

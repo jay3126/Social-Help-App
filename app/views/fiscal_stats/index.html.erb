@@ -1,25 +1,37 @@
-<h1>Listing fiscal_stats</h1>
+<%#= link_to 'New Fiscal stat', new_fiscal_stat_path %>
+<div class="row-fluid">
+  <div class="span3">
+    <%= render "navs/corp_left_panel"%>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fiscal_stats.each do |fiscal_stat| %>
-      <tr>
-        <td><%= link_to 'Show', fiscal_stat %></td>
-        <td><%= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat) %></td>
-        <td><%= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Fiscal stat', new_fiscal_stat_path %>
+  <div class="panel-sign-in span9"  style="margin-top: 40px;">
+    <div class="panel-heading-sign-in">
+      <h4>Financial Stats of <%= "#{current_user.name}" %></h4>
+    </div>
+    <div class="panel-body-sign-in">
+      <table class="table">
+        <thead>
+          <th>Financial Year</th>
+          <th>Total Revenue</th>
+          <th>Net Profit</th>
+          <th>Eligibility Status</th>
+          <th>Currency Type</th>  
+        </thead>
+        <tbody>
+          <% @fiscal_stats.each do |fiscal_stat| %>
+            <tr>
+              <td><%= fiscal_stat.fiscal_year %></td>
+              <td><%= fiscal_stat.total_revenue %></td>
+              <td><%= fiscal_stat.net_profit %></td>
+              <td><%= fiscal_stat.eligibility_status %></td>
+              <td><%= fiscal_stat.currency_type %></td>     
+              <td><%= link_to 'Show', fiscal_stat %></td>
+              <td><%= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat) %></td>
+              <td><%= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

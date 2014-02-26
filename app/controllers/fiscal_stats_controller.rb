@@ -5,7 +5,7 @@ class FiscalStatsController < ApplicationController
   # GET /fiscal_stats
   # GET /fiscal_stats.json
   def index
-    @fiscal_stats = FiscalStat.all
+    @fiscal_stats = FiscalStat.all.where(user_id: current_user.id)
   end
 
   # GET /fiscal_stats/1
@@ -15,7 +15,7 @@ class FiscalStatsController < ApplicationController
 
   # GET /fiscal_stats/new
   def new
-    @fiscal_stat = FiscalStat.new(issue_params)
+    @fiscal_stat = FiscalStat.new()
   end
 
   # GET /fiscal_stats/1/edit
@@ -26,8 +26,8 @@ class FiscalStatsController < ApplicationController
   # POST /fiscal_stats.json
   def create
     @fiscal_stat = FiscalStat.new(issue_params)
-    params[:fiscal_stat][:user_id] = current_user.id
-    params[:fiscal_stat][:eligibility_status] = true if params[:fiscal_stat][:net_profit].to_i > EligibilityCriteria
+    @fiscal_stat[:user_id] = current_user.id
+    @fiscal_stat[:eligibility_status] = true if @fiscal_stat[:net_profit].to_i > EligibilityCriteria
     
 
     respond_to do |format|
@@ -45,7 +45,7 @@ class FiscalStatsController < ApplicationController
   # PATCH/PUT /fiscal_stats/1.json
   def update
     respond_to do |format|
-      if @fiscal_stat.update(fiscal_stat_params)
+      if @fiscal_stat.update(issue_params)
         format.html { redirect_to @fiscal_stat, notice: 'Fiscal stat was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,6 +1,16 @@
-<h1>Editing fiscal_stat</h1>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/corp_left_panel"%>
+	</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @fiscal_stat %> |
-<%= link_to 'Back', fiscal_stats_path %>
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>Edit Finance Stats</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= render 'form' %>
+			</div>
+		</div>
+	</div>
+</div>

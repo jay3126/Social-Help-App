@@ -92,3 +92,7 @@
 .pdt-20{
 	padding-top: 20px;
 }
+
+.override-body{
+	background-color: #fff !important;
+}

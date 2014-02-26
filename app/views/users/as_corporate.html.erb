@@ -1,29 +1,34 @@
-<%= render 'nav_bar'%>
-<div style="padding-top:20px; float:right; width:900px;">
-	<div class="panel-heading-sign-in">
-		<h4>Company Details</h4>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/corp_left_panel"%>
 	</div>
-	<div class="panel-body-sign-in panel-detail">
-		<%= render '/common_fields'%>
-		<div class="control-group">
-			<%= label :owner, "Owner: "%>
-			<span class="controls"><%= @user.owner%></span>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>All Projects</h4>
 		</div>
-		<div class="control-group">
-			<%= label :year_established, "Year Established: "%>
-			<span class="controls"><%= @user.year_established%></span>
-		</div>
-		<div class="control-group">
-			<%= label :company_group, "Company Group: "%>
-			<span class="controls"><%= @user.company_group%></span>
-		</div>
-		<div class="control-group">
-			<%= label :tan_number, "Tan Number: "%>
-			<span class="controls"><%= @user.tan_number%></span>
-		</div>
-		<div class="control-group">
-			<%= label :no_of_employees, "No Of Employee: "%>
-			<span class="controls"><%= @user.no_of_employees%></span>
+		<div class="panel-body-sign-in">
+			<%= render '/common_fields'%>
+			<div class="control-group">
+				<%= label :owner, "Owner: "%>
+				<span class="controls"><%= @user.owner%></span>
+			</div>
+			<div class="control-group">
+				<%= label :year_established, "Year Established: "%>
+				<span class="controls"><%= @user.year_established%></span>
+			</div>
+			<div class="control-group">
+				<%= label :company_group, "Company Group: "%>
+				<span class="controls"><%= @user.company_group%></span>
+			</div>
+			<div class="control-group">
+				<%= label :tan_number, "Tan Number: "%>
+				<span class="controls"><%= @user.tan_number%></span>
+			</div>
+			<div class="control-group">
+				<%= label :no_of_employees, "No Of Employee: "%>
+				<span class="controls"><%= @user.no_of_employees%></span>
+			</div>	
 		</div>
 	</div>
 </div>

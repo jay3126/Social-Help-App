@@ -15,6 +15,9 @@ class UsersController < ApplicationController
 			@issues = Issues.where(users_id: current_user.id)
 			render "users/as_socialist"
 			return
+		elsif current_user.role == "Analyst"
+			render "users/as_analyst"
+			return
 		end
 	end
 end

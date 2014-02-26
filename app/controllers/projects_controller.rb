@@ -44,6 +44,28 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def pending_projects
+  	@projects = Project.where(project_status: "In Progress").to_a
+  end
+
+  def completed_projects
+  	@projects = Project.where(project_status: "Closed").to_a
+  	@comp = true
+  end
+
+  def close_project
+    @project = Project.find(params[:id])
+		respond_to do |format|
+			if @project.update_attributes(project_status: "Closed", closed_by: current_user.id)
+				format.html { redirect_to pending_projects_projects_path, notice: 'Project was successfully closed.' }
+				format.json { head :no_content }
+			else
+				format.html { render action: 'edit' }
+				format.json { render json: @project.errors, status: :unprocessable_entity }
+			end
+		end
+  end
+
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update

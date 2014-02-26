@@ -8,7 +8,15 @@ SocialHelpApp::Application.routes.draw do
   get "issues/completed_issues"
 
   resources :fiscal_stats
-  resources :projects
+  resources :projects do
+    collection do
+      get 'pending_projects'
+      get 'completed_projects'
+    end
+    member do
+      get 'close_project'
+    end
+  end
 
   devise_for :users
 

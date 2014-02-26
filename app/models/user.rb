@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, presence: true
   validate :specific_fields
 
-
   def specific_fields
   	if self.role.present?
   		case self.role
@@ -60,6 +59,11 @@ class User < ActiveRecord::Base
   			end
 			end			
   	end
+  end
+
+  def self.fetch_user_names(user_id)
+    user = User.where(id: user_id).first
+    user.present? ? user.name : ""
   end
 
 end

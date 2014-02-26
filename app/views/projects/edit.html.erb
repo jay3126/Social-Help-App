@@ -1,6 +1,6 @@
-<h1>Editing project</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<div class="panel-sign-in span8">
+	<div class="panel-heading-sign-in">
+		<h4>Editing Project: </h4><%= @project.project_name %>
+	</div>
+	<%= render 'form' %>
+</div>

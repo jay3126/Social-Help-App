@@ -96,3 +96,7 @@
 .override-body{
 	background-color: #fff !important;
 }
+
+.nav-list>li>a {
+	padding: 0 16px 0 7px !important;
+}

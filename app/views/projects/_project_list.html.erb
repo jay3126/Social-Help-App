@@ -1,3 +1,7 @@
+<% if (params[:controller] == "projects" && params[:action] == "index") or (params[:controller] == "users" && params[:action] == "dashboard") %>
+	<% @projects = Project.all %>
+<% end %>
+
 <% if @projects.present? %>
 	<table class="table">
 		<thead>
@@ -6,11 +10,8 @@
 			<th>Project type</th>
 			<th>Area</th>
 			<th>Project est cost</th>
-			<th>Project actual cost</th>
 			<th>Est start date</th>
-			<th>Actual start date</th>
 			<th>Est completion date</th>
-			<th>Actual completion date</th>
 			<th>Assigned to</th>
 			<th>Assigned by</th>
 			<th>Verified by</th>
@@ -28,24 +29,21 @@
 					<td><%= project.project_type %></td>
 					<td><%= project.area %></td>
 					<td><%= project.project_est_cost %></td>
-					<td><%= project.project_actual_cost %></td>
 					<td><%= project.est_start_date %></td>
-					<td><%= project.actual_start_date %></td>
 					<td><%= project.est_completion_date %></td>
-					<td><%= project.actual_completion_date %></td>
 					<td><%= User.fetch_user_names(project.assigned_to) %></td>
 					<td><%= User.fetch_user_names(project.assigned_by) %></td>
 					<td><%= User.fetch_user_names(project.verified_by) %></td>
 					<td><%= User.fetch_user_names(project.closed_by) %></td>
 					<td><%= project.verified ? "Verified" : "Not Verified" %></td>
 					<td><%= project.project_status %></td>
-					<td><%= project.project_duration %></td>					
+					<td><%= project.project_duration %></td>          
 					<td><%= link_to "View", project_path(id: project.id), class: "btn btn-primary" %></td>
 					<% if project.project_status == "In Progress" %>
-						<td><%= link_to "Edit", edit_project_path(id: project.id), class: "btn btn-warning" %></td>
-						<td><%= link_to "Close Project", close_project_project_path(id: project.id), data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %></td>
+					<td><%= link_to "Edit", edit_project_path(id: project.id), class: "btn btn-warning" %></td>
+					<td><%= link_to "Close Project", close_project_project_path(id: project.id), data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %></td>
 					<% else %>
-						<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
+					<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
 					<% end %>
 				</tr>
 			<% end %>

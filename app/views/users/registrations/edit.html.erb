@@ -1,14 +1,6 @@
 <div class="row-fluid">
 	<div class="span3">
-		<% if current_user.corporate? %>
-			<%= render "navs/corp_left_panel"%>
-		<% elsif current_user.socialist? %>
-			<%= render "navs/socialist_right_panel"%>
-		<% elsif current_user.ngo? %>
-			<%= render "navs/ngo_left_panel"%>
-		<% else %>
-			<%= render "nav/analyst_left_panel"%>
-		<% end %>
+		<%= render_panel(current_user.role) %>
 	</div>
 	<div class="panel-sign-in span9">
 		<div class="panel-heading-sign-in">
@@ -16,7 +8,7 @@
 		</div>
 		<div class="panel-body-sign-in">
 			<div class="form-wrapper">
-				<%= render "form"%>
+				<%= render "form" %>
 			</div>
 		</div>
 	</div>

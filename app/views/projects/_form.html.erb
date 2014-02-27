@@ -122,7 +122,7 @@
 
 			<div class="actions">
 			  <%= f.submit %>
-			  <%= link_to 'Back', users_dashboard_path, class: 'btn btn-primary' %>
+			  <%= link_to 'Back', profile_path, class: 'btn btn-primary' %>
 			  <% if params[:controller] == "users" && (params[:action] == "edit" or params[:action] == "update")%>
 			  	<%= link_to 'Show', projects_path(@project.id), class: 'btn btn-primary' %>
 			  <% end %>

@@ -1,0 +1,26 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+	<div class="panel-sign-in span9">
+		<div class="panel-heading-sign-in">
+			<h4>Edit Details</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= render "edit_form" %>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	<% if current_user.corporate? %>
+		$("#company-fields").removeClass("hide");
+		$("#company-ngo-common").removeClass("hide");
+	<% elsif current_user.socialist? %>
+		$("#individual-details").removeClass("hide")
+	<% elsif current_user.ngo? %>
+		$("#ngo-details").removeClass("hide");
+		$("#company-ngo-common").removeClass("hide");
+	<% end %>
+</script>

@@ -16,7 +16,6 @@
           <th>Currency Type</th>
           <th>Eligibility Status</th>
           <th></th>
-          <th></th>
         </thead>
         <tbody>
           <% @fiscal_stats.each do |fiscal_stat| %>
@@ -27,7 +26,7 @@
               <td><%= fiscal_stat.currency_type %></td>
               <td><%= fiscal_stat.eligibility_status %></td>     
               <td><%= link_to 'View', fiscal_stat, class: "btn btn-primary" %></td>
-              <td><%= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat), class: "btn btn-primary" %></td>
+              <!--<td><%#= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat), class: "btn btn-primary" %></td> -->
               <!--<td><%#= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
             </tr>
           <% end %>

@@ -3,13 +3,13 @@ class FiscalStat < ActiveRecord::Base
 
 	after_create :update_kitty_fund, if: :eligibility_status?
 
-	validate :one_record_per_fiscal_year
+	validate :one_record_per_fiscal_year_per_company
 
 
 	private
 
-	def one_record_per_fiscal_year
-		fis_stat = FiscalStat.where(fiscal_year: self.fiscal_year).first
+	def one_record_per_fiscal_year_per_company
+		fis_stat = FiscalStat.where(fiscal_year: self.fiscal_year, user_id: self.user_id).first
 		if fis_stat.present?
 			self.errors.add :base, "Record For Given Financial Year Is Already Present"
 		end

@@ -11,12 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227064537) do
+ActiveRecord::Schema.define(version: 20140227144003) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
-    t.decimal  "opening_blnc",          precision: 15, scale: 2, default: 0.0
-    t.decimal  "closing_blnc",          precision: 15, scale: 2, default: 0.0
     t.string   "currency_type"
     t.decimal  "total_revenue",         precision: 15, scale: 2
     t.decimal  "net_profit",            precision: 15, scale: 2
@@ -35,14 +33,15 @@ ActiveRecord::Schema.define(version: 20140227064537) do
     t.boolean  "issue_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "project_est_cost",            precision: 15, scale: 2, default: 0.0
   end
 
   create_table "projects", force: true do |t|
     t.string   "project_name"
     t.string   "project_type"
     t.string   "area"
-    t.integer  "project_est_cost"
-    t.integer  "project_actual_cost"
+    t.decimal  "project_est_cost",       precision: 15, scale: 2, default: 0.0
+    t.decimal  "project_actual_cost",    precision: 15, scale: 2, default: 0.0
     t.date     "est_start_date"
     t.date     "actual_start_date"
     t.date     "est_completion_date"
@@ -54,7 +53,7 @@ ActiveRecord::Schema.define(version: 20140227064537) do
     t.string   "project_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "verified",               default: false
+    t.boolean  "verified",                                        default: false
     t.string   "project_status"
   end
 

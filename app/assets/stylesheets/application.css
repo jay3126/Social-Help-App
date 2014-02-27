@@ -16,6 +16,5 @@
  *= require ace.min
  *= require bootstrap.min
  *= require font-awesome.min
- *= require bootstrap-datetimepicker
  *= require_tree .
  */

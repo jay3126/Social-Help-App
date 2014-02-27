@@ -18,7 +18,7 @@ SocialHelpApp::Application.routes.draw do
     end
   end
 
-  resource :user, only: [:edit] do
+  resource :users, only: [:edit] do
     collection do
       patch "update_profile"
     end

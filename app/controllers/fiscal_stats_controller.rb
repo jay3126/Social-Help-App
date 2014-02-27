@@ -1,6 +1,5 @@
 class FiscalStatsController < ApplicationController
-  before_action :set_fiscal_stat, only: [:show, :edit, :update, :destroy]
-  EligibilityCriteria = 100000 
+  before_action :set_fiscal_stat, only: [:show, :edit, :update, :destroy] 
 
   # GET /fiscal_stats
   # GET /fiscal_stats.json
@@ -27,9 +26,8 @@ class FiscalStatsController < ApplicationController
   def create
     @fiscal_stat = FiscalStat.new(issue_params)
     @fiscal_stat[:user_id] = current_user.id
-    @fiscal_stat[:eligibility_status] = true if @fiscal_stat[:net_profit].to_i > EligibilityCriteria
+    @fiscal_stat[:eligibility_status] = true if @fiscal_stat[:net_profit].to_i > Constants::EligibilityCriteria
     
-
     respond_to do |format|
       if @fiscal_stat.save
         format.html { redirect_to @fiscal_stat, notice: 'Fiscal stat was successfully created.' }

@@ -1,6 +1,11 @@
-<div class="panel-sign-in span8">
-	<div class="panel-heading-sign-in">
-		<h4>Editing Project: </h4><%= @project.project_name %>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/analyst_left_panel"%>
 	</div>
-	<%= render 'form' %>
+	<div class="panel-sign-in span9">
+		<div class="panel-heading-sign-in">
+			<h4>Editing Project: </h4><%= @project.project_name %>
+		</div>
+		<%= render 'form' %>
+	</div>
 </div>

@@ -104,3 +104,7 @@
 .ml-180{
 	margin-left: 180px;
 }
+
+.scrollit {
+	overflow:scroll;
+}

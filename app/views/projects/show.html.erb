@@ -1,74 +1,75 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render "navs/analyst_left_panel"%>
+	</div>
 
-<p>
-  <strong>Project name:</strong>
-  <%= @project.project_name %>
-</p>
-
-<p>
-  <strong>Project type:</strong>
-  <%= @project.project_type %>
-</p>
-
-<p>
-  <strong>Area:</strong>
-  <%= @project.area %>
-</p>
-
-<p>
-  <strong>Project est cost:</strong>
-  <%= @project.project_est_cost %>
-</p>
-
-<p>
-  <strong>Project actual cost:</strong>
-  <%= @project.project_actual_cost %>
-</p>
-
-<p>
-  <strong>Est start date:</strong>
-  <%= @project.est_start_date %>
-</p>
-
-<p>
-  <strong>Actual start date:</strong>
-  <%= @project.actual_start_date %>
-</p>
-
-<p>
-  <strong>Est completion date:</strong>
-  <%= @project.est_completion_date %>
-</p>
-
-<p>
-  <strong>Actual completion date:</strong>
-  <%= @project.actual_completion_date %>
-</p>
-
-<p>
-  <strong>Assigned to:</strong>
-  <%= @project.assigned_to %>
-</p>
-
-<p>
-  <strong>Assigned by:</strong>
-  <%= @project.assigned_by %>
-</p>
-
-<p>
-  <strong>Verified by:</strong>
-  <%= @project.verified_by %>
-</p>
-
-<p>
-  <strong>Closed by:</strong>
-  <%= @project.closed_by %>
-</p>
-
-<p>
-  <strong>Project duration:</strong>
-  <%= @project.project_duration %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4><%= @project.project_name %></h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Project name</th>
+						<td><%= @project.project_name %></td>
+					</tr>
+					<tr>
+						<th>Project type</th>
+						<td><%= @project.project_type %></td>
+					</tr>
+					<tr>
+						<th>Area</th>
+						<td><%= @project.area %></td>
+					</tr>
+					<tr>
+						<th>Project est cost</th>
+						<td><%= @project.project_est_cost %></td>
+					</tr>
+					<tr>
+						<th>Project actual cost</th>
+						<td><%= @project.project_actual_cost %></td>
+					</tr>
+					<tr>
+						<th>Est start date</th>
+						<td><%= @project.est_start_date %></td>
+					</tr>
+					<tr>
+						<th>Actual start date</th>
+						<td><%= @project.actual_start_date %></td>
+					</tr>
+					<tr>
+						<th>Est completion date</th>
+						<td><%= @project.est_completion_date %></td>
+					</tr>
+					<tr>
+						<th>Actual completion date</th>
+						<td><%= @project.actual_completion_date %></td>
+					</tr>
+					<tr>
+						<th>Assigned to</th>
+						<td><%= User.fetch_user_names(@project.assigned_to) %></td>
+					</tr>
+					<tr>
+						<th>Assigned by</th>
+						<td><%= User.fetch_user_names(@project.assigned_by) %></td>
+					</tr>
+					<tr>
+						<th>Verified by</th>
+						<td><%= User.fetch_user_names(@project.verified_by) %></td>
+					</tr>
+					<tr>
+						<th>Closed by</th>
+						<td><%= User.fetch_user_names(@project.closed_by) %></td>
+					</tr>
+					<tr>
+						<th>Project duration</th>
+						<td><%= @project.project_duration %></td>
+					</tr>
+				</tbody>
+			</table>
+			<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %> |
+			<%= link_to 'Back', users_dashboard_path, class: "btn btn-primary" %>
+		</div>
+	</div>
+</div>

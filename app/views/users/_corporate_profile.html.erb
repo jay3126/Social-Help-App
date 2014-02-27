@@ -1,0 +1,26 @@
+<%= render '/common_fields'%>
+<div class="control-group">
+	<%= label :owner, "Owner: "%>
+	<span class="controls"><%= current_user.owner%></span>
+</div>
+<div class="control-group">
+	<%= label :year_established, "Year Established: "%>
+	<span class="controls"><%= current_user.year_established%></span>
+</div>
+<div class="control-group">
+	<%= label :company_group, "Company Group: "%>
+	<span class="controls"><%= current_user.company_group%></span>
+</div>
+<div class="control-group">
+	<%= label :tan_number, "Tan Number: "%>
+	<span class="controls"><%= current_user.tan_number%></span>
+</div>
+<div class="control-group">
+	<%= label :no_of_employees, "No Of Employee: "%>
+	<span class="controls"><%= current_user.no_of_employees%></span>
+</div>	
+<div class="control-group">
+	<span class="controls">
+		<%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary"%>
+	</span>
+</div>	

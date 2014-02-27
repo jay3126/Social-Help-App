@@ -1,0 +1,14 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>All Issues</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<%= render_profile(current_user.role) %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<%= render '/common_fields'%>
+<div class="control-group">
+	<%= label :age, "Age: "%>
+	<span class="controls"><%= current_user.age%></span>
+</div>
+<div class="control-group">
+	<%= label :gender, "Gender: "%>
+	<span class="controls"><%= current_user.gender%></span>
+</div>
+<div class="control-group">
+	<%= label :adhaar, "Aadhar Number: "%>
+	<span class="controls"><%= current_user.adhaar_number%></span>
+</div>
+<div class="control-group">
+	<%= label :voter, "Voter ID: "%>
+	<span class="controls"><%= current_user.voter_id%></span>
+</div>
+<div class="control-group">
+	<%= label :nationality, "Nationality: "%>
+	<span class="controls"><%= current_user.nationality%></span>
+</div>
+<div class="control-group">
+	<%= label :pan, "Pan Number: "%>
+	<span class="controls"><%= current_user.pan_number%></span>
+</div>
+<div class="control-group">
+	<span class="controls"><%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary"%></span>
+</div>

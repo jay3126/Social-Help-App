@@ -1,9 +1,9 @@
 SocialHelpApp::Application.routes.draw do
+
   resources :issues do
     collection do
       get "pending_issues"
       get "completed_issues"
-      get "profile"
     end
   end
 
@@ -28,7 +28,7 @@ SocialHelpApp::Application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  get "/users/dashboard", to: "users#dashboard"
+  get "profile" => "users#profile"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

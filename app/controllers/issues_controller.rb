@@ -45,9 +45,9 @@ class IssuesController < ApplicationController
   private
   def issue_params
   	if params[:issue].present?
-	    params.require(:issue).permit(:issue_description, :issue_area, :issue_area_code)
+	    params.require(:issue).permit(:issue_description, :issue_area, :issue_area_code, :issue_status, :project_est_code, :users_id)
   	else
-	    params.require(:issues).permit(:issue_description, :issue_area, :issue_area_code)
+	    params.require(:issues).permit(:issue_description, :issue_area, :issue_area_code, :issue_status, :project_est_code, :users_id)
   	end
  	end
 

@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
 	end
 
   def index
+    @issues = Issues.all
   end
 
   def create

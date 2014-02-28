@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="span3">
-		<%= render "navs/socialist_left_panel"%>
+		<%= render_panel(current_user.role) %>
 	</div>
 
 	<div class="panel-sign-in span9"  style="margin-top: 40px;">
@@ -48,6 +48,9 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+		<div class="panel-body-sign-in">
+			<%= link_to 'back', issues_path %>
 		</div>
 	</div>
 </div>

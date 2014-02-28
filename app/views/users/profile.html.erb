@@ -8,6 +8,11 @@
 			<h4>Dashboard</h4>
 		</div>
 		<div class="panel-body-sign-in">
+			<% if current_user.logo.present? %>
+				<%= image_tag(current_user.logo.logo.url(:medium))%>
+			<% else %>
+				<%= image_tag("missing.jpg")%>
+			<% end %>
 			<%= render_profile(current_user.role) %>
 		</div>
 	</div>

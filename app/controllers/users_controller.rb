@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def profile
+		@logo = Logo.find_by(user_id: current_user.id)
 	end
 
 	def update_profile

@@ -1,18 +1,18 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="row-fluid">
+	<div class="span4">
+		<%= image_tag('join_us.jpg', style: "padding: 40px;")%>
+		<br />
+		<b>Helping behavior</b> refers to voluntary actions intended to help the others, with reward regarded or disregarded. It is a type of prosocial behavior (voluntary action intended to help or benefit another individual or group of individuals, such as sharing, comforting, rescuing and helping).
+	</div>
+	<div class="panel-sign-in span8">
+		<div class="panel-heading-sign-in">
+			<h4>Sign Up</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= render "form"%>
+			</div>
+			<%= render "users/shared/links" %>
+		</div>
+	</div>
+</div>

@@ -8,31 +8,35 @@
       <h4>Financial Stats of <%= "#{current_user.name}" %></h4>
     </div>
     <div class="panel-body-sign-in">
-      <table class="table">
-        <thead>
-          <th>Financial Year</th>
-          <th>Total Revenue</th>
-          <th>Net Profit</th>
-          <th>Currency Type</th>
-          <th>Eligibility Status</th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @fiscal_stats.each do |fiscal_stat| %>
-            <tr>
-              <% f_y = fiscal_stat.fiscal_year.to_s.concat("-#{fiscal_stat.fiscal_year + 1}") %>
-              <td><%= f_y %></td>
-              <td><%= fiscal_stat.total_revenue %></td>
-              <td><%= fiscal_stat.net_profit %></td>
-              <td><%= fiscal_stat.currency_type %></td>
-              <td><%= fiscal_stat.eligibility_status %></td>     
-              <td><%= link_to 'View', fiscal_stat, class: "btn btn-primary" %></td>
-              <!--<td><%#= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat), class: "btn btn-primary" %></td> -->
-              <!--<td><%#= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%if @fiscal_stats.present?%>
+        <table class="table">
+          <thead>
+            <th>Financial Year</th>
+            <th>Total Revenue</th>
+            <th>Net Profit</th>
+            <th>Currency Type</th>
+            <th>Eligibility Status</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <% @fiscal_stats.each do |fiscal_stat| %>
+              <tr>
+                <% f_y = fiscal_stat.fiscal_year.to_s.concat("-#{fiscal_stat.fiscal_year + 1}") %>
+                <td><%= f_y %></td>
+                <td><%= fiscal_stat.total_revenue %></td>
+                <td><%= fiscal_stat.net_profit %></td>
+                <td><%= fiscal_stat.currency_type %></td>
+                <td><%= fiscal_stat.eligibility_status %></td>     
+                <td><%= link_to 'View', fiscal_stat, class: "btn btn-primary" %></td>
+                <!--<td><%#= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat), class: "btn btn-primary" %></td> -->
+                <!--<td><%#= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <%else%>
+        <p>No Detail Available For Financial year(s)</p>
+      <%end%>
     </div>
   </div>
 </div>

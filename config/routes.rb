@@ -2,6 +2,7 @@ SocialHelpApp::Application.routes.draw do
 
   resources :issues do
     collection do
+      get "interested_ngos"
       get "pending_issues"
       get "completed_issues"
     end

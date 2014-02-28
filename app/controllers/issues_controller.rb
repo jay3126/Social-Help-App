@@ -1,15 +1,15 @@
 class IssuesController < ApplicationController
 
 	def new
-		@issue = Issues.new
+		@issue = Issue.new
 	end
 
   def index
-    @issues = Issues.all
+    @issues = Issue.all
   end
 
   def create
-  	@issue = Issues.new(issue_params)
+  	@issue = Issue.new(issue_params)
   	@issue.users_id = current_user.id
   	@issue.issue_status = 0
   	if @issue.save
@@ -20,26 +20,31 @@ class IssuesController < ApplicationController
   end
 
   def show
-  	@issue = Issues.where(id: params[:id]).first
+  	@issue = Issue.where(id: params[:id]).first
   end
 
   def edit
-  	@issue = Issues.where(id: params[:id]).first
+  	@issue = Issue.where(id: params[:id]).first
   end
 
   def update
-  	@issue = Issues.where(id: params[:id]).first
+  	@issue = Issue.where(id: params[:id]).first
   	@issue.update(issue_params)
   	redirect_to issue_path(params[:id])
   end
 
   def pending_issues
-  	@issues = Issues.where(users_id: current_user.id, issue_status: true)
+  	@issues = Issue.where(users_id: current_user.id, issue_status: true)
   end
 
   def completed_issues
-  	@issues = Issues.where(users_id: current_user.id, issue_status: false)
+  	@issues = Issue.where(users_id: current_user.id, issue_status: false)
   	@comp = true
+  end
+
+  def interested_ngos
+    issue = Issue.where(id: params[:issue_id]).first
+    current_user.issues << issue
   end
 
   private

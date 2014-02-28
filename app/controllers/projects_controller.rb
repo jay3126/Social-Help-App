@@ -53,6 +53,9 @@ class ProjectsController < ApplicationController
   	@comp = true
   end
 
+  def allocate_project
+  end
+
   def close_project
     @project = Project.find(params[:id])
 		respond_to do |format|

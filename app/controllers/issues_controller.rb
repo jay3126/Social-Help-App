@@ -4,6 +4,9 @@ class IssuesController < ApplicationController
 		@issue = Issues.new
 	end
 
+  def index
+  end
+
   def create
   	@issue = Issues.new(issue_params)
   	@issue.users_id = current_user.id
@@ -36,10 +39,6 @@ class IssuesController < ApplicationController
   def completed_issues
   	@issues = Issues.where(users_id: current_user.id, issue_status: false)
   	@comp = true
-  end
-
-  def profile
-    @user = current_user
   end
 
   private

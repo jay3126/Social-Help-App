@@ -15,6 +15,7 @@ SocialHelpApp::Application.routes.draw do
     end
     member do
       get 'close_project'
+      get 'allocate_project'
     end
   end
 

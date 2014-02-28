@@ -5,7 +5,7 @@ module ApplicationHelper
 		when "corporate"
 			render partial: "navs/corp_left_panel"
 		when "socialist"
-			render partial: "navs/socialist_right_panel"
+			render partial: "navs/socialist_left_panel"
 		when "ngo"
 			render partial: "navs/ngo_left_panel"
 		when "analyst"

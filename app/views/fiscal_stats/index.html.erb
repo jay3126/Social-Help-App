@@ -20,7 +20,8 @@
         <tbody>
           <% @fiscal_stats.each do |fiscal_stat| %>
             <tr>
-              <td><%= fiscal_stat.fiscal_year %></td>
+              <% f_y = fiscal_stat.fiscal_year.to_s.concat("-#{fiscal_stat.fiscal_year + 1}") %>
+              <td><%= f_y %></td>
               <td><%= fiscal_stat.total_revenue %></td>
               <td><%= fiscal_stat.net_profit %></td>
               <td><%= fiscal_stat.currency_type %></td>

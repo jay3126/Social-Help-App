@@ -16,7 +16,8 @@
 				<tbody>
 					<tr>
 						<th>Financial Year</th>
-						<td><%= @fiscal_stat.fiscal_year %></td>
+						<% f_y = @fiscal_stat.fiscal_year.to_s.concat("-#{@fiscal_stat.fiscal_year + 1}")%>
+						<td><%= f_y %></td>
 					</tr>
 					<tr>
 						<th>Total Revenue</th>

@@ -1,40 +1,25 @@
-<div class="control-group">
-	<%= label :name, "Name: "%>
-	<span class="controls"><%= current_user.name%></span>
-</div>
-<div class="control-group">
-	<%= label :email, "Email: "%>
-	<span class="controls"><%= current_user.email%></span>
-</div>
-<div class="control-group">
-	<%= label :address, "Address: "%>
-	<span class="controls"><%= current_user.address%></span>
-</div>
-<div class="control-group">
-	<%= label :city, "City: "%>
-	<span class="controls"><%= current_user.city%></span>
-</div>
-<div class="control-group">
-	<%= label :pin_code, "Pin Code: "%>
-	<span class="controls"><%= current_user.pin_code%></span>
-</div>
-<div class="control-group">
-	<%= label :state, "State: "%>
-	<span class="controls"><%= current_user.state%></span>
-</div>
-<div class="control-group">
-	<%= label :country, "Country: "%>
-	<span class="controls"><%= current_user.country%></span>
-</div>
-<div class="control-group">
-	<%= label :mobile_number, "Mobile Number: "%>
-	<span class="controls"><%= current_user.mobile_number%></span>
-</div>
-<div class="control-group">
-	<%= label :phone_number, "Phone Number: "%>
-	<span class="controls"><%= current_user.phone_number%></span>
-</div>
-<div class="control-group">
-	<%= label :fax_number, "Fax Number: "%>
-	<span class="controls"><%= current_user.fax_number%></span>
-</div>
+<fieldset>
+	<legend>Details</legend>
+	<dl class="dl-horizontal large-font">
+		<dt>Name : </dt>
+		<dd><%= current_user.name %></dd>
+		<dt>Email : </dt>
+		<dd><%= current_user.email%></dd>
+		<dt>Address : </dt>
+		<dd><%= current_user.address%></dd>
+		<dt>City : </dt>
+		<dd><%= current_user.city %></dd>
+		<dt>Pin Code : </dt>
+		<dd><%= current_user.pin_code %></dd>
+		<dt>State : </dt>
+		<dd><%= current_user.state %></dd>
+		<dt>Country : </dt>
+		<dd><%= current_user.country %></dd>
+		<dt>Mobile Number : </dt>
+		<dd><%= current_user.mobile_number %></dd>
+		<dt>Phone Number : </dt>
+		<dd><%= current_user.phone_number %></dd>
+		<dt>Fax Number : </dt>
+		<dd><%= current_user.fax_number %></dd>
+	</dl>
+</fieldset>

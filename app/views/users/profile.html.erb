@@ -3,17 +3,17 @@
 		<%= render_panel(current_user.role) %>
 	</div>
 
-	<div class="panel-sign-in span9"  style="margin-top: 40px;">
-		<div class="panel-heading-sign-in">
-			<h4>Dashboard</h4>
-		</div>
-		<div class="panel-body-sign-in">
+	<div class="span9"  style="margin-top: 40px;">
+		<div style="text-align: center">
 			<% if current_user.logo.present? %>
-				<%= image_tag(current_user.logo.logo.url(:medium))%>
+				<%= image_tag(current_user.logo.logo.url(:medium), class: "img-polaroid", style: "width: 160px;height: 160px;")%>
 			<% else %>
-				<%= image_tag("missing.jpg")%>
+				<%= image_tag("missing.jpg", class: "img-polaroid", style: "width: 160px;height: 160px;")%>
 			<% end %>
-			<%= render_profile(current_user.role) %>
 		</div>
+		<%= render_profile(current_user.role) %>
+		<dl class="dl-horizontal">
+			<dd><%= link_to "Edit", edit_users_path, class: "btn btn-primary", style: "width: 120px;"%></dd>
+		</dl>
 	</div>
 </div>

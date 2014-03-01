@@ -108,3 +108,7 @@
 .scrollit {
 	overflow:scroll;
 }
+
+.large-font{
+	font-size: 17px !important;
+}

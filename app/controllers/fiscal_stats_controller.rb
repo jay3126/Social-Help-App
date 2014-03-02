@@ -25,8 +25,8 @@ class FiscalStatsController < ApplicationController
   # POST /fiscal_stats.json
   def create
     @fiscal_stat = FiscalStat.new(issue_params)
-    @fiscal_stat[:user_id] = current_user.id
-    @fiscal_stat[:eligibility_status] = true if @fiscal_stat[:net_profit].to_i > Constants::EligibilityCriteria
+    @fiscal_stat.user_id = current_user.id
+    @fiscal_stat.eligibility_status = true if @fiscal_stat.net_profit.to_i > Constants::ELIGIBILITY_CRITERIA
     
     respond_to do |format|
       if @fiscal_stat.save

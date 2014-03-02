@@ -1,1 +1,20 @@
-Find me in users/_corporate_dashboard.html.erb
+<table class="table">
+	<thead>
+		<th>Year</th>
+		<th>Total Revenue</th>
+		<th>Net Profit</th>
+		<th>Eligiblity</th>
+		<th>Social Fund(<%= (Constants::SOCIALFUND_RATIO * 100).to_i %>%)</th>
+	</thead>
+	<tbody>
+		<% @fiscal_stats.each do |f| %>
+			<tr>
+				<td><%= f.fiscal_year %></td>
+				<td><%= f.total_revenue %></td>
+				<td><%= f.net_profit %></td>
+				<td><%= f.eligibility_status ? "Yes" : "No" %></td>
+				<td><%= f.eligibility_status ? f.available_social_fund : "N/A" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

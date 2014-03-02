@@ -1,7 +1,7 @@
 module Constants
 	# eligibility criteria for a company to become eligible for this social help concept
-	EligibilityCriteria = 100000
+	ELIGIBILITY_CRITERIA = 100000
 
 	# percentage value the should be deducted from the net profit as social_fund
-	SocialPercentage = 0.02
+	SOCIALFUND_RATIO = 0.02
 end

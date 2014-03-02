@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 			@total_issues = Issue.where(users_id: current_user.id).count
 			@completed_issues = Issue.where(users_id: current_user.id, issue_status: true).count
 			@pending_issues = Issue.where(users_id: current_user.id, issue_status: false).count
+		elsif current_user.corporate?
+			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
 		end
 	end
 

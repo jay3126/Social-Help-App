@@ -17,7 +17,6 @@
 //= require ace-elements.min
 //= require ace-extra.min
 //= require ace.min
-//= require bootstrap.min
 //= require jquery-2.0.3.min
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.easy-pie-chart.min

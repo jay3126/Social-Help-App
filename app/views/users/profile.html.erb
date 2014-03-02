@@ -5,11 +5,18 @@
 
 	<div class="span9"  style="margin-top: 40px;">
 		<div style="text-align: center">
-			<% if current_user.logo.present? %>
-				<%= image_tag(current_user.logo.logo.url(:medium), class: "img-polaroid", style: "width: 160px;height: 160px;")%>
-			<% else %>
-				<%= image_tag("missing.jpg", class: "img-polaroid", style: "width: 160px;height: 160px;")%>
-			<% end %>
+			<div class="logo" style="width: 160px;height: 160px;position: relative;margin: 0 auto;">
+				<% if current_user.logo.present? %>
+					<% color = "fff"%>
+					<%= image_tag(current_user.logo.logo.url(:medium), class: "img-polaroid", style: "width: 160px;height: 160px;")%>
+				<% else %>
+					<% color = "f00"%>
+					<%= image_tag("missing.jpg", class: "img-polaroid", style: "width: 160px;height: 160px;")%>
+				<% end %>
+				<div id="change-img" class="hide" style="width: 100%;height: 100%;position: absolute;top: 0;cursor: pointer;">
+					<span style="line-height: 160px;color: #<%= color %>;">Change Image</span>
+				</div>
+			</div>
 		</div>
 		<%= render_profile(current_user.role) %>
 		<dl class="dl-horizontal">
@@ -17,3 +24,46 @@
 		</dl>
 	</div>
 </div>
+
+<!-- Modal for file upload -->
+<div id="change-img-modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Change Logo/Avatar</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag change_image_users_path, class: "form-horizontal", id: "changeImageForm", multipart: true do %>
+			<div class="control-group">
+				<div class="controls">
+					<%= file_field_tag "logo", id: "change-logo-file", :accept => 'image/jpeg'%>
+				</div>
+			</div>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" class="btn btn-primary" onclick="submitChangeImgForm();">Save Image</a>
+  </div>
+</div>
+
+<script>
+	$(".logo").mouseover(function(){
+		$("#change-img").removeClass("hide");
+	})
+	.mouseout(function(){
+		$("#change-img").addClass("hide");		
+	});
+
+	$("#change-img").click(function(){
+		$("#change-img-modal").modal();
+	});
+
+	function submitChangeImgForm(){
+		var file = $("#change-logo-file").val();
+		if(file == '' || file == undefined){
+			alert("Please select an image");
+			return false;
+		}
+		$("#changeImageForm").submit();
+	}
+</script>

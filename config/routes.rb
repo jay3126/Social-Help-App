@@ -23,6 +23,7 @@ SocialHelpApp::Application.routes.draw do
   resource :users, only: [:edit] do
     collection do
       patch "update_profile"
+      post "change_image"
     end
   end
   devise_for :users, controllers: {registrations: "sign_up"}

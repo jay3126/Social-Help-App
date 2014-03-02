@@ -8,6 +8,14 @@ class UsersController < ApplicationController
 		@logo = Logo.find_by(user_id: current_user.id)
 	end
 
+	def dashboard
+		if current_user.socialist?
+			@total_issues = Issue.where(users_id: current_user.id).count
+			@completed_issues = Issue.where(users_id: current_user.id, issue_status: true).count
+			@pending_issues = Issue.where(users_id: current_user.id, issue_status: false).count
+		end
+	end
+
 	def update_profile
 		@user = current_user
 		if @user.update_without_password(user_profile_params)

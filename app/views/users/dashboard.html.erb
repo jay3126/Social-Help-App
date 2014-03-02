@@ -1,0 +1,9 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="span9"  style="margin-top: 40px;">
+		<%= render_dashboard(current_user.role) %>
+	</div>
+</div>

@@ -26,4 +26,17 @@ module ApplicationHelper
 		end
 	end
 
+	def render_dashboard(role)
+		case role.downcase
+		when "corporate"
+			render partial: "corporate_dashboard"
+		when "socialist"
+			render partial: "socialist_dashboard"
+		when "ngo"
+			render partial: "ngo_dashboard"
+		when "analyst"
+			render partial: "analyst_dashboard"
+		end
+	end
+
 end

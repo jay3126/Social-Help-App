@@ -37,6 +37,7 @@ SocialHelpApp::Application.routes.draw do
   end
 
   get "profile" => "users#profile"
+  get "dashboard" => "users#dashboard"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
 	def profile
 		@logo = Logo.find_by(user_id: current_user.id)
+		params[:nav] = "profile"
 	end
 
 	def dashboard
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
 		end
+		params[:nav] = "dashboard"
 	end
 
 	def update_profile

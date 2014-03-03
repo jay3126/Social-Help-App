@@ -5,6 +5,7 @@ class FiscalStatsController < ApplicationController
   # GET /fiscal_stats.json
   def index
     @fiscal_stats = FiscalStat.all.where(user_id: current_user.id)
+    params[:nav] = "list_fiscal_stats"
   end
 
   # GET /fiscal_stats/1
@@ -15,6 +16,7 @@ class FiscalStatsController < ApplicationController
   # GET /fiscal_stats/new
   def new
     @fiscal_stat = FiscalStat.new()
+    params[:nav] = "add_fiscal_stat"
   end
 
   # GET /fiscal_stats/1/edit

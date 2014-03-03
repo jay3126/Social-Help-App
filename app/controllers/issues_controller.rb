@@ -2,10 +2,12 @@ class IssuesController < ApplicationController
 
 	def new
 		@issue = Issue.new
+    params[:nav] = "add_new_project"
 	end
 
   def index
     @issues = Issue.all
+    params[:nav] = "all_projects"
   end
 
   def create

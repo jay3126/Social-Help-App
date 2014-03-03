@@ -1,46 +1,53 @@
 <div class="sidebar" id="sidebar">
 
 	<ul class="nav nav-list">
-		<li class="active">
+		<li id="li_dashboard">
 			<a href="/dashboard">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Dashboard </span>
 			</a>
 		</li>
 
-		<li>
-			<a href="/issues">
+		<li id="li_all_projects">
+			<a href="/issues?nav=all_projects">
 				<i class="icon-text-width"></i>
 				<span class="menu-text"> All Projects </span>
 			</a>
 		</li>
 
-		<li>
-			<a href="/issues/pending_issues">
+		<li id="li_alloc_projects">
+			<a href="/issues/pending_issues?nav=alloc_projects">
 				<i class="icon-desktop"></i>
 				<span class="menu-text"> Allocate Projects </span>
 			</a>
 		</li>
 
-		<li>
-			<a href="/issues/pending_issues">
+		<li id="li_on_projects">
+			<a href="/issues/pending_issues?nav=on_projects">
 				<i class="icon-desktop"></i>
 				<span class="menu-text"> Ongoing Projects </span>
 			</a>
 		</li>
 
-		<li>
-			<a href="/projects/completed_projects">
+		<li id="li_comp_projects">
+			<a href="/projects/completed_projects?nav=comp_projects">
 				<i class="icon-list"></i>
 				<span class="menu-text"> Completed Projects </span>
 			</a>
 
 		</li>
 
-		<li>
+		<li id="li_social-fund">
 			<a href="#">
 				<i class="icon-edit"></i>
 				<span class="menu-text"> Social Welfare Fund </span>
+			</a>
+		</li>
+
+		<li id="li_profile">
+			<a href="/profile?nav=profile">
+				<i class="icon-edit"></i>
+				<span class="menu-text"> Profile </span>
 			</a>
 		</li>
 	</ul>
@@ -50,3 +57,11 @@
 	</div>
 
 </div>
+<script>
+	<% if params[:nav].present? %>
+		var nav = "<%= params[:nav] %>"
+		$("#li_" + nav).addClass("active");
+	<% else %>
+		$("#li_dashboard").addClass("active");
+	<% end %>
+</script>

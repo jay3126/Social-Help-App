@@ -112,3 +112,7 @@
 .large-font{
 	font-size: 17px !important;
 }
+
+dt, dd {
+	line-height: 30px !important;
+}

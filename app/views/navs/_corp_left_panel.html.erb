@@ -1,28 +1,28 @@
 <div class="sidebar" id="sidebar">
 
 	<ul class="nav nav-list">
-		<li class="active">
+		<li id="li_dashboard">
 			<a href="/dashboard">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Dashboard </span>
 			</a>
 		</li>
 
-		<li>
+		<li id="li_add_fiscal_stat">
 			<a href="<%= new_fiscal_stat_path%>">
 				<i class="icon-list"></i>
-				<span class="menu-text">Add Financial Details </span>
+				<span class="menu-text"> Add Financial Details </span>
 			</a>
 		</li>
 
-		<li>
+		<li id="li_list_fiscal_stats">
 			<a href="<%= fiscal_stats_path%>">
 				<i class="icon-plus-sign"></i>
 				<span class="menu-text">View Financial Stats </span>
 			</a>
 		</li>
 
-		<li>
+		<li id="li_profile">
 			<a href="/profile">
 				<i class="icon-plus-sign"></i>
 				<span class="menu-text"> View Profile </span>
@@ -36,3 +36,11 @@
 	</div>
 
 </div>
+<script>
+	<% if params[:nav].present? %>
+		var nav = "<%= params[:nav] %>"
+		$("#li_" + nav).addClass("active");
+	<% else %>
+		$("#li_dashboard").addClass("active");
+	<% end %>
+</script>

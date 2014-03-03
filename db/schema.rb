@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303100701) do
+ActiveRecord::Schema.define(version: 20140303124936) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20140303100701) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "project_est_cost",            precision: 15, scale: 2, default: 0.0
+    t.boolean  "is_approved",                                          default: false
+    t.string   "issue_title"
   end
 
   create_table "issues_users", force: true do |t|

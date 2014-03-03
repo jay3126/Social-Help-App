@@ -13,7 +13,7 @@ class IssuesController < ApplicationController
   def create
   	@issue = Issue.new(issue_params)
   	@issue.users_id = current_user.id
-  	@issue.issue_status = 0
+  	@issue.issue_status = 1
   	if @issue.save
   		redirect_to root_url
   	else
@@ -53,9 +53,9 @@ class IssuesController < ApplicationController
   private
   def issue_params
   	if params[:issue].present?
-	    params.require(:issue).permit(:issue_description, :issue_area, :issue_area_code, :issue_status, :project_est_code, :users_id)
+	    params.require(:issue).permit(:issue_description, :issue_area, :issue_area_code, :issue_status, :project_est_code, :users_id, :issue_title)
   	else
-	    params.require(:issues).permit(:issue_description, :issue_area, :issue_area_code, :issue_status, :project_est_code, :users_id)
+	    params.require(:issues).permit(:issue_description, :issue_area, :issue_area_code, :issue_status, :project_est_code, :users_id, :issue_title)
   	end
  	end
 

@@ -1,6 +1,7 @@
 <table class="table">
 	<thead>
 		<th>S. No.</th>
+		<th>Issue Title</th>
 		<th>Issue Description</th>
 		<th>Related Area</th>
 		<th>Area Pin Code</th>
@@ -11,6 +12,7 @@
 		<% @issues.each_with_index do |iss,i| %>
 			<tr>
 				<td><%= i + 1 %></td>
+				<td><%= iss.issue_title %></td>
 				<td><%= iss.issue_description %></td>
 				<td><%= iss.issue_area %></td>
 				<td><%= iss.issue_area_code %></td>

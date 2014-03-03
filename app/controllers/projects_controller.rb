@@ -35,7 +35,9 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to users_dashboard_path, notice: 'Project was successfully created.' }
+      	issue = Issue.find_by_id(params[:issue_id])
+      	issue.update(is_approved: true) if issue.present?  #setting the is_approved flag to true in Issues table.
+        format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
@@ -45,7 +47,8 @@ class ProjectsController < ApplicationController
   end
 
   def pending_proposed_projects
-  	@pending_proposed_projects = Issue.where(issue_status: true)
+  	@project = Project.new
+  	@pending_proposed_projects = Issue.where(issue_status: true, is_approved: false)
   end
 
   def pending_projects
@@ -55,9 +58,6 @@ class ProjectsController < ApplicationController
   def completed_projects
   	@projects = Project.where(project_status: "Closed")
   	@comp = true
-  end
-
-  def allocate_project
   end
 
   def close_project

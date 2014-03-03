@@ -10,6 +10,13 @@
 			<div class="form-wrapper">
 				<%= form_tag issues_path, id: "newIssue", class: "form-horizontal" do %>
 					<div class="control-group">
+						<%= label :issue_title, "Issue Title", class: "control-label" %>
+						<div class="controls">
+							<%= text_field_tag "issue[issue_title]",nil, style: "width: 350px;"%>
+						</div>
+					</div>
+
+					<div class="control-group">
 						<%= label :desc, "Issue Description", class: "control-label" %>
 						<div class="controls">
 							<%= text_area_tag "issue[issue_description]",nil, style: "width: 350px;"%>

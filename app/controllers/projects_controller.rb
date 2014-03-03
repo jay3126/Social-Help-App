@@ -44,12 +44,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def pending_proposed_projects
+  	@pending_proposed_projects = Issue.where(issue_status: true)
+  end
+
   def pending_projects
-  	@projects = Project.where(project_status: "In Progress").to_a
+  	@projects = Project.where(project_status: "In Progress")
   end
 
   def completed_projects
-  	@projects = Project.where(project_status: "Closed").to_a
+  	@projects = Project.where(project_status: "Closed")
   	@comp = true
   end
 

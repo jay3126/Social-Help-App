@@ -50,7 +50,11 @@
 			</table>
 		</div>
 		<div class="panel-body-sign-in">
-			<%= link_to 'back', issues_path %>
+			<% if request.referer.include?("projects") %>
+				<%= link_to 'Back', pending_proposed_projects_projects_path, class: 'btn btn-primary' %>
+			<% else %>
+				<%= link_to 'Back', issues_path, class: 'btn btn-primary' %>
+			<% end %>
 		</div>
 	</div>
 </div>

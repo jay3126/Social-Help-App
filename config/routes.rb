@@ -13,6 +13,7 @@ SocialHelpApp::Application.routes.draw do
     collection do
       get 'pending_projects'
       get 'completed_projects'
+      get 'pending_proposed_projects'
     end
     member do
       get 'close_project'

@@ -1,0 +1,38 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>List of Proposed Projects</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<table class="table">
+				<thead>
+					<th>S. No.</th>
+					<th>Issue Description</th>
+					<th>Related Area</th>
+					<th>Area Pin Code</th>
+					<th>Est. Cost</th>
+					<th>Interested NGO's</th>
+					<th colspan="1"></th>
+				</thead>
+				<tbody>						
+					<% @pending_proposed_projects.each_with_index do |iss,i| %>
+						<tr>
+							<td><%= i + 1 %></td>
+							<td><%= iss.issue_description %></td>
+							<td><%= iss.issue_area %></td>
+							<td><%= iss.issue_area_code %></td>
+							<td><%= iss.project_est_cost %> INR </td>
+							<td><%= select_tag(:assigned_to, options_for_select(iss.users.where(role: "NGO").to_a.map{|x| [x.name, x.id]})) %></td>
+							<td><%= link_to "View", issue_path(iss.id), class: "btn btn-primary" %></td>
+							<td><%= link_to "Approve", allocate_project_project_path(iss.id), class: "btn btn-warning" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

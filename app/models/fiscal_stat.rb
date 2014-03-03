@@ -32,7 +32,13 @@ class FiscalStat < ActiveRecord::Base
 			social_fund.fund_remains.to_f += self.available_social_fund
 			social_fund.save
 		else
-			SocialFund.create(fiscal_year: self.fiscal_year, total_kitty_fund: self.available_social_fund, fund_remains: self.available_social_fund)
+			# check for remaining balance of the previous year
+			prev_social_fund = SocialFund.where(fiscal_year: self.fiscal_year - 1).first
+			kitty_value = self.available_social_fund
+			if prev_social_fund && prev_social_fund.fund_remains > 0
+				kitty_value += prev_social_fund.fund_remains
+			end
+			SocialFund.create(fiscal_year: self.fiscal_year, total_kitty_fund: kitty_value, fund_remains: kitty_value)
 		end
 	end
 end

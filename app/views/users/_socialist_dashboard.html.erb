@@ -10,7 +10,8 @@
 		<div class="space-6"></div>
 		<div class="infobox infobox-green infobox-small infobox-dark" style="width: 175px;">
 			<div class="infobox-progress">
-				<% percentage = ((@completed_issues/@total_issues.to_f) * 100).to_i %>
+				<%debugger%>
+				<% percentage = @total_issues > 0 ? ((@completed_issues/@total_issues.to_f) * 100).to_i : 0 %>
 				<div class="easy-pie-chart percentage easyPieChart" data-percent="<%= percentage %>" data-size="39" style="width: 39px; height: 39px; line-height: 39px;">
 					<span class="percent"><%= percentage %></span>%
 					<canvas width="39" height="39"></canvas>

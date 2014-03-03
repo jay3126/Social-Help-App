@@ -11,7 +11,8 @@ class UsersController < ApplicationController
 
 	def dashboard
 		if current_user.socialist?
-			@total_issues = Issue.where(users_id: current_user.id).count
+			@issues_list = Issue.where(users_id: current_user.id)
+			@total_issues = @issues_list.count
 			@completed_issues = Issue.where(users_id: current_user.id, issue_status: true).count
 			@pending_issues = Issue.where(users_id: current_user.id, issue_status: false).count
 		elsif current_user.corporate?

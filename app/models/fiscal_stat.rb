@@ -29,9 +29,10 @@ class FiscalStat < ActiveRecord::Base
 		# if present then will update kitty fund else will create new record
 		if social_fund.present?
 			social_fund.total_kitty_fund += self.available_social_fund
+			social_fund.fund_remains.to_f += self.available_social_fund
 			social_fund.save
 		else
-			SocialFund.create(fiscal_year: self.fiscal_year, total_kitty_fund: self.available_social_fund)
+			SocialFund.create(fiscal_year: self.fiscal_year, total_kitty_fund: self.available_social_fund, fund_remains: self.available_social_fund)
 		end
 	end
 end

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    render partial: 'list_all_projects'
+    @projects = Project.all
   end
 
   # GET /projects/1

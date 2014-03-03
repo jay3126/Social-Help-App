@@ -1,14 +1,14 @@
 <div class="row-fluid">
 	<div class="span3">
-		<%= render "navs/analyst_left_panel" %>
+		<%= render_panel(current_user.role) %>
 	</div>
 
 	<div class="panel-sign-in span9"  style="margin-top: 40px;">
 		<div class="panel-heading-sign-in">
-			<h4>Completed Projects</h4>
+			<h4>All Projects</h4>
 		</div>
 		<div class="panel-body-sign-in">
-			<%= render 'index' %>
+			<%= render "projects/project_list" %>
 		</div>
 	</div>
 </div>

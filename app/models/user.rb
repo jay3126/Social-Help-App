@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :fiscal_stats
   has_and_belongs_to_many :issues
   has_one :logo
+  has_many :projects
 
   validates :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, presence: true
   validate :specific_fields

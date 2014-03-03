@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228120731) do
+ActiveRecord::Schema.define(version: 20140303100701) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140228120731) do
     t.datetime "updated_at"
     t.boolean  "verified",                                        default: false
     t.string   "project_status"
+    t.string   "user_id"
   end
 
   create_table "social_funds", force: true do |t|

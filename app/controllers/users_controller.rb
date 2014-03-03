@@ -41,6 +41,11 @@ class UsersController < ApplicationController
 		redirect_to profile_path
 	end
 
+#getting projects on the basis of their users
+	def my_projects
+		@my_projects = Project.where(user_id: current_user.id)
+	end
+
 	private
 	def user_profile_params
 		params.require(:user).permit(:name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, :company_group, :tan_number, :no_of_employees, :age, :gender, :adhaar_number, :voter_id, :nationality, :pan_number, :service_type, :owner, :year_established)

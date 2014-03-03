@@ -32,6 +32,7 @@ class ProjectsController < ApplicationController
     @project.project_status = "In Progress"
     @project.assigned_by = current_user.id
     @project.verified_by = current_user.id
+    @project.user_id = current_user.id
 
     respond_to do |format|
       if @project.save

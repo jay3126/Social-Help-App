@@ -11,9 +11,9 @@ SocialHelpApp::Application.routes.draw do
   resources :fiscal_stats
   resources :projects do
     collection do
-      get 'pending_projects'
       get 'completed_projects'
       get 'pending_proposed_projects'
+      get 'ongoing_projects'
     end
     member do
       get 'close_project'

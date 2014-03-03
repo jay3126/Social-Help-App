@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
     @project.assigned_by = current_user.id
     @project.verified_by = current_user.id
     @project.user_id = current_user.id
+    @project.verified = true
 
     respond_to do |format|
       if @project.save
@@ -52,13 +53,12 @@ class ProjectsController < ApplicationController
   	@pending_proposed_projects = Issue.where(issue_status: true, is_approved: false)
   end
 
-  def pending_projects
-  	@projects = Project.where(project_status: "In Progress")
+  def ongoing_projects
+  	@ongoing_projects = Project.where(project_status: "In Progress", verified: true)
   end
 
   def completed_projects
-  	@projects = Project.where(project_status: "Closed")
-  	@comp = true
+  	@projects = Project.where(project_status: "Closed", verified: true )
   end
 
   def close_project

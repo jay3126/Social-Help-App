@@ -22,7 +22,7 @@ module ApplicationHelper
 		when "ngo"
 			render partial: "ngo_profile"
 		when "analyst"
-			render partial: "dashboard"
+			render partial: "analyst_profile"
 		end
 	end
 

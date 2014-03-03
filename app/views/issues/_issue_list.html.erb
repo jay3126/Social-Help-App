@@ -22,7 +22,11 @@
 					<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
 				<% end %>
 				<%if current_user.role == "NGO"%>
-					<td><input type="button" id="int_btn" class="btn btn-warning" value="I am Interested" onClick="return setInterestedNgo(<%= iss.id %>);"></td>
+					<%if iss.users.all.include?(current_user)%>
+						<td><input type="button" id="int_btn_<%= iss.id%>" class="btn btn-warning" value="Interest Shown" disabled="disabled"></td>
+					<%else%>
+						<td><input type="button" id="int_btn_<%= iss.id%>" class="btn btn-warning" value="Show Interest" onClick="return setInterestedNgo(<%= iss.id %>);"></td>
+					<%end%>
 				<%end%>
 			</tr>
 		<% end %>
@@ -34,10 +38,13 @@
 		var u_id = <%= current_user.id%>
 		$.ajax({ 
 			type: "GET",
+			dataType: "json",
 			data: {issue_id: issue_id, user_id: u_id},
 			url: "/issues/interested_ngos",
 			success: function (result) {
-				$('#int_btn').attr('disabled: true');
+				var btn_name = '#int_btn_'+result.iss_id
+				$(btn_name).attr("disabled", true);
+				$(btn_name).attr("value","Interest Shown");
 			}
 		});
 	}

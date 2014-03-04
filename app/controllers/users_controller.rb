@@ -11,10 +11,10 @@ class UsersController < ApplicationController
 
 	def dashboard
 		if current_user.socialist?
-			@issues_list = Issue.where(users_id: current_user.id)
+			@issues_list = Issue.where(user_id: current_user.id)
 			@total_issues = @issues_list.count
-			@completed_issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:closed]).count
-			@pending_issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:open]).count
+			@completed_issues = Issue.where(user_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:closed]).count
+			@pending_issues = Issue.where(user_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:open]).count
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
 		elsif current_user.analyst? || current_user.ngo?

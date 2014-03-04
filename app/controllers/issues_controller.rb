@@ -35,15 +35,6 @@ class IssuesController < ApplicationController
   	redirect_to issue_path(params[:id])
   end
 
-  def pending_issues
-  	@issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:open])
-  end
-
-  def completed_issues
-  	@issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:closed])
-  	@comp = true
-  end
-
   def interested_ngos
     issue = Issue.where(id: params[:issue_id]).first
     current_user.issues << issue

@@ -3,13 +3,19 @@
 		<%= render_panel(current_user.role) %>
 	</div>
 
-	<div class="panel-sign-in span9"  style="margin-top: 40px;">
-		<div class="panel-heading-sign-in">
-			<h4>All Issues</h4>
+	<div class="span9"  style="margin-top: 40px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-header">
+					All Issues
+				</div>
+				<%= render 'issue_list' %>
+			</div>
 		</div>
+
+
 		<div class="panel-body-sign-in">
 			<% if @issues.present? %>
-				<%= render 'issue_list' %>
 			<% else %>
 				<% if @comp %>
 					<p>No completed issue(s)</p>

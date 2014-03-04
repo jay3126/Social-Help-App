@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304075713) do
+ActiveRecord::Schema.define(version: 20140304082114) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140304075713) do
   end
 
   create_table "issues", force: true do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.string   "issue_description"
     t.string   "issue_area"
     t.integer  "issue_area_code",   limit: 8

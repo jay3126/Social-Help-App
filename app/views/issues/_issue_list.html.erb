@@ -8,6 +8,7 @@
 					<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 158px;">Description</th>
 					<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending" style="width: 118px;">Area</th>
 					<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending" style="width: 100px;">Area Code</th>
+					<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending" style="width: 100px;">Est. Cost</th>
 					<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 145px;">Status</th>
 					<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 156px;"></th>
 				</tr>
@@ -21,6 +22,7 @@
 						<td><%= iss.issue_description %></td>
 						<td><%= iss.issue_area %></td>
 						<td><%= iss.issue_area_code %></td>
+						<td><%= iss.project_est_cost %> INR</td>
 						<td><%= iss.issue_status ? "Open" : "Closed" %></td>
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">

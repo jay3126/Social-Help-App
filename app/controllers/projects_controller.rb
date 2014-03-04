@@ -83,7 +83,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 		respond_to do |format|
 			if @project.update_attributes(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], closed_by: current_user.id)
-				format.html { redirect_to pending_projects_projects_path, notice: 'Project was successfully closed.' }
+				format.html { redirect_to dashboard_path, notice: 'Project was successfully closed.' }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }

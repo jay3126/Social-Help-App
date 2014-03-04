@@ -38,6 +38,7 @@ class ProjectsController < ApplicationController
     @project.verified = true
     @project.project_status = Constants::ProjectStatusConstant.all_to_hash[:in_progress]
     @project.project_duration = params[:duration]
+    @project.proposer_id = issue.user_id
 
     respond_to do |format|
       if @project.save

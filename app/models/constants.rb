@@ -23,12 +23,14 @@ module Constants
 		IssueStatusConstant.define :open, "Open"
 		IssueStatusConstant.define :assigned, "Assigned"
 		IssueStatusConstant.define :closed, "Closed"
+		IssueStatusConstant.define :approved, "Approved"
 		IssueStatusConstant.define :rejected, "Rejected"
 	end
 
 	class ProjectStatusConstant
 		include Enum
 		ProjectStatusConstant.define :in_progress, "In Progress"
+		ProjectStatusConstant.define :approved, "Approved"
 		ProjectStatusConstant.define :closed, "Closed"
 	end
 

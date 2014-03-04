@@ -17,7 +17,12 @@ class UsersController < ApplicationController
 			@pending_issues = Issue.where(user_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:open]).count
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
-		elsif current_user.analyst? || current_user.ngo?
+		elsif current_user.ngo?
+			@current_fund = SocialFund.order("fiscal_year DESC").first
+			@all_projects = Project.all
+			@completed_projects = @all_projects.where(assigned_to: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
+			@pending_projects = @all_projects.where(assigned_to: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
+		elsif current_user.analyst?
 			@current_fund = SocialFund.order("fiscal_year DESC").first
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])

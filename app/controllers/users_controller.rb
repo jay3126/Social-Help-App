@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
 		elsif current_user.analyst? || current_user.ngo?
-			@current_fund = SocialFund.last
+			@current_fund = SocialFund.order("fiscal_year DESC").first
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
 			@pending_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])

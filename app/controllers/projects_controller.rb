@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        issue.update(is_approved: true)  #setting the is_approved flag to true in Issues table.
+        issue.update(is_approved: true, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])  #setting the is_approved flag to true in Issues table.
         format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
         format.json { render action: 'show', status: :created, location: @project }
       else

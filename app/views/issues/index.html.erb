@@ -12,17 +12,5 @@
 				<%= render 'issue_list' %>
 			</div>
 		</div>
-
-
-		<div class="panel-body-sign-in">
-			<% if @issues.present? %>
-			<% else %>
-				<% if @comp %>
-					<p>No completed issue(s)</p>
-				<% else %>
-					<p>You have not submitted any issue(s)</p>
-				<% end %>
-			<% end %>
-		</div>
 	</div>
 </div>

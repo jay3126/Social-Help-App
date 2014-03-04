@@ -1,4 +1,8 @@
-<table class="table">
+<div id="chart1" style="position: relative;" class="jqplot-target">
+</div>
+<div class="space-6"></div>
+
+<table class="table" style="margin-top: 20px;">
 	<thead>
 		<th>Year</th>
 		<th>Total Revenue</th>
@@ -18,3 +22,62 @@
 		<% end %>
 	</tbody>
 </table>
+
+<script>
+	$(document).ready(function(){
+    var s1 = [0, 0, 0, 0];
+    var s2 = [0, 0, 0, 0];
+    var s3 = [0, 0, 0, 0];
+    var c = 3;
+    var ticks = ['','','',''];
+
+		<% @fiscal_stats.first(4).each do |x|%>
+			s1[c] = <%= x.total_revenue.to_i %>
+			s2[c] = <%= x.net_profit.to_i %>
+			s3[c] = <%= x.available_social_fund.to_i %>
+			ticks[c] = "<%= x.fiscal_year.to_s + " - " + (x.fiscal_year + 1).to_s %>"
+			c = c - 1;
+		<% end %>
+	    // Can specify a custom tick Array.
+	    // Ticks should match up one for each y value (category) in the series.
+	    // var ticks = ['May', 'June', 'July', 'August'];
+	     
+	    var plot1 = $.jqplot('chart1', [s1, s2, s3], {
+	        // The "seriesDefaults" option is an options object that will
+	        // be applied to all series in the chart.
+	        seriesDefaults:{
+	            renderer:$.jqplot.BarRenderer,
+	            rendererOptions: {fillToZero: true}
+	        },
+	        // Custom labels for the series are specified with the "label"
+	        // option on the series option.  Here a series option object
+	        // is specified for each series.
+	        series:[
+	            {label:'Total Revenue'},
+	            {label:'Net Profit'},
+	            {label:'Social Fund'}
+	        ],
+	        // Show the legend and put it outside the grid, but inside the
+	        // plot container, shrinking the grid to accomodate the legend.
+	        // A value of "outside" would not shrink the grid and allow
+	        // the legend to overflow the container.
+	        legend: {
+	            show: true,
+	            placement: 'outsideGrid'
+	        },
+	        axes: {
+	            // Use a category axis on the x axis and use our custom ticks.
+	            xaxis: {
+	                renderer: $.jqplot.CategoryAxisRenderer,
+	                ticks: ticks
+	            },
+	            // Pad the y axis just a little so bars can get close to, but
+	            // not touch, the grid boundaries.  1.2 is the default padding.
+	            yaxis: {
+	                pad: 1.05,
+	                tickOptions: {formatString: '%d'}
+	            }
+	        }
+	    });
+	});
+</script>

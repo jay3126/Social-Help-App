@@ -58,11 +58,19 @@ class ProjectsController < ApplicationController
   end
 
   def ongoing_projects
-  	@ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress], verified: true)
+    if params["spec"].present? && params["spec"] == "true"
+      @ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress], verified: true, proposer_id: current_user.id)
+    else
+  	  @ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress], verified: true)
+    end
   end
 
   def completed_projects
-  	@projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
+    if params["spec"].present? && params["spec"] == "true"
+      @ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true, proposer_id: current_user.id)
+    else
+  	  @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
+    end  
   end
 
   def close_project

@@ -5,7 +5,7 @@
 
 	<div class="panel-sign-in span9"  style="margin-top: 40px;">
 		<div class="panel-heading-sign-in">
-			<h4>List of Ongoing Projects</h4>
+			<h4>Ongoing Projects</h4>
 		</div>
 		<div class="panel-body-sign-in">
 			<% if @ongoing_projects.present? %>
@@ -34,11 +34,9 @@
 									<td><%= User.fetch_user_names(project.assigned_by) %></td>
 									<td><%= project.project_status %></td>
 									<td><%= link_to "View", project_path(id: project.id), class: "btn btn-primary" %></td>
-									<% if project.project_status == "In Progress" %>
+									<% if project.project_status == "In Progress" && current_user.role == "Analyst"%>
 										<td><%= link_to "Edit", edit_project_path(id: project.id), class: "btn btn-warning" %></td>
 										<!-- <td><%#= link_to "Close Project", close_project_project_path(id: project.id), data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %></td> -->
-									<% else %>
-										<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
 									<% end %>
 								</tr>
 							<% end %>

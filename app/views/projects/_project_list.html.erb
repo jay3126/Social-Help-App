@@ -36,11 +36,9 @@
 						<td><%= project.project_status %></td>
 						<td><%= project.project_duration %></td>
 						<td><%= link_to "View", project_path(id: project.id), class: "btn btn-primary" %></td>
-						<% if project.project_status == "In Progress" %>
+						<% if project.project_status == "In Progress" && current_user.role == "Analyst"%>
 							<td><%= link_to "Edit", edit_project_path(id: project.id), class: "btn btn-warning" %></td>
 							<td><%= link_to "Close Project", close_project_project_path(id: project.id), data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %></td>
-						<% else %>
-							<td><input type="button" class="btn btn-warning" disabled="disbaled" value="Edit"></td>
 						<% end %>
 					</tr>
 				<% end %>

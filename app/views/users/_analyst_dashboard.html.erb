@@ -8,6 +8,7 @@
 		used_fund = @current_fund.fund_used.to_f
 		rem_fund = @current_fund.fund_remains.to_f
 		rem_pecent = ((used_fund/current_fund) * 100).to_i
+		used_pecent = ((rem_fund/current_fund) * 100).to_i
 	end
 
 	total_projects = @all_projects.count
@@ -43,7 +44,24 @@
 
 				<div class="infobox-content">
 					<span class="bigger-110">~</span>
-					<%= rem_fund %> remaining
+					<%= used_fund %> used
+				</div>
+			</div>
+		</div>
+
+		<div class="infobox infobox-blue2  ">
+			<div class="infobox-progress">
+				<div class="easy-pie-chart percentage easyPieChart" data-percent="<%= rem_pecent %>" data-size="46" style="width: 46px; height: 46px; line-height: 46px;">
+					<span class="percent"><%= used_pecent %></span>%
+				<canvas width="46" height="46"></canvas></div>
+			</div>
+
+			<div class="infobox-data">
+				<span class="infobox-text"><b>Fund remains</b></span>
+
+				<div class="infobox-content">
+					<span class="bigger-110">~</span>
+					<%= rem_fund %> remains
 				</div>
 			</div>
 		</div>

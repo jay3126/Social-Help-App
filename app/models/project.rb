@@ -9,8 +9,10 @@ class Project < ActiveRecord::Base
 	def update_kitty_amount
 		project_cost = self.project_actual_cost
 		scl_fund = SocialFund.order("fiscal_year DESC").first
-		scl_fund.fund_used += project_cost
-		scl_fund.fund_remains -= project_cost
-		scl_fund.save
-	end 
+		if scl_fund.present?
+			scl_fund.fund_used += project_cost
+			scl_fund.fund_remains -= project_cost
+			scl_fund.save
+		end
+	end
 end

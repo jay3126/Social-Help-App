@@ -54,7 +54,8 @@ class ProjectsController < ApplicationController
   end
 
   def pending_proposed_projects
-    @avl_social_fund = SocialFund.order("fiscal_year DESC").first.fund_remains
+    funds = SocialFund.order("fiscal_year DESC").first
+    @avl_social_fund = funds.present? ? funds.fund_remains : 0.0
   	@project = Project.new
   	@pending_proposed_projects = Issue.where(issue_status: Constants::IssueStatusConstant.all_to_hash[:open], is_approved: false)
   end

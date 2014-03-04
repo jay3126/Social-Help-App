@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 			@pending_issues = Issue.where(users_id: current_user.id, issue_status: false).count
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
-		elsif current_user.analyst?
+		elsif current_user.analyst? || current_user.ngo?
 			@current_fund = SocialFund.last
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(project_status: "closed")

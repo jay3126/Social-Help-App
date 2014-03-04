@@ -1,0 +1,40 @@
+<div class="col-xs-12">
+	<div class="table-header">
+		Financial Statistics By Year
+	</div>
+	<div class="table-responsive">
+		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+			<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+				<thead>
+					<tr role="row">
+						<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 80px;">S. No.</th>
+						<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 150px;">Financial Year</th>
+						<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 108px;">Company</th>
+						<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending" style="width: 118px;">Revenue</th>
+						<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending" style="width: 178px;">Profit</th>
+						<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 145px;">Eligible</th>
+						<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 145px;">Social Fund</th>
+					</tr>
+				</thead>
+				<tbody role="alert" aria-live="polite" aria-relevant="all">
+					<% @fiscal_stats.each_with_index do |f,i| %>
+						<tr>
+							<td><%= i + 1 %></td>
+							<td><%= f.fiscal_year.to_s + " - " + (f.fiscal_year.to_i + 1).to_s %></td>
+							<td><%= f.user.name %></td>
+							<td><%= f.total_revenue %></td>
+							<td><%= f.net_profit %></td>
+							<td><%= f.eligibility_status ? "Yes" : "No" %></td>
+							<td><%= f.available_social_fund %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% unless @fiscal_stats.present? %>
+		<div class="col-xs-12">
+			<b>No Financial Statistics available</b>
+		</div>
+	<% end %>
+</div>

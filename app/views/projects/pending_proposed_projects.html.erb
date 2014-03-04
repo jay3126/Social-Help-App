@@ -35,7 +35,7 @@
 										<td><%= iss.project_est_cost %> INR </td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-												<button class="btn btn-xs btn-success" onclick="approveProject(<%= iss.id %>, <%= iss.project_est_cost %>);"><i class="icon-ok bigger-120"></i></button>
+												<button class="btn btn-xs btn-success" onclick="approveProject(<%= iss.id %>, <%= iss.project_est_cost %>, <%= @avl_social_fund%>);"><i class="icon-ok bigger-120"></i></button>
 												<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info"><i class="icon-eye-open bigger-120"></i></a>
 												<% if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:open] %>
 													<button id="int_btn_<%= iss.id%>" class="btn btn-xs btn-danger" onclick="rejectProject(<%= iss.id %>);"> <i class="icon-trash bigger-120"></i></button>
@@ -96,7 +96,11 @@
   </div>
 </div>
 <script>
-	function approveProject(issue_id, estCost){
+	function approveProject(issue_id, estCost, avl_fund){
+		if (estCost > avl_fund){
+			alert("Sorry You Don't Have Sufficient Fund To Pick This Project.")
+			return false
+		}
 		$("#approve-project-modal").modal();
 		$("#project_actual_cost").val(estCost);
 		$("#issue-id").val(issue_id);

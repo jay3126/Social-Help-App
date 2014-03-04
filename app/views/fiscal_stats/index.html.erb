@@ -15,7 +15,8 @@
             <th>Total Revenue</th>
             <th>Net Profit</th>
             <th>Currency Type</th>
-            <th>Eligibility Status</th>
+            <th>Eligibility</th>
+            <th>Social Fund(<%= (Constants::SOCIALFUND_RATIO * 100).to_i %>%)</th>
             <th></th>
           </thead>
           <tbody>
@@ -26,7 +27,8 @@
                 <td><%= fiscal_stat.total_revenue %></td>
                 <td><%= fiscal_stat.net_profit %></td>
                 <td><%= fiscal_stat.currency_type %></td>
-                <td><%= fiscal_stat.eligibility_status %></td>     
+                <td><%= fiscal_stat.eligibility_status ? "Yes" : "No" %></td>     
+                <td><%= fiscal_stat.eligibility_status ? fiscal_stat.available_social_fund : "N/A" %></td>
                 <td><%= link_to 'View', fiscal_stat, class: "btn btn-primary" %></td>
                 <!--<td><%#= link_to 'Edit', edit_fiscal_stat_path(fiscal_stat), class: "btn btn-primary" %></td> -->
                 <!--<td><%#= link_to 'Destroy', fiscal_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

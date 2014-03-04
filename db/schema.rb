@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304082114) do
+ActiveRecord::Schema.define(version: 20140304131733) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -36,6 +36,10 @@ ActiveRecord::Schema.define(version: 20140304082114) do
     t.decimal  "project_est_cost",            precision: 15, scale: 2, default: 0.0
     t.boolean  "is_approved",                                          default: false
     t.string   "issue_title"
+    t.integer  "closed_by"
+    t.integer  "rejected_by"
+    t.date     "rejected_on"
+    t.date     "closed_on"
   end
 
   create_table "issues_users", force: true do |t|
@@ -74,6 +78,9 @@ ActiveRecord::Schema.define(version: 20140304082114) do
     t.string   "project_status"
     t.integer  "user_id"
     t.integer  "proposer_id"
+    t.integer  "issue_id"
+    t.date     "closed_on"
+    t.date     "approved_on"
   end
 
   create_table "social_funds", force: true do |t|

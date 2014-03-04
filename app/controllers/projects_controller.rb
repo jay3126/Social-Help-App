@@ -39,10 +39,11 @@ class ProjectsController < ApplicationController
     @project.project_status = Constants::ProjectStatusConstant.all_to_hash[:in_progress]
     @project.project_duration = params[:duration]
     @project.proposer_id = issue.user_id
+    @project.issue_id = params[:issue_id]
 
     respond_to do |format|
       if @project.save
-        issue.update(is_approved: true, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])  #setting the is_approved flag to true in Issues table.
+        issue.update(is_approved: true, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
         format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
@@ -75,14 +76,16 @@ class ProjectsController < ApplicationController
 
   def reject_project
   	issue = Issue.where(id: params[:issue_id]).first
-  	issue.update(issue_status: Constants::IssueStatusConstant.all_to_hash[:rejected])
+  	issue.update(issue_status: Constants::IssueStatusConstant.all_to_hash[:rejected], rejected_on: Date.today, rejected_by: current_user.id)
     render json: {status: 500, iss_id: params[:issue_id]}
   end
 
   def close_project
     @project = Project.find(params[:id])
+    @issue = Issue.find_by_id(params[:issue_id])
 		respond_to do |format|
-			if @project.update_attributes(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], closed_by: current_user.id)
+			if @project.update_attributes(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], closed_by: current_user.id, closed_on: Date.today)
+        @issue.update(issue_status: Constants::IssueStatusConstant.all_to_hash[:closed], closed_by: current_user.id, closed_on: Date.today)
 				format.html { redirect_to dashboard_path, notice: 'Project was successfully closed.' }
 				format.json { head :no_content }
 			else
@@ -124,6 +127,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:project_name, :project_type, :area, :project_est_cost, :project_actual_cost, :est_start_date, :actual_start_date, :est_completion_date, :actual_completion_date, :assigned_to, :assigned_by, :verified_by, :closed_by, :project_duration, :verified, :project_status, :user_id)
+      params.require(:project).permit(:project_name, :project_type, :area, :project_est_cost, :project_actual_cost, :est_start_date, :actual_start_date, :est_completion_date, :actual_completion_date, :assigned_to, :assigned_by, :verified_by, :closed_by, :project_duration, :verified, :project_status, :user_id, :issue_id, :closed_on, :approved_on)
     end
 end

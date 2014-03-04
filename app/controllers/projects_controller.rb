@@ -24,21 +24,24 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
-    @project.est_start_date = params[:est_start_date]
-    @project.actual_start_date = params[:actual_start_date]
-    @project.est_completion_date = params[:est_completion_date]
-    @project.actual_completion_date = params[:actual_completion_date]
-    @project.project_status = "In Progress"
+    issue = Issue.find_by(id: params[:issue_id])
+    @project = Project.new
+    @project.project_name = issue.issue_title
+    @project.project_type = issue.issue_description
+    @project.project_name = issue.issue_title
+    @project.area = issue.issue_area
+    @project.project_actual_cost = params[:project_actual_cost]
     @project.assigned_by = current_user.id
     @project.verified_by = current_user.id
-    @project.user_id = current_user.id
+    @project.user_id = params[:assigned_to]
+    @project.assigned_to = params[:assigned_to]
     @project.verified = true
+    @project.project_status = "In Progress"
+    @project.project_duration = params[:duration]
 
     respond_to do |format|
       if @project.save
-      	issue = Issue.find_by_id(params[:issue_id])
-      	issue.update(is_approved: true) if issue.present?  #setting the is_approved flag to true in Issues table.
+        issue.update(is_approved: true)  #setting the is_approved flag to true in Issues table.
         format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
         format.json { render action: 'show', status: :created, location: @project }
       else

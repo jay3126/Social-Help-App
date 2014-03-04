@@ -3,48 +3,113 @@
 		<%= render_panel(current_user.role) %>
 	</div>
 
-	<div class="panel-sign-in span9"  style="margin-top: 40px;">
-		<div class="panel-heading-sign-in">
-			<h4>List of Proposed Projects</h4>
-		</div>
-		<div class="panel-body-sign-in">
-			<% if @pending_proposed_projects.present? %>
-				<div class="scrollit">
-					<table class="table">
-						<thead>
-							<th>S. No.</th>
-							<th>Issue Title</th>
-							<th>Issue Description</th>
-							<th>Related Area</th>
-							<th>Area Pin Code</th>
-							<th>Allocate Cost</th>
-							<th>Allocate NGO</th>
-							<th colspan="1"></th>
-						</thead>
-						<tbody>
-							<% @pending_proposed_projects.each_with_index do |iss,i| %>
-								<tr>
-									<%= form_for(@project) do |a| %>
+	<div class="span9"  style="margin-top: 40px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-header">
+					Projects seeking approval
+				</div>
+				<div class="table-responsive">
+					<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+						<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+							<thead>
+								<tr role="row">
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 80px;">S. No.</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 150px;">Issue Title</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 108px;">Description</th>
+									<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending" style="width: 118px;">Area</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending" style="width: 178px;">Area Code</th>
+									<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 145px;">Estd. Cost</th>
+									<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 156px;"></th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<% @pending_proposed_projects.each_with_index do |iss,i| %>
+									<tr>
 										<% interested_ngos = iss.users.where(role: "NGO").to_a.map{|x| [x.name, x.id]} %>
 										<td><%= i + 1 %></td>
-										<td><%= a.text_field :project_name, value: iss.issue_title, readonly: true %></td>
-										<td><%= a.text_field :project_type, value: iss.issue_description, readonly: true %></td>
-										<td><%= a.text_field :area, value: iss.issue_area, readonly: true %></td>
+										<td><%= iss.issue_title %></td>
+										<td><%= iss.issue_description %></td>
+										<td><%= iss.issue_area %></td>
 										<td><%= iss.issue_area_code %></td>
-										<td><%= a.text_field :project_actual_cost, onkeypress: "return isNumber(event)", value: iss.project_est_cost %> INR </td>
-										<td><%= a.select(:assigned_to, options_for_select(interested_ngos.present? ? interested_ngos : User.where(role: "NGO").collect{|x| [x.name, x.id]}), { prompt: "Select NGO"}) %></td>
-										<%= a.hidden_field :issue_id, name: :issue_id, value: iss.id %>
-										<td><%= link_to "View", issue_path(iss.id), class: "btn btn-primary" %></td>
-										<td><input type="submit" value="Approve" class="btn btn-warning" ></td>
-									<% end %>
-								</tr>
-							<% end %>
-						</tbody>
-					</table>
+										<td><%= iss.project_est_cost %> INR </td>
+										<td>
+											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<button class="btn btn-xs btn-success" onclick="approveProject(<%= iss.id %>, <%= iss.project_est_cost %>);"><i class="icon-ok bigger-120"></i></button>
+												<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info"><i class="icon-eye-open bigger-120"></i></a>
+												<button class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></button>
+											</div>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			<% else %>
-				<h4>No prosed projects available.</h4>
-			<% end %>
+				<% unless @pending_proposed_projects.present? %>
+					<div class="col-xs-12">
+						<b>No Project(s) to approve</b>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Modal for Approving project upload -->
+<div id="approve-project-modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Approve Project</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag projects_path, class: "form-horizontal", id: "approveProjectForm" do %>
+			<div class="control-group">
+				<%= label :ngo, "NGO", class: "control-label" %>
+				<div class="controls">
+					<%= select_tag(:assigned_to, options_for_select(User.where(role: "NGO").collect{|x| [x.name, x.id]}), { prompt: "Select NGO"}) %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<%= label :cost,"Approved Cost", class: "control-label" %>
+				<div class="controls">
+					<%= text_field_tag :project_actual_cost,nil, onkeypress: "return isNumber(event)" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= label :duration,"Project Duration", class: "control-label" %>
+				<div class="controls">
+					<%= text_field_tag :duration %>
+				</div>
+			</div>
+			<%= hidden_field_tag "issue_id", '', id: "issue-id" %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" class="btn btn-primary" onclick="submitApproveProjectForm();">Approve</a>
+  </div>
+</div>
+<script>
+	function approveProject(issue_id, estCost){
+		$("#approve-project-modal").modal();
+		$("#project_actual_cost").val(estCost);
+		$("#issue-id").val(issue_id);
+	}
+
+	function submitApproveProjectForm(){
+		var ngo = $("#assigned_to").val();
+		var cost = $("#project_actual_cost").val();
+		if(ngo == ''){
+			alert("Please select assignee NGO");
+			return false;
+		}
+
+		if(cost =='' || cost == 0 || cost == '0'){
+			alert("Please enter approved cost");
+			return false;
+		}
+		$("#approveProjectForm").submit();
+	}
+</script>

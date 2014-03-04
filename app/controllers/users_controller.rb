@@ -13,15 +13,15 @@ class UsersController < ApplicationController
 		if current_user.socialist?
 			@issues_list = Issue.where(users_id: current_user.id)
 			@total_issues = @issues_list.count
-			@completed_issues = Issue.where(users_id: current_user.id, issue_status: true).count
-			@pending_issues = Issue.where(users_id: current_user.id, issue_status: false).count
+			@completed_issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:closed]).count
+			@pending_issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:open]).count
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id)
 		elsif current_user.analyst? || current_user.ngo?
 			@current_fund = SocialFund.last
 			@all_projects = Project.all
-			@completed_projects = @all_projects.where(project_status: "closed")
-			@pending_projects = @all_projects.where(project_status: "in progress")
+			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
+			@pending_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
 		end
 		params[:nav] = "dashboard"
 	end

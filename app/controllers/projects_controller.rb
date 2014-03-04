@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @project.user_id = params[:assigned_to]
     @project.assigned_to = params[:assigned_to]
     @project.verified = true
-    @project.project_status = "In Progress"
+    @project.project_status = Constants::ProjectStatusConstant.all_to_hash[:in_progress]
     @project.project_duration = params[:duration]
 
     respond_to do |format|
@@ -53,21 +53,21 @@ class ProjectsController < ApplicationController
 
   def pending_proposed_projects
   	@project = Project.new
-  	@pending_proposed_projects = Issue.where(issue_status: true, is_approved: false)
+  	@pending_proposed_projects = Issue.where(issue_status: Constants::IssueStatusConstant.all_to_hash[:open], is_approved: false)
   end
 
   def ongoing_projects
-  	@ongoing_projects = Project.where(project_status: "In Progress", verified: true)
+  	@ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress], verified: true)
   end
 
   def completed_projects
-  	@projects = Project.where(project_status: "Closed", verified: true )
+  	@projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
   end
 
   def close_project
     @project = Project.find(params[:id])
 		respond_to do |format|
-			if @project.update_attributes(project_status: "Closed", closed_by: current_user.id)
+			if @project.update_attributes(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], closed_by: current_user.id)
 				format.html { redirect_to pending_projects_projects_path, notice: 'Project was successfully closed.' }
 				format.json { head :no_content }
 			else
@@ -109,6 +109,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:project_name, :project_type, :area, :project_est_cost, :project_actual_cost, :est_start_date, :actual_start_date, :est_completion_date, :actual_completion_date, :assigned_to, :assigned_by, :verified_by, :closed_by, :project_duration, :verified, :project_status)
+      params.require(:project).permit(:project_name, :project_type, :area, :project_est_cost, :project_actual_cost, :est_start_date, :actual_start_date, :est_completion_date, :actual_completion_date, :assigned_to, :assigned_by, :verified_by, :closed_by, :project_duration, :verified, :project_status, :user_id)
     end
 end

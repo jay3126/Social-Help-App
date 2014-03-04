@@ -1,4 +1,5 @@
 module Constants
+
 	# eligibility criteria for a company to become eligible for this social help concept
 	ELIGIBILITY_CRITERIA = 100000
 
@@ -16,5 +17,19 @@ module Constants
 
 	# valid currencies list
 	VALID_CURRENCIES = ["INR"]
+
+	class IssueStatusConstant
+		include Enum
+		IssueStatusConstant.define :open, "Open"
+		IssueStatusConstant.define :assigned, "Assigned"
+		IssueStatusConstant.define :closed, "Closed"
+		IssueStatusConstant.define :rejected, "Rejected"
+	end
+
+	class ProjectStatusConstant
+		include Enum
+		ProjectStatusConstant.define :in_progress, "In Progress"
+		ProjectStatusConstant.define :closed, "Closed"
+	end
 
 end

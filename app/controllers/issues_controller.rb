@@ -13,7 +13,7 @@ class IssuesController < ApplicationController
   def create
   	@issue = Issue.new(issue_params)
   	@issue.users_id = current_user.id
-  	@issue.issue_status = 1
+  	@issue.issue_status = Constants::IssueStatusConstant.all_to_hash[:open]
   	if @issue.save
   		redirect_to root_url
   	else
@@ -36,11 +36,11 @@ class IssuesController < ApplicationController
   end
 
   def pending_issues
-  	@issues = Issue.where(users_id: current_user.id, issue_status: true)
+  	@issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:open])
   end
 
   def completed_issues
-  	@issues = Issue.where(users_id: current_user.id, issue_status: false)
+  	@issues = Issue.where(users_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:closed])
   	@comp = true
   end
 

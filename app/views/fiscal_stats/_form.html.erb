@@ -13,7 +13,7 @@
 
   <div class="control-group">
     <%= f.label :fiscal_year,"Financial Year", class: "control-label" %>
-    <div class='controls'><%= f.select(:fiscal_year, options_for_select(["2011-2012","2012-2013"]), prompt: "Select Period") %></div>
+    <div class='controls'><%= f.select(:fiscal_year, options_for_select(Constants::FISCAL_YEAR,(@fiscal_stat.fiscal_year.present? ? params[:fiscal_stat][:fiscal_year] : nil)), prompt: "Select Period") %></div>
   </div>
   <div class="control-group">
     <%= f.label :total_revenue,"Total Revenue", class: "control-label" %>
@@ -25,7 +25,7 @@
   </div>
   <div class="control-group">
     <%= f.label :currency_type,"Currency Type", class: "control-label" %>
-    <div class='controls'><%= f.select(:currency_type, options_for_select(["INR", "USD"]), prompt: "Select Currency") %></div>
+    <div class='controls'><%= f.select(:currency_type, options_for_select(Constants::VALID_CURRENCIES), prompt: "Select Currency") %></div>
   </div>
   <div class="ml-180">
     <%= f.submit "Save", class: "btn btn-primary"%>

@@ -14,6 +14,7 @@ SocialHelpApp::Application.routes.draw do
       get 'completed_projects'
       get 'pending_proposed_projects'
       get 'ongoing_projects'
+      get 'reject_project'
     end
     member do
       get 'close_project'

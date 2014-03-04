@@ -73,6 +73,12 @@ class ProjectsController < ApplicationController
     end  
   end
 
+  def reject_project
+  	issue = Issue.where(id: params[:issue_id]).first
+  	issue.update(issue_status: Constants::IssueStatusConstant.all_to_hash[:rejected])
+    render json: {status: 500, iss_id: params[:issue_id]}
+  end
+
   def close_project
     @project = Project.find(params[:id])
 		respond_to do |format|

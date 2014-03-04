@@ -37,7 +37,11 @@
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 												<button class="btn btn-xs btn-success" onclick="approveProject(<%= iss.id %>, <%= iss.project_est_cost %>);"><i class="icon-ok bigger-120"></i></button>
 												<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info"><i class="icon-eye-open bigger-120"></i></a>
-												<button class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></button>
+												<% if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:open] %>
+													<button id="int_btn_<%= iss.id%>" class="btn btn-xs btn-danger" onclick="rejectProject(<%= iss.id %>);"> <i class="icon-trash bigger-120"></i></button>
+												<% else %>
+													<button id="int_btn_<%= iss.id%>" class="btn btn-xs btn-danger" disabled="disabled"> <i class="icon-trash bigger-120"></i></button>
+												<% end %>
 											</div>
 										</td>
 									</tr>
@@ -96,6 +100,21 @@
 		$("#approve-project-modal").modal();
 		$("#project_actual_cost").val(estCost);
 		$("#issue-id").val(issue_id);
+	}
+
+	function rejectProject(issue_id){
+		var u_id = <%= current_user.id%>
+		$.ajax({ 
+			type: "GET",
+			dataType: "json",
+			data: {issue_id: issue_id, user_id: u_id},
+			url: "/projects/reject_project",
+			success: function (result) {
+				var btn_name = '#int_btn_'+result.iss_id
+				$(btn_name).attr("disabled", true);
+				$(btn_name).attr("value","Rejected");
+			}
+		});
 	}
 
 	function submitApproveProjectForm(){

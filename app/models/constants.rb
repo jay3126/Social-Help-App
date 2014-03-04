@@ -33,5 +33,4 @@ module Constants
 		ProjectStatusConstant.define :approved, "Approved"
 		ProjectStatusConstant.define :closed, "Closed"
 	end
-
 end

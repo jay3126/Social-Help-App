@@ -24,6 +24,13 @@
 					</div>
 
 					<div class="control-group">
+						<%= label :project_est_cost, "Estimated Cost", class: "control-label" %>
+						<div class="controls">
+							<%= text_field_tag "issue[project_est_cost]",nil, style: "width: 205px;" %> INR
+						</div>
+					</div>
+
+					<div class="control-group">
 						<%= label :area, "Issue Area/Locality", class: "control-label" %>
 						<div class="controls">
 							<%= text_field_tag "issue[issue_area]"%>

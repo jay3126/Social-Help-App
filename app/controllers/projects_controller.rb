@@ -70,7 +70,7 @@ class ProjectsController < ApplicationController
 
   def completed_projects
     if params["spec"].present? && params["spec"] == "true"
-      @ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true, proposer_id: current_user.id)
+      @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true, proposer_id: current_user.id)
     else
   	  @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
     end  

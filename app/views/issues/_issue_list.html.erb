@@ -26,9 +26,9 @@
 						<td><%= iss.issue_status ? "Open" : "Closed" %></td>
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-								<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info"><i class="icon-eye-open bigger-120"></i></a>
+								<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
 								<% if iss.issue_status%>
-									<a href="<%= edit_issue_path(id: iss.id) %>" class="btn btn-xs btn-danger"><i class="icon-edit bigger-120"></i></a>
+									<a href="<%= edit_issue_path(id: iss.id) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Project"><i class="icon-edit bigger-120"></i></a>
 								<% else %>
 									<a disabled="disabled" class="btn btn-xs btn-danger"><i class="icon-edit bigger-120"></i></a>
 								<% end %>
@@ -58,6 +58,9 @@
 <% end %>
 
 <script>
+	$(function(){
+		$("[data-rel='tooltip']").tooltip();
+	});
 	function setInterestedNgo(issue_id){
 		var u_id = <%= current_user.id%>
 		$.ajax({ 

@@ -35,10 +35,10 @@
 										<td><%= iss.project_est_cost %> INR </td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-												<button class="btn btn-xs btn-success" onclick="approveProject(<%= iss.id %>, <%= iss.project_est_cost %>, <%= @avl_social_fund%>);"><i class="icon-ok bigger-120"></i></button>
-												<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info"><i class="icon-eye-open bigger-120"></i></a>
+												<button class="btn btn-xs btn-success" onclick="approveProject(<%= iss.id %>, <%= iss.project_est_cost %>, <%= @avl_social_fund%>);" data-rel="tooltip" title="" data-original-title="Approve Project"><i class="icon-ok bigger-120"></i></button>
+												<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
 												<% if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:open] %>
-													<button id="int_btn_<%= iss.id%>" class="btn btn-xs btn-danger" onclick="rejectProject(<%= iss.id %>);"> <i class="icon-trash bigger-120"></i></button>
+													<button id="int_btn_<%= iss.id%>" class="btn btn-xs btn-danger" onclick="rejectProject(<%= iss.id %>);" data-rel="tooltip" title="" data-original-title="Reject Project"> <i class="icon-trash bigger-120"></i></button>
 												<% else %>
 													<button id="int_btn_<%= iss.id%>" class="btn btn-xs btn-danger" disabled="disabled"> <i class="icon-trash bigger-120"></i></button>
 												<% end %>
@@ -96,6 +96,10 @@
   </div>
 </div>
 <script>
+	$(function(){
+		$("[data-rel='tooltip']").tooltip();
+	});
+
 	function approveProject(issue_id, estCost, avl_fund){
 		if (estCost > avl_fund){
 			alert("Sorry You Don't Have Sufficient Fund To Pick This Project.");

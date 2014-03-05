@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 #getting projects on the basis of their users
 	def my_projects
 		@my_projects = Project.where(user_id: current_user.id)
+		params[:nav] = "my_project"
 	end
 
 	def welfare_funds

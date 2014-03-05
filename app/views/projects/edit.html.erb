@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="span3">
-		<%= render "navs/analyst_left_panel"%>
+		<%= render_panel(current_user.role) %>
 	</div>
 	<div class="panel-sign-in span9">
 		<div class="panel-heading-sign-in">

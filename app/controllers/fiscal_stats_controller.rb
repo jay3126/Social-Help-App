@@ -77,6 +77,6 @@ class FiscalStatsController < ApplicationController
     end
 
     def issue_params
-      params.require(:fiscal_stat).permit(:fiscal_year, :currency_type, :total_revenue, :net_profit, :available_social_fund, :user_id, :eligibility_status)
+      params.require(:fiscal_stat).permit(:fiscal_year, :currency_type, :total_revenue, :net_profit, :available_social_fund, :user_id, :eligibility_status, :pref_cat)
     end
 end

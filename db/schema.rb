@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304131733) do
+ActiveRecord::Schema.define(version: 20140305131738) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -85,11 +85,21 @@ ActiveRecord::Schema.define(version: 20140304131733) do
 
   create_table "social_funds", force: true do |t|
     t.integer  "fiscal_year"
-    t.decimal  "total_kitty_fund", precision: 15, scale: 2, default: 0.0
-    t.decimal  "fund_used",        precision: 15, scale: 2, default: 0.0
-    t.decimal  "fund_remains",     precision: 15, scale: 2, default: 0.0
+    t.decimal  "total_kitty_fund",     precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_used",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_remains",         precision: 15, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "fund_for_children",    precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_disabled",    precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_education",   precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_elderly",     precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_employment",  precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_environment", precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_health",      precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_women",       precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_youth",       precision: 15, scale: 2, default: 0.0
+    t.decimal  "fund_for_others",      precision: 15, scale: 2, default: 0.0
   end
 
   create_table "users", force: true do |t|
@@ -127,6 +137,7 @@ ActiveRecord::Schema.define(version: 20140304131733) do
     t.string   "voter_id"
     t.string   "nationality"
     t.string   "role",                   limit: 15
+    t.string   "category"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

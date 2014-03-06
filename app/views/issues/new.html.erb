@@ -8,39 +8,57 @@
 		</div>
 		<div class="panel-body-sign-in">
 			<div class="form-wrapper">
-				<%= form_tag issues_path, id: "newIssue", class: "form-horizontal" do %>
+				<%= form_for(@issue, html: {id: "newIssue", class: "form-horizontal"}) do |f| %>
+					<% if @issue.errors.count > 0 %>
+						<div id="error_explanation" style="color: red;">
+							<h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+							<ul>
+								<% @issue.errors.full_messages.each do |m| %>
+									<li><%= m%></li>
+								<% end %>
+							</ul>
+						</div>
+						<div class="space-6"></div>
+					<% end %>
 					<div class="control-group">
 						<%= label :issue_title, "Issue Title", class: "control-label" %>
 						<div class="controls">
-							<%= text_field_tag "issue[issue_title]",nil, style: "width: 350px;"%>
+							<%= f.text_field :issue_title, style: "width: 350px;"%>
 						</div>
 					</div>
 
 					<div class="control-group">
 						<%= label :desc, "Issue Description", class: "control-label" %>
 						<div class="controls">
-							<%= text_area_tag "issue[issue_description]",nil, style: "width: 350px;"%>
+							<%= f.text_area :issue_description, style: "width: 350px;"%>
 						</div>
 					</div>
 
 					<div class="control-group">
 						<%= label :project_est_cost, "Estimated Cost", class: "control-label" %>
 						<div class="controls">
-							<%= text_field_tag "issue[project_est_cost]",nil, style: "width: 205px;", onkeypress: "return isNumber(event)" %> INR
+							<%= f.text_field :project_est_cost, style: "width: 205px;", onkeypress: "return isNumber(event)" %> INR
 						</div>
 					</div>
 
 					<div class="control-group">
 						<%= label :area, "Issue Area/Locality", class: "control-label" %>
 						<div class="controls">
-							<%= text_field_tag "issue[issue_area]"%>
+							<%= f.text_field :issue_area %>
 						</div>
 					</div>
 
 					<div class="control-group">
 						<%= label :area_code, "Area/Locality Pin", class: "control-label" %>
 						<div class="controls">
-							<%= text_field_tag "issue[issue_area_code]"%>
+							<%= f.text_field :issue_area_code %>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<%= label :category, "Category", class: "control-label" %>
+						<div class="controls">
+							<%= f.select(:category, options_for_select(Constants::IssueCategoryConstant.to_list), prompt: "Select Category") %>
 						</div>
 					</div>
 

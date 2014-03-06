@@ -18,8 +18,19 @@ module Constants
 	# valid currencies list
 	VALID_CURRENCIES = ["INR"]
 
-	# valid categories
-	VALID_CATEGORIES = ["Any Cause", "Children", "Disabled", "Education", "Elderly", "Employment", "Environment", "Health", "Women", "Youth"]
+	class IssueCategoryConstant
+		include Enum
+		IssueCategoryConstant.define :any, "Any Cause"
+		IssueCategoryConstant.define :children, "Children"
+		IssueCategoryConstant.define :disabled, "Disabled"
+		IssueCategoryConstant.define :education, "Education"
+		IssueCategoryConstant.define :elderly, "Elderly"
+		IssueCategoryConstant.define :employment, "Employment"
+		IssueCategoryConstant.define :environment, "Environment"
+		IssueCategoryConstant.define :health, "Health"
+		IssueCategoryConstant.define :women, "Women"
+		IssueCategoryConstant.define :youth, "Youth"
+	end
 
 	class IssueStatusConstant
 		include Enum

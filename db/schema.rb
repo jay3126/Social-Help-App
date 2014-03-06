@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305131738) do
+ActiveRecord::Schema.define(version: 20140306101443) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140305131738) do
     t.integer  "rejected_by"
     t.date     "rejected_on"
     t.date     "closed_on"
+    t.string   "category"
   end
 
   create_table "issues_users", force: true do |t|
@@ -55,6 +56,45 @@ ActiveRecord::Schema.define(version: 20140305131738) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+  end
+
+  create_table "project_fund_logs", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.decimal  "fund_amount", precision: 15, scale: 2, default: 0.0
+    t.string   "transc_type"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_funds", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "project_report_id"
+    t.string   "fund_status",                                default: "pending"
+    t.integer  "allocate_by"
+    t.decimal  "fund_amount",       precision: 15, scale: 2, default: 0.0
+    t.date     "allocate_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_report_logs", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_reports", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "percent_done"
+    t.integer  "user_id"
+    t.string   "status",       default: "pending"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", force: true do |t|

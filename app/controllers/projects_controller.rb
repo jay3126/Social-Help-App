@@ -121,6 +121,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def project_reports
+    @project_reports = ProjectReport.generate_report()
+    params[:nav] = "project_report"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project

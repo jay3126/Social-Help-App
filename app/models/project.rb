@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
 	belongs_to :social_fund
 	belongs_to :user
+	has_many :project_reports
 
 	after_create :update_kitty_amount
 

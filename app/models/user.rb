@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :issues
   has_one :logo
   has_many :projects
+  has_many :project_reports
 
   validates :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, presence: true
   validate :specific_fields
@@ -83,6 +84,10 @@ class User < ActiveRecord::Base
 
   def ngo?
     self.role.to_s.downcase == "ngo"
+  end
+
+  def inspector?
+    self.role.to_s.downcase == "inspector"
   end
 
 end

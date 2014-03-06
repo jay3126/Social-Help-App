@@ -8,11 +8,23 @@
 			</a>
 		</li>
 
-		<li id="li_all_projects">
-			<a href="/issues?nav=all_projects">
+		<li>
+			<a href="#" class="dropdown-toggle">
 				<i class="icon-text-width"></i>
 				<span class="menu-text"> All Issues </span>
+				<b class="arrow icon-angle-down"></b>
 			</a>
+			<ul class="submenu">
+				<% Constants::IssueCategoryConstant.to_list.each do |c| %>
+					<% cat = c.downcase.strip.split(" ").join("_") %>
+					<li id="li_<%= cat %>">
+						<a href="/issues?cat=<%= cat %>">
+							<i class="icon-double-angle-right"></i>
+							<%= c %>
+						</a>
+					</li>
+				<% end %>
+			</ul>
 		</li>
 
 		<li id="li_alloc_projects">

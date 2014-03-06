@@ -10,6 +10,8 @@ module ApplicationHelper
 			render partial: "navs/ngo_left_panel"
 		when "analyst"
 			render partial: "navs/analyst_left_panel"
+		when "inspector"
+			render partial: "navs/inspector_left_panel"
 		end
 	end
 
@@ -23,6 +25,8 @@ module ApplicationHelper
 			render partial: "ngo_profile"
 		when "analyst"
 			render partial: "analyst_profile"
+		when "inspector"
+			render partial: "inspector_profile"
 		end
 	end
 
@@ -36,6 +40,8 @@ module ApplicationHelper
 			render partial: "ngo_dashboard"
 		when "analyst"
 			render partial: "analyst_dashboard"
+		when "inspector"
+			render partial: "inspector_dashboard"
 		end
 	end
 

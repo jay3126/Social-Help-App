@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(assigned_to: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
 			@pending_projects = @all_projects.where(assigned_to: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
-		elsif current_user.analyst?
+		elsif current_user.analyst? || current_user.inspector?
 			@current_fund = SocialFund.order("fiscal_year DESC").first
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])

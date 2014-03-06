@@ -1,0 +1,60 @@
+<div class="sidebar" id="sidebar">
+
+	<ul class="nav nav-list">
+		<li id="li_dashboard">
+			<a href="/dashboard">
+				<i class="icon-dashboard"></i>
+				<span class="menu-text"> Dashboard </span>
+			</a>
+		</li>
+
+		<li id="li_all_projects">
+			<a href="/issues?nav=all_projects">
+				<i class="icon-text-width"></i>
+				<span class="menu-text"> All Issues </span>
+			</a>
+		</li>
+
+		<li id="li_all_projects">
+			<a href="/issues?nav=all_projects">
+				<i class="icon-text-width"></i>
+				<span class="menu-text"> Pending Issues </span>
+			</a>
+		</li>
+
+		<li id="li_project_report">
+			<a href="/projects/project_reports">
+				<i class="icon-desktop"></i>
+				<span class="menu-text"> Project Reports </span>
+			</a>
+		</li>
+
+		<li id="li_comp_projects">
+			<a href="/projects/completed_projects?nav=comp_projects">
+				<i class="icon-list"></i>
+				<span class="menu-text"> Completed Projects </span>
+			</a>
+
+		</li>
+
+		<li id="li_profile">
+			<a href="/profile?nav=profile">
+				<i class="icon-edit"></i>
+				<span class="menu-text"> Profile </span>
+			</a>
+		</li>
+	</ul>
+
+	<div class="sidebar-collapse" id="sidebar-collapse">
+		<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+	</div>
+
+</div>
+<script>
+	<% if params[:nav].present? %>
+		var nav = "<%= params[:nav] %>"
+		$("#li_" + nav).addClass("active");
+	<% else %>
+		$("#li_dashboard").addClass("active");
+	<% end %>
+</script>

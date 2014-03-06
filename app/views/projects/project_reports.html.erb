@@ -1,0 +1,64 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="span9"  style="margin-top: 40px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-header">
+					Projects in Progress
+				</div>
+				<div class="table-responsive">
+					<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+						<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+							<thead>
+								<tr role="row">
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 80px;">S. No.</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 180px;">Project Name</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 100px;">Complete</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Assigned To</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Assigned By</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 100px;">Project Duration</th>
+									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 100px;">Status</th>
+									<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 120px;"></th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<% @project_reports.each_with_index do |report,i| %>
+									<tr>
+										<td><%= i + 1 %></td>
+										<td><%= report.project.project_name %></td>
+										<td><%= report.project_done %>%</td>
+										<td><%= report.project_done %></td>
+										<td><%= User.fetch_user_names(report.project.assigned_to) %></td>
+										<td><%= User.fetch_user_names(report.project.assigned_by) %></td>
+										<td><%= report.project_duration %></td>
+										<td>
+											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<a href="<%= project_path(id: report.project_id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
+												<% if current_user.analyst? %>
+													<a href="<%= edit_project_path(id: report.project_id) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Project"><i class="icon-edit bigger-120"></i></a>
+												<% end %>
+											</div>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<% unless @project_reports.present? %>
+					<div class="col-xs-12">
+						<b>No project report(s)</b>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function(){
+		$("[data-rel='tooltip']").tooltip();
+	})
+</script>

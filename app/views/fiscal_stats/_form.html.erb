@@ -27,6 +27,10 @@
     <%= f.label :currency_type,"Currency Type", class: "control-label" %>
     <div class='controls'><%= f.select(:currency_type, options_for_select(Constants::VALID_CURRENCIES), prompt: "Select Currency") %></div>
   </div>
+  <div class="control-group">
+    <%= f.label :pref_cat,"Prefered Category", class: "control-label" %>
+    <div class='controls'><%= f.select(:pref_cat, options_for_select(Constants::VALID_CATEGORIES), prompt: "Select Preference") %></div>
+  </div>
   <div class="ml-180">
     <%= f.submit "Save", class: "btn btn-primary"%>
   </div>

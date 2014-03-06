@@ -18,6 +18,9 @@ module Constants
 	# valid currencies list
 	VALID_CURRENCIES = ["INR"]
 
+	# valid categories
+	VALID_CATEGORIES = ["Any Cause", "Children", "Disabled", "Education", "Elderly", "Employment", "Environment", "Health", "Women", "Youth"]
+
 	class IssueStatusConstant
 		include Enum
 		IssueStatusConstant.define :open, "Open"

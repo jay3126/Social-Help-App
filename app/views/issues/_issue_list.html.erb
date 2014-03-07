@@ -73,7 +73,7 @@
 			<div class="control-group">
 				<%= label :duration,"Proposed Duration (In Months)", class: "control-label" %>
 				<div class="controls">
-					<%= text_field_tag "proposal[proposed_duration]" %>
+					<%= text_field_tag "proposal[proposed_duration]",nil, onkeypress: "return isNumber(event)" %>
 				</div>
 			</div>
 			<div class="control-group">

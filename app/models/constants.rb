@@ -9,9 +9,9 @@ module Constants
 	#list of last 10 financial_years
 	yr_range = []
 	yr = Time.now.year - 2
-	# for displaying financial year only
+	# for displaying last financial year only
 	yr_range << (yr.to_s+'-'+(yr+1).to_s)
-	
+
 	# for displaying multiple financial years
 	#((two_yr_bck - 1)..two_yr_bck).each do |yr|
 	#	yr_range << (yr.to_s+'-'+(yr+1).to_s)
@@ -41,17 +41,16 @@ module Constants
 
 	class IssueStatusConstant
 		include Enum
-		IssueStatusConstant.define :open, "Open"
-		IssueStatusConstant.define :assigned, "Assigned"
-		IssueStatusConstant.define :closed, "Closed"
+		IssueStatusConstant.define :review_pending, "Review Pending"
+		IssueStatusConstant.define :approval_pending, "Approval Pending"
 		IssueStatusConstant.define :approved, "Approved"
 		IssueStatusConstant.define :rejected, "Rejected"
 	end
 
 	class ProjectStatusConstant
 		include Enum
+		ProjectStatusConstant.define :open, "Open"
 		ProjectStatusConstant.define :in_progress, "In Progress"
-		ProjectStatusConstant.define :approved, "Approved"
-		ProjectStatusConstant.define :closed, "Closed"
+		ProjectStatusConstant.define :completed, "Completed"
 	end
 end

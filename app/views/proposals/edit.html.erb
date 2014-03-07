@@ -1,0 +1,43 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="panel-sign-in span9"  style="margin-top: 40px;">
+		<div class="panel-heading-sign-in">
+			<h4>Edit Proposal</h4>
+		</div>
+		<div class="panel-body-sign-in">
+			<div class="form-wrapper">
+				<%= form_for @proposal, html: {class: "form-horizontal", method: :put} do |f| %>
+					<div class="control-group">
+						<%= label :proposed_cost, "Proposed Cost", class: "control-label" %>
+						<div class="controls">
+							<%= f.text_field :proposed_cost, style: "width: 350px;"%>
+						</div>
+					</div>
+				
+					<div class="control-group">
+						<%= label :proposed_duration, "Proposed Duration", class: "control-label" %>
+						<div class="controls">
+							<%= f.text_field :proposed_duration, style: "width: 350px;"%>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<%= label :desc, "Issue Description", class: "control-label" %>
+						<div class="controls">
+							<%= f.text_area :desc, style: "width: 350px;"%>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn btn-warning">Update Proposal</button>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

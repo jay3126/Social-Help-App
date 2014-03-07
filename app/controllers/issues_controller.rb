@@ -48,7 +48,7 @@ class IssuesController < ApplicationController
   	redirect_to issue_path(params[:id])
   end
 
-  def interested_ngos
+  def proposals
     issue = Issue.where(id: params[:issue_id]).first
     current_user.issues << issue
     render json: {status: 500, iss_id: params[:issue_id]}

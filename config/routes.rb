@@ -1,5 +1,7 @@
 SocialHelpApp::Application.routes.draw do
 
+  resources :proposals
+
   resources :issues do
     collection do
       get "interested_ngos"

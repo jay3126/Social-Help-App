@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306131738) do
+ActiveRecord::Schema.define(version: 20140307115120) do
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"
@@ -124,6 +124,17 @@ ActiveRecord::Schema.define(version: 20140306131738) do
     t.date     "approved_on"
   end
 
+  create_table "proposals", force: true do |t|
+    t.decimal  "proposed_cost",     precision: 15, scale: 2
+    t.integer  "proposed_duration"
+    t.integer  "user_id"
+    t.integer  "issue_id"
+    t.string   "desc"
+    t.boolean  "accepted",                                   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "social_funds", force: true do |t|
     t.integer  "fiscal_year"
     t.decimal  "total_kitty_fund",     precision: 15, scale: 2, default: 0.0
@@ -178,7 +189,6 @@ ActiveRecord::Schema.define(version: 20140306131738) do
     t.string   "voter_id"
     t.string   "nationality"
     t.string   "role",                   limit: 15
-    t.string   "category"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

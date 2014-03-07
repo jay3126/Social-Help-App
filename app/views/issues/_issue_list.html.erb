@@ -36,7 +36,7 @@
 									<%if iss.users.all.include?(current_user) and !iss.issue_status %>
 										<a id="int_btn_<%= iss.id%>" disabled="disabled" class="btn btn-xs btn-info"><i class="icon-download-alt bigger-120"></i></a>
 									<%else%>
-										<a id="int_btn_<%= iss.id%>" onClick="return setInterestedNgo(<%= iss.id %>);" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Interest"><i class="icon-download-alt bigger-120"></i></a>
+										<a id="int_btn_<%= iss.id%>" onClick="return sendProposal(<%= iss.id %>);" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Send Proposal"><i class="icon-download-alt bigger-120"></i></a>
 									<%end%>
 								<%end%>
 							</div>
@@ -57,22 +57,77 @@
 	</div>
 <% end %>
 
+<div id="issue_proposal_modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Proposal</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag proposals_path, class: "form-horizontal", id: "issueProposalForm" do %>
+			<div class="control-group">
+				<%= label :cost,"Proposed Cost", class: "control-label" %>
+				<div class="controls">
+					<%= text_field_tag :proposed_cost,nil, onkeypress: "return isNumber(event)" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= label :duration,"Proposed Duration (In Months)", class: "control-label" %>
+				<div class="controls">
+					<%= text_field_tag :proposed_duration %>
+				</div>
+			</div>
+			<div class="control-group">
+				<%= label :desc,"Description", class: "control-label" %>
+				<div class="controls">
+					<%= text_area_tag :desc %>
+				</div>
+			</div>
+
+			<%= hidden_field_tag :issue_id, '', id: "issue-id" %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" class="btn btn-primary" onclick="submitSendProposalForm();">Send</a>
+  </div>
+</div>
+
 <script>
 	$(function(){
 		$("[data-rel='tooltip']").tooltip();
 	});
-	function setInterestedNgo(issue_id){
-		var u_id = <%= current_user.id%>
-		$.ajax({ 
-			type: "GET",
-			dataType: "json",
-			data: {issue_id: issue_id, user_id: u_id},
-			url: "/issues/interested_ngos",
-			success: function (result) {
-				var btn_name = '#int_btn_'+result.iss_id
-				$(btn_name).attr("disabled", true);
-				$(btn_name).attr("value","Interest Shown");
-			}
-		});
+
+	function sendProposal(issue_id){
+		$('#issue_proposal_modal').modal();
+		$('#issue-id').val(issue_id);
+
+		// var u_id = <%= current_user.id%>
+		// $.ajax({ 
+		// 	type: "GET",
+		// 	dataType: "json",
+		// 	data: {issue_id: issue_id, user_id: u_id},
+		// 	url: "/issues/interested_ngos",
+		// 	success: function (result) {
+		// 		var btn_name = '#int_btn_'+result.iss_id
+		// 		$(btn_name).attr("disabled", true);
+		// 		$(btn_name).attr("value","Interest Shown");
+		// 	}
+		// });
 	}
+
+	function submitSendProposalForm(){
+		var duration = $("#pr_duration").val();
+		var cost = $("#pr_cost").val();
+		if(duration == ''){
+			alert("Please enter proposed duration");
+			return false;
+		}
+
+		if(cost =='' || cost == 0 || cost == '0'){
+			alert("Please enter proposed cost");
+			return false;
+		}
+		$("#issueProposalForm").submit();
+	}
+
 </script>

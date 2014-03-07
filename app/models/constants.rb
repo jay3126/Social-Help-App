@@ -8,10 +8,14 @@ module Constants
 
 	#list of last 10 financial_years
 	yr_range = []
-	two_yr_bck = Time.now.year - 2
-	((two_yr_bck - 4)..two_yr_bck).each do |yr|
-		yr_range << (yr.to_s+'-'+(yr+1).to_s)
-	end
+	yr = Time.now.year - 2
+	# for displaying financial year only
+	yr_range << (yr.to_s+'-'+(yr+1).to_s)
+	
+	# for displaying multiple financial years
+	#((two_yr_bck - 1)..two_yr_bck).each do |yr|
+	#	yr_range << (yr.to_s+'-'+(yr+1).to_s)
+	#end
 
 	FISCAL_YEAR = yr_range
 

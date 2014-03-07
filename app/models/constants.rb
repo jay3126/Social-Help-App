@@ -22,6 +22,9 @@ module Constants
 	# valid currencies list
 	VALID_CURRENCIES = ["INR"]
 
+	#Roles
+	ROLES = ["Corporate","NGO","Socialist","Analyst","Inspector"]
+
 	class IssueCategoryConstant
 		include Enum
 		IssueCategoryConstant.define :any, "Any Cause"

@@ -6,7 +6,11 @@ class IssuesController < ApplicationController
 	end
 
   def index
-    @issues = Issue.all
+    if current_user.ngo?
+      @issues = Issue.where(category: current_user.service_type)
+    else
+      @issues = Issue.all
+    end
     params[:nav] = "all_projects"
   end
 

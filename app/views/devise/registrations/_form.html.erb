@@ -6,7 +6,7 @@
 	<div class="control-group">
 		<%= f.label :role, "Register Me As: ", class: "control-label" %>
 		<div class="controls">
-			<%= f.select(:role, options_for_select(["Corporate","NGO","Socialist","Analyst","Inspector"]),{prompt: "Select Your Role"}, onchange: "cascadeForm(this.value);") %>
+			<%= f.select(:role, options_for_select(Constants::ROLES, resource.role),{prompt: "Select Your Role"}, onchange: "cascadeForm(this.value);") %>
 		</div>
 	</div>
 
@@ -189,7 +189,7 @@
 		<div class="control-group">
 			<%= f.label :service_type,"", class: "control-label" %>
 			<div class="controls">
-				<%= f.text_field :service_type %>
+				<%= f.select(:service_type, options_for_select(Constants::IssueCategoryConstant.to_list, resource.service_type), {prompt: "Select category"}) %>
 			</div>
 		</div>
 		</fieldset>
@@ -218,3 +218,8 @@
 		</div>
 	</div>
 <% end %>
+<script>
+	<% if resource.role.present? %>
+		cascadeForm("<%= resource.role %>");
+	<% end %>
+</script>

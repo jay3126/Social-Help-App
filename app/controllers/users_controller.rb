@@ -22,11 +22,17 @@ class UsersController < ApplicationController
 			@all_projects = Project.where(assigned_to: current_user.id)
 			@completed_projects = @all_projects.where(assigned_to: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
 			@pending_projects = @all_projects.where(assigned_to: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
-		elsif current_user.analyst? || current_user.inspector?
+		elsif current_user.analyst?
 			@current_fund = SocialFund.order("fiscal_year DESC").first
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
 			@pending_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
+		elsif current_user.inspector?
+			stats = Issue.select(:issue_status).group("issue_status").count
+			@issue_stats = Hash.new(0)
+			stats.each do |k,v|
+				@issue_stats[k.downcase.split(" ").join("_")] = v
+			end
 		end
 		params[:nav] = "dashboard"
 	end

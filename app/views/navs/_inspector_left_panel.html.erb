@@ -8,18 +8,23 @@
 			</a>
 		</li>
 
-		<li id="li_all_projects">
-			<a href="/issues?nav=all_projects">
+		<li>
+			<a href="#" class="dropdown-toggle">
 				<i class="icon-text-width"></i>
 				<span class="menu-text"> All Issues </span>
+				<b class="arrow icon-angle-down"></b>
 			</a>
-		</li>
-
-		<li id="li_all_projects">
-			<a href="/issues?nav=all_projects">
-				<i class="icon-text-width"></i>
-				<span class="menu-text"> Pending Issues </span>
-			</a>
+			<ul class="submenu">
+				<% Constants::IssueStatusConstant.to_list.each do |c| %>
+					<% cat = c.downcase.strip.split(" ").join("_") %>
+					<li id="li_<%= cat %>">
+						<a href="/issues?cat=<%= cat %>">
+							<i class="icon-double-angle-right"></i>
+							<%= c %>
+						</a>
+					</li>
+				<% end %>
+			</ul>
 		</li>
 
 		<li id="li_project_report">
@@ -54,6 +59,11 @@
 	<% if params[:nav].present? %>
 		var nav = "<%= params[:nav] %>"
 		$("#li_" + nav).addClass("active");
+	<% elsif params[:cat].present? %>
+		var category = "<%= params[:cat] %>"
+		var li = $("#li_" + category);
+		li.addClass("active");
+		li.parent().closest("li").addClass("open").addClass("active");
 	<% else %>
 		$("#li_dashboard").addClass("active");
 	<% end %>

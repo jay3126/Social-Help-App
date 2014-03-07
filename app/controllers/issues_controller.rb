@@ -10,7 +10,11 @@ class IssuesController < ApplicationController
       @issues = Issue.where(category: current_user.service_type)
     else
       if params[:cat].present?
-        @issues = Issue.where(category: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
+        if current_user.inspector?
+          @issues = Issue.where(issue_status: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
+        else
+          @issues = Issue.where(category: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
+        end
       else
         @issues = Issue.all
       end

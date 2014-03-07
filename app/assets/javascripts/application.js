@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require ace-elements.min
 //= require ace-extra.min
 //= require ace.min

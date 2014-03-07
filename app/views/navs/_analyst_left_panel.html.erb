@@ -73,6 +73,11 @@
 	<% if params[:nav].present? %>
 		var nav = "<%= params[:nav] %>"
 		$("#li_" + nav).addClass("active");
+	<% elsif params[:cat].present? %>
+		var category = "<%= params[:cat] %>"
+		var li = $("#li_" + category);
+		li.addClass("active");
+		li.parent().closest("li").addClass("open").addClass("active");
 	<% else %>
 		$("#li_dashboard").addClass("active");
 	<% end %>

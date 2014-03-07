@@ -9,9 +9,14 @@ class IssuesController < ApplicationController
     if current_user.ngo?
       @issues = Issue.where(category: current_user.service_type)
     else
-      @issues = Issue.all
+      if params[:cat].present?
+        @issues = Issue.where(category: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
+      else
+        @issues = Issue.all
+      end
     end
-    params[:nav] = "all_projects"
+    params[:nav] = "all_projects" unless params[:cat].present?
+
   end
 
   def create

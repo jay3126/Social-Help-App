@@ -4,6 +4,17 @@
 	</div>
 
 	<div class="span9"  style="margin-top: 40px;">
+		<% if params[:cat].present? %>
+			<div class="page-header">
+				<h1>
+					Issue Category
+					<small>
+						<i class="icon-double-angle-right"></i>
+						<%= params[:cat].split("_").map {|s| s.capitalize}.join(" ") %>
+					</small>
+				</h1>
+			</div>
+		<% end %>
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="table-header">

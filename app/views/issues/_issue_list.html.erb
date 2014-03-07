@@ -67,23 +67,23 @@
 			<div class="control-group">
 				<%= label :cost,"Proposed Cost", class: "control-label" %>
 				<div class="controls">
-					<%= text_field_tag :proposed_cost,nil, onkeypress: "return isNumber(event)" %>
+					<%= text_field_tag "proposal[proposed_cost]",nil, onkeypress: "return isNumber(event)" %>
 				</div>
 			</div>
 			<div class="control-group">
 				<%= label :duration,"Proposed Duration (In Months)", class: "control-label" %>
 				<div class="controls">
-					<%= text_field_tag :proposed_duration %>
+					<%= text_field_tag "proposal[proposed_duration]" %>
 				</div>
 			</div>
 			<div class="control-group">
 				<%= label :desc,"Description", class: "control-label" %>
 				<div class="controls">
-					<%= text_area_tag :desc %>
+					<%= text_area_tag "proposal[desc]" %>
 				</div>
 			</div>
 
-			<%= hidden_field_tag :issue_id, '', id: "issue-id" %>
+			<%= hidden_field_tag "proposal[issue_id]", '', id: "issue-id" %>
     <% end %>
   </div>
   <div class="modal-footer">

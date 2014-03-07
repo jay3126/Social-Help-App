@@ -28,10 +28,8 @@ class ProposalsController < ApplicationController
   def create
     @proposal = Proposal.new(proposal_params)
     @proposal.user_id = current_user.id
-    respond_to do |format|
-      if @proposal.save
-        redirect_to issues_path
-      end
+    if @proposal.save
+      redirect_to issues_path
     end
   end
 
@@ -67,6 +65,6 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposals).permit(:issue_id, :proposed_cost, :proposed_duration, :desc, :accepted, :user_id)
+      params.require(:proposal).permit(:issue_id, :proposed_cost, :proposed_duration, :desc, :accepted, :user_id)
     end
 end

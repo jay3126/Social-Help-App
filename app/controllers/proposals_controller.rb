@@ -4,7 +4,7 @@ class ProposalsController < ApplicationController
   # GET /proposals
   # GET /proposals.json
   def index
-    @proposals = Proposal.all
+    @proposals = Proposal.where(issue_id: params[:issue_id])
   end
 
   # GET /proposals/1
@@ -29,6 +29,8 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(proposal_params)
     @proposal.user_id = current_user.id
     if @proposal.save
+      issue = Issue.where(id: params[:proposal][:issue_id]).first
+      current_user.issues << issue
       redirect_to issues_path
     end
   end
@@ -55,6 +57,12 @@ class ProposalsController < ApplicationController
       format.html { redirect_to proposals_url }
       format.json { head :no_content }
     end
+  end
+
+  # proposals for current user
+  def my_proposals
+    @proposals = Proposal.where(user_id: current_user.id)
+    render 'index'
   end
 
   private

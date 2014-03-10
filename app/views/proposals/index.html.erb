@@ -1,25 +1,40 @@
-<h1>Listing proposals</h1>
+<div class="row-fluid">
+  <div class="span3">
+    <%= render_panel(current_user.role) %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @proposals.each do |proposal| %>
-      <tr>
-        <td><%= link_to 'Show', proposal %></td>
-        <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-        <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Proposal', new_proposal_path %>
+  <div class="panel-sign-in span9"  style="margin-top: 40px;">
+    <div class="panel-heading-sign-in">
+      <h4>My Proposals</h4>
+    </div>
+    <div class="panel-body-sign-in">
+      <%if @proposals.present?%>
+        <table class="table">
+          <thead>
+            <th>Related Issue Name</th>
+            <th>Proposed Cost</th>
+            <th>Proposed Duration</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <% @proposals.each do |prop| %>
+              <tr>
+                <td><%= prop.issue.issue_title %></td>
+                <td><%= prop.proposed_cost %></td>
+                <td><%= prop.proposed_duration %> Months</td>
+                <td><%= prop.desc %></td>     
+                <td><%= prop.accepted ? "Yes" : "No" %></td>
+                <!--<td><%#= link_to 'Edit', edit_proposal_path(proposal) %></td>
+                <td><%#= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <%else%>
+        <p>You have not submitted any proposal.</p>
+      <%end%>
+    </div>
+  </div>
+</div>

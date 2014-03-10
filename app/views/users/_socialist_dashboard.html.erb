@@ -93,7 +93,7 @@
 									<td><%= is.issue_area_code %></td>
 									<td><%= is.project_est_cost %></td>
 									<td>
-										<% if is.issue_status == Constants::IssueStatusConstant.all_to_hash[:closed] %>
+										<% if is.issue_status.to_s == Constants::IssueStatusConstant.all_to_hash[:closed] %>
 											<span class="label label-success arrowed-in arrowed-in-right">Closed</span>
 										<% else %>
 											<span class="label label-danger arrowed">pending</span>

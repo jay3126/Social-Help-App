@@ -27,18 +27,7 @@
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 								<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
-								<% if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:open] %>
-									<a href="<%= edit_issue_path(id: iss.id) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Project"><i class="icon-edit bigger-120"></i></a>
-								<% else %>
-									<a disabled="disabled" class="btn btn-xs btn-danger"><i class="icon-edit bigger-120"></i></a>
-								<% end %>
-								<%if current_user.role == "NGO"%>
-									<%if iss.users.all.include?(current_user) and !iss.issue_status %>
-										<a id="int_btn_<%= iss.id%>" disabled="disabled" class="btn btn-xs btn-info"><i class="icon-download-alt bigger-120"></i></a>
-									<%else%>
-										<a id="int_btn_<%= iss.id%>" onClick="return sendProposal(<%= iss.id %>);" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Send Proposal"><i class="icon-download-alt bigger-120"></i></a>
-									<%end%>
-								<%end%>
+								<%= raw(issue_actions(iss)) %>
 							</div>
 						</td>
 					</tr>

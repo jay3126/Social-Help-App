@@ -26,7 +26,7 @@ class IssuesController < ApplicationController
   def create
   	@issue = Issue.new(issue_params)
   	@issue.user_id = current_user.id
-  	@issue.issue_status = Constants::IssueStatusConstant.all_to_hash[:open]
+  	@issue.issue_status = Constants::IssueStatusConstant.all_to_hash[:review_pending]
   	if @issue.save
   		redirect_to root_url
   	else

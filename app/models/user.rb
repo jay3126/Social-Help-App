@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_one :logo
   has_many :projects
   has_many :project_reports
+  has_many :proposals
 
   validates :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, presence: true
   validate :specific_fields

@@ -5,7 +5,7 @@
 
   <div class="panel-sign-in span9"  style="margin-top: 40px;">
     <div class="panel-heading-sign-in">
-      <h4>My Proposals</h4>
+      <h4>List Of Proposals</h4>
     </div>
     <div class="panel-body-sign-in">
       <%if @proposals.present?%>
@@ -15,8 +15,14 @@
             <th>Proposed Cost</th>
             <th>Proposed Duration</th>
             <th>Description</th>
-            <th>Status</th>
-            <th></th>
+            <th>
+              <%if current_user.role == "Analyst"%>
+                Proposed By
+              <%else%>
+                Accepted
+              <%end%>
+            </th>
+            <th>Action</th>
           </thead>
           <tbody>
             <% @proposals.each do |prop| %>
@@ -25,16 +31,43 @@
                 <td><%= prop.proposed_cost %></td>
                 <td><%= prop.proposed_duration %> Months</td>
                 <td><%= prop.desc %></td>     
-                <td><%= prop.accepted ? "Yes" : "No" %></td>
-                <!--<td><%#= link_to 'Edit', edit_proposal_path(proposal) %></td>
-                <td><%#= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+                <td>
+                  <%if current_user.role == "Analyst"%>
+                    <%= prop.user.name%>
+                  <%else%>
+                    <%= prop.accepted ? "Yes" : "No" %>
+                  <%end%>
+                </td>
+                <td>
+                  <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                    <%if current_user.role == "Analyst"%>
+                      <button class="btn btn-xs btn-success" onclick="approveProject();" data-rel="tooltip" title="" data-original-title="Approve Project"><i class="icon-ok bigger-120"></i></button>
+                    <%else%>  
+                      <%= link_to 'Edit', edit_proposal_path(proposal) %>
+                    <%end%>
+                  </div>  
+                </td>
+                <!--<td><%#= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
               </tr>
             <% end %>
           </tbody>
         </table>
       <%else%>
-        <p>You have not submitted any proposal.</p>
+        <p>No Proposal Found.</p>
       <%end%>
     </div>
   </div>
 </div>
+<script>
+  function approveProject(issue_id, estCost, avl_fund){
+    alert('test');
+    // if (estCost > avl_fund){
+    //   alert("Sorry You Don't Have Sufficient Fund To Pick This Project.");
+    //   return false
+    // }
+    // $("#approve-project-modal").modal();
+    // $("#project_actual_cost").val(estCost);
+    // $("#issue-id").val(issue_id);
+  }
+
+</script>

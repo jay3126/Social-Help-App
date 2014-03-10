@@ -120,7 +120,7 @@
 	}
 
 	function changeStatus(issue_id, status){
-		if(confirm("Move to Approval Queue ?")){
+		if(confirm("Are you sure ?")){
 			$.ajax({
 				type: 'PUT',
 				url: 'issues/' + issue_id + '/change_status',
@@ -130,12 +130,19 @@
 					authenticity_token: "<%= form_authenticity_token %>"
 				},
 				success: function(response){
-					var approveBtn = $("#approve_" + issue_id);
 					var rejectBtn = $("#reject_" + issue_id);
-					approveBtn.attr("disabled","disabled");
-					approveBtn.tooltip("destroy");
 					rejectBtn.attr("disabled","disabled");
 					rejectBtn.tooltip("destroy");
+
+					if(status == 'q'){
+						var approvePendingBtn = $("#approve_pending_" + issue_id);
+						approvePendingBtn.attr("disabled","disabled");
+						approvePendingBtn.tooltip("destroy");
+					}else if(status == 'a'){
+						var approveBtn = $("#approve_" + issue_id);
+						approveBtn.attr("disabled","disabled");
+						approveBtn.tooltip("destroy");
+					}
 
 					var statusTd = $("#issue_status_" + issue_id);
 					statusTd.text(response["issue_status"]);

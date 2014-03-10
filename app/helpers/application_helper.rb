@@ -57,9 +57,14 @@ module ApplicationHelper
 			opt << "<a id='int_btn_#{iss.id}' onClick='return sendProposal(#{iss.id});' class='btn btn-xs btn-info' data-rel='tooltip' title="" data-original-title='Send Proposal'><i class='icon-download-alt bigger-120'></i></a>"
 		end
 
-		if current_user.inspector? and iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:review_pending]
-			opt << "<a href='' id='approve_#{iss.id}' onClick='return changeStatus(#{iss.id},\"a\");' class='btn btn-xs' data-rel='tooltip' title='' data-original-title='Queue for Approval'><i class='icon-check bigger-120'></i></a>"
-			opt << "<a href='' id='reject_#{iss.id}' onClick='return changeStatus(#{iss.id},\"r\");' class='btn btn-xs btn-danger' data-rel='tooltip' title='' data-original-title='Reject Issue'><i class='icon-ban-circle bigger-120'></i></a>"
+		if current_user.inspector?
+			if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:review_pending]
+				opt << "<a href='' id='approve_pending_#{iss.id}' onClick='return changeStatus(#{iss.id},\"q\");' class='btn btn-xs' data-rel='tooltip' title='' data-original-title='Queue for Approval'><i class='icon-check bigger-120'></i></a>"
+				opt << "<a href='' id='reject_#{iss.id}' onClick='return changeStatus(#{iss.id},\"r\");' class='btn btn-xs btn-danger' data-rel='tooltip' title='' data-original-title='Reject Issue'><i class='icon-ban-circle bigger-120'></i></a>"
+			elsif iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:approval_pending]
+				opt << "<a href='' id='approve_#{iss.id}' onClick='return changeStatus(#{iss.id},\"a\");' class='btn btn-xs' data-rel='tooltip' title='' data-original-title='Approve Issue'><i class='icon-check bigger-120'></i></a>"
+				opt << "<a href='' id='reject_#{iss.id}' onClick='return changeStatus(#{iss.id},\"r\");' class='btn btn-xs btn-danger' data-rel='tooltip' title='' data-original-title='Reject Issue'><i class='icon-ban-circle bigger-120'></i></a>"					
+			end
 		end
 
 		if current_user.analyst?

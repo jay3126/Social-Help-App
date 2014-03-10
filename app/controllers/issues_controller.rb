@@ -7,7 +7,13 @@ class IssuesController < ApplicationController
 
   def index
     if current_user.ngo?
-      @issues = Issue.where(category: current_user.service_type)
+      @issues = Issue.where(category: current_user.service_type, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
+    elsif current_user.analyst?
+      if params[:cat].present?
+        @issues = Issue.where(category: params[:cat].split("_").map{|s| s.capitalize}.join(" "), issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
+      else
+        @issues = Issue.where(category: "Any Cause", issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
+      end
     else
       if params[:cat].present?
         if current_user.inspector?
@@ -16,7 +22,7 @@ class IssuesController < ApplicationController
           @issues = Issue.where(category: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
         end
       else
-        @issues = Issue.all
+        @issues = Issue.where(category: "Any Cause")
       end
     end
     params[:nav] = "all_projects" unless params[:cat].present?
@@ -56,7 +62,13 @@ class IssuesController < ApplicationController
 
   def change_status
     issue = Issue.find_by(id: params[:id])
-    status = params[:status] == "a" ? Constants::IssueStatusConstant.all_to_hash[:approval_pending] : Constants::IssueStatusConstant.all_to_hash[:rejected]
+    if params[:status] == "q"
+      status = Constants::IssueStatusConstant.all_to_hash[:approval_pending]
+    elsif params[:status] == "a"
+      status = Constants::IssueStatusConstant.all_to_hash[:approved]
+    elsif params[:status] == "r"
+      status = Constants::IssueStatusConstant.all_to_hash[:rejected]
+    end
     issue.update_attribute(:issue_status, status)
     render json: {status: 200, issue_status: status}
   end

@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
 
 	def new
 		@issue = Issue.new
-    params[:nav] = "add_new_project"
+    params[:nav] = "add_issue"
 	end
 
   def index
@@ -13,6 +13,13 @@ class IssuesController < ApplicationController
         @issues = Issue.where(category: params[:cat].split("_").map{|s| s.capitalize}.join(" "), issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
       else
         @issues = Issue.where(category: "Any Cause", issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
+      end
+    elsif current_user.socialist?
+      if params[:cat].present?
+        @issues = Issue.where(user_id: current_user.id, issue_status: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
+      else
+        @issues = Issue.where(user_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:review_pending])
+        params[:cat] = "review_pending"
       end
     else
       if params[:cat].present?

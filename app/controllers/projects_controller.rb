@@ -66,6 +66,7 @@ class ProjectsController < ApplicationController
     else
   	  @ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress], verified: true)
     end
+    params[:nav] = "ongoing_projects"
   end
 
   def completed_projects
@@ -73,7 +74,8 @@ class ProjectsController < ApplicationController
       @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true, proposer_id: current_user.id)
     else
   	  @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
-    end  
+    end
+    params[:nav] = "completed_projects"
   end
 
   def reject_project

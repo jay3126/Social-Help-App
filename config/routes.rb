@@ -3,6 +3,9 @@ SocialHelpApp::Application.routes.draw do
   resources :proposals
 
   resources :issues do
+    member do
+      put "change_status"
+    end
     collection do
       get "interested_ngos"
       get "pending_issues"

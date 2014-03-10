@@ -54,6 +54,13 @@ class IssuesController < ApplicationController
     render json: {status: 500, iss_id: params[:issue_id]}
   end
 
+  def change_status
+    issue = Issue.find_by(id: params[:id])
+    status = params[:status] == "a" ? Constants::IssueStatusConstant.all_to_hash[:approval_pending] : Constants::IssueStatusConstant.all_to_hash[:rejected]
+    issue.update_attribute(:issue_status, status)
+    render json: {status: 200, issue_status: status}
+  end
+
   private
   def issue_params
   	if params[:issue].present?

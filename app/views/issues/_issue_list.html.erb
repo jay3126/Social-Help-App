@@ -23,7 +23,7 @@
 						<td><%= iss.issue_area %></td>
 						<td><%= iss.issue_area_code %></td>
 						<td><%= iss.project_est_cost %> INR</td>
-						<td><%= iss.issue_status %></td>
+						<td id="issue_status_<%= iss.id %>"><%= iss.issue_status %></td>
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 								<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
@@ -117,6 +117,32 @@
 			return false;
 		}
 		$("#issueProposalForm").submit();
+	}
+
+	function changeStatus(issue_id, status){
+		if(confirm("Move to Approval Queue ?")){
+			$.ajax({
+				type: 'PUT',
+				url: 'issues/' + issue_id + '/change_status',
+				dataType: 'json',
+				data: {
+					status: status,
+					authenticity_token: "<%= form_authenticity_token %>"
+				},
+				success: function(response){
+					var approveBtn = $("#approve_" + issue_id);
+					var rejectBtn = $("#reject_" + issue_id);
+					approveBtn.attr("disabled","disabled");
+					approveBtn.tooltip("destroy");
+					rejectBtn.attr("disabled","disabled");
+					rejectBtn.tooltip("destroy");
+
+					var statusTd = $("#issue_status_" + issue_id);
+					statusTd.text(response["issue_status"]);
+				}
+			});
+		}
+		return false;
 	}
 
 </script>

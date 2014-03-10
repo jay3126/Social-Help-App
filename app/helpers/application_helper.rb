@@ -48,16 +48,21 @@ module ApplicationHelper
 	def issue_actions(iss)
 		opt = ""
 		if iss.user_id == current_user.id
-			if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:open]
+			if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:review_pending]
 				opt << "<a href=#{edit_issue_path(id: iss.id)} class='btn btn-xs btn-danger'  data-rel='tooltip' title='' data-original-title='Edit Project'><i class='icon-edit bigger-120'></i></a>"
 			end
 		end
 
-		if current_user.role == "NGO"
-			opt << '<a id="int_btn_<%= iss.id%>" onClick="return sendProposal(<%= iss.id %>);" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Send Proposal"><i class="icon-download-alt bigger-120"></i></a>'
+		if current_user.ngo?
+			opt << "<a id='int_btn_#{iss.id}' onClick='return sendProposal(#{iss.id});' class='btn btn-xs btn-info' data-rel='tooltip' title="" data-original-title='Send Proposal'><i class='icon-download-alt bigger-120'></i></a>"
 		end
 
-		if current_user.role == "Analyst"
+		if current_user.inspector? and iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:review_pending]
+			opt << "<a href='' id='approve_#{iss.id}' onClick='return changeStatus(#{iss.id},\"a\");' class='btn btn-xs' data-rel='tooltip' title='' data-original-title='Queue for Approval'><i class='icon-check bigger-120'></i></a>"
+			opt << "<a href='' id='reject_#{iss.id}' onClick='return changeStatus(#{iss.id},\"r\");' class='btn btn-xs btn-danger' data-rel='tooltip' title='' data-original-title='Reject Issue'><i class='icon-ban-circle bigger-120'></i></a>"
+		end
+
+		if current_user.analyst?
 			opt << "<a href=#{proposals_path(issue_id: iss.id)} class='btn btn-xs btn-info' data-rel='tooltip' title='' data-original-title='See Proposals'><i class='icon-download-alt bigger-120'></i></a>"
 		end
 

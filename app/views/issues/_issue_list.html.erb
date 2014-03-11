@@ -76,7 +76,7 @@
     <% end %>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a> 
     <a href="#" class="btn btn-primary" onclick="submitSendProposalForm();">Send</a>
   </div>
 </div>
@@ -89,19 +89,6 @@
 	function sendProposal(issue_id){
 		$('#issue_proposal_modal').modal();
 		$('#issue-id').val(issue_id);
-
-		// var u_id = <%= current_user.id%>
-		// $.ajax({ 
-		// 	type: "GET",
-		// 	dataType: "json",
-		// 	data: {issue_id: issue_id, user_id: u_id},
-		// 	url: "/issues/interested_ngos",
-		// 	success: function (result) {
-		// 		var btn_name = '#int_btn_'+result.iss_id
-		// 		$(btn_name).attr("disabled", true);
-		// 		$(btn_name).attr("value","Interest Shown");
-		// 	}
-		// });
 	}
 
 	function submitSendProposalForm(){

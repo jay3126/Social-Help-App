@@ -54,7 +54,11 @@ module ApplicationHelper
 		end
 
 		if current_user.ngo?
-			opt << "<a id='int_btn_#{iss.id}' onClick='return sendProposal(#{iss.id});' class='btn btn-xs btn-info' data-rel='tooltip' title='' data-original-title='Send Proposal'><i class='icon-download-alt bigger-120'></i></a>"
+			unless iss.users.all.include?(current_user)
+				opt << "<a onClick='return sendProposal(#{iss.id});' class='btn btn-xs btn-info' data-rel='tooltip' title='' data-original-title='Send Proposal'><i class='icon-download-alt bigger-120'></i></a>"
+			else
+				opt << "<a onClick='return false' class='btn btn-xs btn-info' data-rel='tooltip' title='' data-original-title='Proposal Sent'><i class='icon-download-alt bigger-120'></i></a>"
+			end
 		end
 
 		if current_user.inspector?

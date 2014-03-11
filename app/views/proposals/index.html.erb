@@ -46,8 +46,13 @@
                       <%else%>
                         <button class="btn btn-xs btn-success proposal" onclick="approveProject(<%= @avl_cat_fund%>, <%= params[:issue_id]%>, <%= prop.proposed_cost%>, <%= prop.proposed_duration%>, <%= prop.user_id%>);" data-rel="tooltip" title="" data-original-title="Approve Project"><i class="icon-ok bigger-120"></i></button>
                       <%end%>
-                    <%else%>  
-                      <%= link_to 'Edit', edit_proposal_path(prop) %>
+                    <%elsif current_user.role == "NGO" %>
+                    <% already_present = Project.find_by(issue_id: prop.issue_id)%>
+                      <%if already_present.present? %>
+                        <button class="btn btn-xs btn-danger" disabled="disabled" data-rel="tooltip" title="" data-original-title="Can't Edit Now"><i class="icon-edit bigger-120"></i></button>                    
+                      <%else%>
+                        <a href="<%= edit_proposal_path(prop) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Proposal"><i class="icon-edit bigger-120"></i></a>
+                      <%end%>
                     <%end%>
                   </div>  
                 </td>

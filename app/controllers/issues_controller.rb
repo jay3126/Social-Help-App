@@ -61,12 +61,6 @@ class IssuesController < ApplicationController
   	redirect_to issue_path(params[:id])
   end
 
-  def proposals
-    issue = Issue.where(id: params[:issue_id]).first
-    current_user.issues << issue
-    render json: {status: 500, iss_id: params[:issue_id]}
-  end
-
   def change_status
     issue = Issue.find_by(id: params[:id])
     if params[:status] == "q"

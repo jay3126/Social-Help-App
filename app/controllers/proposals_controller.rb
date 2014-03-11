@@ -45,15 +45,8 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1
   # PATCH/PUT /proposals/1.json
   def update
-    respond_to do |format|
-      if @proposal.update(proposal_params)
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @proposal.errors, status: :unprocessable_entity }
-      end
-    end
+    @proposal.update(proposal_params)
+    redirect_to :action => "my_proposals"
   end
 
   # DELETE /proposals/1

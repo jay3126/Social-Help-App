@@ -1,7 +1,11 @@
 SocialHelpApp::Application.routes.draw do
 
   resources :proposals
-  resources :project_reports, only: [:create]
+  resources :project_reports, only: [:index, :create] do
+    member do
+      put 'approve'
+    end
+  end
 
   resources :issues do
     member do

@@ -27,11 +27,28 @@
 			</ul>
 		</li>
 
-		<li id="li_project_report">
-			<a href="/projects/project_reports">
+		<li>
+			<a href="#" class="dropdown-toggle">
 				<i class="icon-desktop"></i>
 				<span class="menu-text"> Project Reports </span>
+				<b class="arrow icon-angle-down"></b>
 			</a>
+
+			<ul class="submenu">
+				<li id="li_pending_reports">
+					<a href="/project_reports?cat=pending_reports">
+						<i class="icon-double-angle-right"></i>
+						Pending Reports
+					</a>
+				</li>
+
+				<li id="li_previous_reports">
+					<a href="/project_reports?cat=previous_reports">
+						<i class="icon-double-angle-right"></i>
+						Previous Reports
+					</a>
+				</li>
+			</ul>
 		</li>
 
 		<li id="li_comp_projects">
@@ -39,7 +56,6 @@
 				<i class="icon-list"></i>
 				<span class="menu-text"> Completed Projects </span>
 			</a>
-
 		</li>
 
 		<li id="li_profile">

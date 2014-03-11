@@ -1,5 +1,19 @@
 class ProjectReportsController < ApplicationController
 
+	def index
+		if current_user.inspector?
+			if params[:cat].present?
+				cat = params[:cat] == "pending_reports" ? "pending" : "approved"
+		    @project_reports = ProjectReport.where(status: cat)
+			else
+				@project_reports = ProjectReport.where(status: "pending")
+				params[:cat] = "pending_reports"
+			end
+		elsif current_user.ngo? || current_user.socialist?
+			@project_reports = ProjectReport.where(user_id: current_user.id)
+		end
+	end
+
 	def create
 		@project_report = ProjectReport.new(report_params)
 		@project_report.user_id = current_user.id
@@ -20,6 +34,12 @@ class ProjectReportsController < ApplicationController
 			render action: "users/my_projects"
 		end
 		redirect_to dashboard_url
+	end
+
+	def approve
+		report = ProjectReport.find_by(id: params[:id])
+		report.update_attribute(:status, 'approved')
+		render json: {status: 200, report_status: "Approved"}
 	end
 
 	private

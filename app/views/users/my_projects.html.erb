@@ -16,12 +16,10 @@
 								<tr role="row">
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 80px;">S. No.</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 180px;">Project Name</th>
-									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 210px;">Project Type</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 118px;">Area</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 110px;">Cost</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Assigned By</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Project Duration</th>
-									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Status</th>
 									<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 120px;"></th>
 								</tr>
 							</thead>
@@ -30,21 +28,14 @@
 									<tr>
 										<td><%= i + 1 %></td>
 										<td><%= project.project_name %></td>
-										<td><%= project.project_type %></td>
 										<td><%= project.area %></td>
 										<td><%= project.project_actual_cost %></td>
 										<td><%= User.fetch_user_names(project.assigned_by) %></td>
 										<td><%= project.project_duration %></td>
-										<td><%= project.project_status %></td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 												<a href="<%= project_path(id: project.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
-												<% if project.project_status == "In Progress" %>
-													<a href="<%= edit_project_path(id: project.id) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Project"><i class="icon-edit bigger-120"></i></a>
-													<%= link_to raw('<i class="icon-envelope bigger-120"></i>'), close_project_project_path(id: project.id, issue_id: project.issue_id), data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-inverse", "data-rel" => "tooltip", title: "", "data-original-title" => "Close Project" %>
-												<% else %>
-													<a class="btn btn-xs btn-danger" disabled="disabled"><i class="icon-edit bigger-120"></i></a>
-												<% end %>
+												<a href="#" onclick="sendReportModal(<%= project.id %>);" class="btn btn-xs btn-success" data-rel="tooltip" title="" data-original-title="Send Report"><i class="icon-bar-chart bigger-120"></i></a>
 											</div>
 										</td>
 									</tr>
@@ -62,8 +53,48 @@
 		</div>
 	</div>
 </div>
+<!-- Modal for file upload -->
+<div id="send-report-modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Send Project Report</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for @project_report, html: {class: "form-horizontal", id: "sendReportForm"} do |f| %>
+			<div class="control-group">
+				<%= label "complete", "Percent Complete", class: "control-label"%>
+				<div class="controls">
+					<%= f.select(:percent_done, options_for_select(["20","40","60","80","100"]))%>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<%= label "remarks", "Remarks", class: "control-label"%>
+				<div class="controls">
+					<%= f.text_area :remarks %>
+				</div>
+			</div>
+			<%= f.hidden_field :project_id %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" class="btn btn-primary" onclick="submitSendReportForm();">Send Report</a>
+  </div>
+</div>
+
 <script>
 	$(function(){
 		$("[data-rel='tooltip']").tooltip();
 	});
+
+	function sendReportModal(project_id){
+		$("#send-report-modal").modal();
+		$("#project_report_project_id").val(project_id);
+		return false;
+	}
+
+	function submitSendReportForm(){
+		$("#sendReportForm").submit();
+	}
 </script>

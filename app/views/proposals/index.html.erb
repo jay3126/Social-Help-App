@@ -43,7 +43,7 @@
                     <%if current_user.role == "Analyst"%>
                       <button class="btn btn-xs btn-success" onclick="approveProject();" data-rel="tooltip" title="" data-original-title="Approve Project"><i class="icon-ok bigger-120"></i></button>
                     <%else%>  
-                      <%= link_to 'Edit', edit_proposal_path(proposal) %>
+                      <%= link_to 'Edit', edit_proposal_path(prop) %>
                     <%end%>
                   </div>  
                 </td>

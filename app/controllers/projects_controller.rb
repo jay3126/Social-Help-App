@@ -42,17 +42,6 @@ class ProjectsController < ApplicationController
     @project.save
 
     render json: {status: 500, iss_id: issue.id}
-
-    # respond_to do |format|
-    #   if @project.save
-    #     issue.update(is_approved: true, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
-    #     format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
-    #     format.json { render action: 'show', status: :created, location: @project }
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @project.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def pending_proposed_projects

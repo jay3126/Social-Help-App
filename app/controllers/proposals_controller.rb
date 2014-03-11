@@ -11,6 +11,7 @@ class ProposalsController < ApplicationController
     if @avl_cat_fund <= 0 && fund.fund_for_others > 0
       @avl_cat_fund = fund.fund_for_others
     end
+    @project = Project.find_by(issue_id: params[:issue_id])
   end
 
   # GET /proposals/1

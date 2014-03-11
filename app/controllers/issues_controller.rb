@@ -74,6 +74,11 @@ class IssuesController < ApplicationController
     render json: {status: 200, issue_status: status}
   end
 
+  def my_issues
+    @issues = Issue.where(user_id: current_user.id)
+    render 'index'
+  end
+
   private
   def issue_params
   	if params[:issue].present?

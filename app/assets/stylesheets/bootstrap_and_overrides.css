@@ -116,3 +116,7 @@
 dt, dd {
 	line-height: 30px !important;
 }
+
+.non-click{
+	cursor: default !important;
+}

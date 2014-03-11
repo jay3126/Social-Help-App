@@ -7,10 +7,14 @@ class ProposalsController < ApplicationController
     @proposals = Proposal.where(issue_id: params[:issue_id])
     issue = Issue.find_by(id: params[:issue_id])
     fund = SocialFund.order("fiscal_year DESC").first
-    @avl_cat_fund = issue.category == "Any Cause" ? fund.fund_for_others : fund.send("fund_for_#{issue.category.downcase}")
-    if @avl_cat_fund <= 0 && fund.fund_for_others > 0
-      @avl_cat_fund = fund.fund_for_others
-    end
+    if fund.present?
+      @avl_cat_fund = issue.category == "Any Cause" ? fund.fund_for_others : fund.send("fund_for_#{issue.category.downcase}")
+      if @avl_cat_fund == 0 && fund.fund_for_others > 0
+        @avl_cat_fund = fund.fund_for_others
+      end
+    else
+      @avl_cat_fund = 0
+    end 
     @project = Project.find_by(issue_id: params[:issue_id])
   end
 

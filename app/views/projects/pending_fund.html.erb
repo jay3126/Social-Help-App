@@ -1,0 +1,82 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="span9"  style="margin-top: 40px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-header">
+					Projects seeking Fund
+				</div>
+				<div class="table-responsive">
+					<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+						<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+							<thead>
+								<tr role="row">
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 80px;">S. No.</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 150px;">Project Name</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 130px;">Category</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 138px;">Area</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 120px;">Project Done</th>
+									<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 156px;"></th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<% @pending_reports.each_with_index do |report,i| %>
+									<tr>
+										<td><%= i + 1 %></td>
+										<td><%= report.project.project_name %></td>
+										<td><%= report.project.project_type %></td>
+										<td><%= report.project.area %></td>
+										<td><%= report.percent_done %>%</td>
+										<td>
+											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<a href="<%= project_path(report.project_id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
+												<a href="#" onclick="releaseFund(this, <%= report.id %>);" class="btn btn-xs btn-success" data-rel="tooltip" title="" data-original-title="Release Fund"><i class="icon-check bigger-120"></i></a>
+											</div>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<% unless @pending_reports.present? %>
+					<div class="col-xs-12">
+						<b>No Project(s) to release fund</b>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		$("[data-rel='tooltip']").tooltip();
+	});
+
+	function releaseFund(obj, report_id){
+		if(confirm("Release Fund for this project ?")){		
+			$.ajax({ 
+				type: "POST",
+				dataType: "json",
+				data: {
+					authenticity_token: "<%= form_authenticity_token %>"
+				},
+				url: "/projects/" + report_id + "/release_fund",
+				success: function(response){
+					if(response["status"] == 200){
+						$(obj).attr("disabled","disabled");
+						$(obj).tooltip("destroy");
+						alert("Fund Allocated");
+					}else{
+						alert(response["message"]);
+					}
+				}
+			});
+		}
+		return false;
+	}
+</script>

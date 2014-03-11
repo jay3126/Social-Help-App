@@ -1,0 +1,37 @@
+class ProjectFund < ActiveRecord::Base
+
+	def self.release_fund(report_id,user)
+    project_report = ProjectReport.includes(:project).find_by(id: report_id)
+
+    amount = project_report.project.project_actual_cost
+    category = project_report.project.project_type
+
+    res = deduct_fund(amount, category)
+    if res[:status] == 200
+    	project_report.update_attribute(:fund_release, true)
+	    project_fund = ProjectFund.new
+	    project_fund.project_id = project_report.project_id
+	    project_fund.project_report_id = report_id
+	    project_fund.allocate_by = user.id
+	    project_fund.fund_amount = amount
+	    project_fund.allocate_date = Date.today
+	    project_fund.save
+	    ProjectFundLog.create(user, project_fund, category)
+    end
+    res
+	end
+
+	def self.deduct_fund(amount, category)
+		r = {status: 200}
+		social_fund = SocialFund.order("fiscal_year DESC").first
+		fund_avail = social_fund.send("fund_for_#{category.downcase}")
+		if fund_avail < amount
+			r[:status] = 500
+			r[:message] = "Insufficient fund"
+		else
+			social_fund.update_attribute("fund_for_#{category.downcase}", (fund_avail - amount))
+		end
+		r
+	end
+
+end

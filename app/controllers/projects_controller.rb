@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
     else
   	  @ongoing_projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress], verified: true)
     end
-    params[:nav] = "ongoing_projects"
+    params[:cat] = "on_projects"
   end
 
   def completed_projects
@@ -66,7 +66,7 @@ class ProjectsController < ApplicationController
     else
   	  @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
     end
-    params[:nav] = "completed_projects"
+    params[:cat] = "comp_projects"
   end
 
   def reject_project
@@ -112,6 +112,21 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  def pending_fund
+    @pending_reports = ProjectReport.includes(project: [:user]).where(status: "pending", fund_release: false)
+    params[:cat] = "fund_release"
+  end
+
+  def release_fund
+    res = ProjectFund.release_fund(params[:id], current_user)
+    render json: res
+  end
+
+  def fund_log
+    @fund_log = ProjectFundLog.includes(project: [:user]).order("created_at desc").load
+    params[:cat] = "fund_log"
   end
 
   private

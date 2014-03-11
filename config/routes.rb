@@ -26,9 +26,12 @@ SocialHelpApp::Application.routes.draw do
       get 'ongoing_projects'
       get 'reject_project'
       get 'project_reports'
+      get 'pending_fund'
+      get 'fund_log'
     end
     member do
       get 'close_project'
+      post 'release_fund'
     end
   end
 

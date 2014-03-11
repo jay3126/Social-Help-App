@@ -1,0 +1,58 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+
+	<div class="span9"  style="margin-top: 40px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-header">
+					Projects Fund Allocation Log
+				</div>
+				<div class="table-responsive">
+					<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+						<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+							<thead>
+								<tr role="row">
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 80px;">S. No.</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 150px;">Project Name</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 130px;">Category</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 138px;">Area</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 120px;">Amount</th>
+									<th class="sorting_disabled" role="columnheader" style="width: 156px;"></th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<% @fund_log.each_with_index do |log,i| %>
+									<tr>
+										<td><%= i + 1 %></td>
+										<td><%= log.project.project_name %></td>
+										<td><%= log.project.project_type %></td>
+										<td><%= log.project.area %></td>
+										<td><%= log.fund_amount %>%</td>
+										<td>
+											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<a href="<%= project_path(log.project_id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
+											</div>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<% unless @fund_log.present? %>
+					<div class="col-xs-12">
+						<b>No Project(s) to release fund</b>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		$("[data-rel='tooltip']").tooltip();
+	});
+</script>

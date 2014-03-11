@@ -41,14 +41,10 @@ class ProjectsController < ApplicationController
     @project.issue_id = issue.id
     @project.save
 
-    render json: {status: 500, iss_id: issue.id}
-  end
+    proposal = Proposal.find_by(id: params[:project][:prop_id])
+    proposal.update(accepted: true)
 
-  def pending_proposed_projects
-    funds = SocialFund.order("fiscal_year DESC").first
-    @avl_social_fund = funds.present? ? funds.fund_remains : 0.0
-  	@project = Project.new
-  	@pending_proposed_projects = Issue.where(issue_status: Constants::IssueStatusConstant.all_to_hash[:open], is_approved: false)
+    render json: {status: 500}
   end
 
   def ongoing_projects

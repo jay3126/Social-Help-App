@@ -71,7 +71,7 @@
 			<div class="control-group">
 				<%= label :ngo, "NGO", class: "control-label" %>
 				<div class="controls">
-					<%= select_tag(:assigned_to, options_for_select(User.where(role: "NGO").collect{|x| [x.name, x.id]}), { prompt: "Select NGO"}) %>
+					<%= select_tag(:user_id, options_for_select(User.where(role: "NGO").collect{|x| [x.name, x.id]}), { prompt: "Select NGO"}) %>
 				</div>
 			</div>
 

@@ -24,33 +24,35 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    issue = Issue.find_by(id: params[:issue_id])
+    issue = Issue.find_by(id: params[:project][:issue_id].to_i)
     @project = Project.new
     @project.project_name = issue.issue_title
     @project.project_type = issue.issue_description
     @project.project_name = issue.issue_title
     @project.area = issue.issue_area
-    @project.project_actual_cost = params[:project_actual_cost]
+    @project.project_actual_cost = params[:project][:project_actual_cost].to_i
     @project.assigned_by = current_user.id
     @project.verified_by = current_user.id
-    @project.user_id = params[:assigned_to]
-    @project.assigned_to = params[:assigned_to]
+    @project.user_id = params[:project][:user_id].to_i
     @project.verified = true
     @project.project_status = Constants::ProjectStatusConstant.all_to_hash[:in_progress]
-    @project.project_duration = params[:duration]
+    @project.project_duration = params[:project][:project_duration].to_i
     @project.proposer_id = issue.user_id
-    @project.issue_id = params[:issue_id]
+    @project.issue_id = issue.id
+    @project.save
 
-    respond_to do |format|
-      if @project.save
-        issue.update(is_approved: true, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
-        format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
-        format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
+    render json: {status: 500, iss_id: issue.id}
+
+    # respond_to do |format|
+    #   if @project.save
+    #     issue.update(is_approved: true, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
+    #     format.html { redirect_to pending_proposed_projects_projects_path, notice: 'Project was successfully approved.' }
+    #     format.json { render action: 'show', status: :created, location: @project }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @project.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def pending_proposed_projects

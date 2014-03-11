@@ -28,7 +28,7 @@
 						<td><%= project.project_est_cost %></td>
 						<td><%= project.est_start_date %></td>
 						<td><%= project.est_completion_date %></td>
-						<td><%= User.fetch_user_names(project.assigned_to) %></td>
+						<td><%= User.fetch_user_names(project.user_id) %></td>
 						<td><%= User.fetch_user_names(project.assigned_by) %></td>
 						<td><%= User.fetch_user_names(project.verified_by) %></td>
 						<td><%= User.fetch_user_names(project.closed_by) %></td>

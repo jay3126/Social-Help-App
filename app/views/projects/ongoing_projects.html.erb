@@ -33,7 +33,7 @@
 										<td><%= project.project_type %></td>
 										<td><%= project.area %></td>
 										<td><%= project.project_actual_cost %></td>
-										<td><%= User.fetch_user_names(project.assigned_to) %></td>
+										<td><%= User.fetch_user_names(project.user_id) %></td>
 										<td><%= User.fetch_user_names(project.assigned_by) %></td>
 										<td><%= project.project_duration %></td>
 										<td>

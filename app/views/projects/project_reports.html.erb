@@ -31,7 +31,7 @@
 										<td><%= report.project.project_name %></td>
 										<td><%= report.project_done %>%</td>
 										<td><%= report.project_done %></td>
-										<td><%= User.fetch_user_names(report.project.assigned_to) %></td>
+										<td><%= User.fetch_user_names(report.project.user_id) %></td>
 										<td><%= User.fetch_user_names(report.project.assigned_by) %></td>
 										<td><%= report.project_duration %></td>
 										<td>

@@ -1,5 +1,7 @@
 class ProjectFund < ActiveRecord::Base
 
+	belongs_to :project
+
 	def self.release_fund(report_id,user)
     project_report = ProjectReport.includes(:project).find_by(id: report_id)
 
@@ -30,6 +32,24 @@ class ProjectFund < ActiveRecord::Base
 			r[:message] = "Insufficient fund"
 		else
 			social_fund.update_attribute("fund_for_#{category.downcase}", (fund_avail - amount))
+		end
+		r
+	end
+
+	def self.fund_used_stats
+		r = []
+		fund_used_category = Hash.new(0)
+		funds = ProjectFund.includes(:project).select("project_id, sum(fund_amount) as used").where("YEAR(allocate_date) = #{Date.today.year}").group(:project_id)
+		funds.each do |f|
+			fund_used_category[f.project.project_type.downcase] += f.used
+		end
+
+		social_fund = SocialFund.order("fiscal_year desc").first
+		Constants::IssueCategoryConstant.to_list.each do |c|
+			c = "others" if c.downcase == "any cause"
+			avail = social_fund.send("fund_for_#{c.downcase}")
+			used = avail > 0 ? ((fund_used_category[c.downcase]/avail.to_f) * 100) : 0.0
+			r << {label: c, data: used, color: Constants::CategoryColorCodes.all_to_hash[c.downcase.to_sym]}
 		end
 		r
 	end

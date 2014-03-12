@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 			@all_projects = Project.all
 			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
 			@pending_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
+			@pie_chart_data = ProjectFund.fund_used_stats().to_json
 		elsif current_user.inspector?
 			stats = Issue.select(:issue_status).group("issue_status").count
 			@issue_stats = Hash.new(0)

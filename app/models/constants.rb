@@ -53,4 +53,18 @@ module Constants
 		ProjectStatusConstant.define :in_progress, "In Progress"
 		ProjectStatusConstant.define :completed, "Completed"
 	end
+
+	class CategoryColorCodes
+		include Enum
+		CategoryColorCodes.define :others, "#68BC31"
+		CategoryColorCodes.define :children, "#2091CF"
+		CategoryColorCodes.define :disabled, "#AF4E96"
+		CategoryColorCodes.define :education, "#DA5430"
+		CategoryColorCodes.define :elderly, "#FEE074"
+		CategoryColorCodes.define :employment, "#FEAD74"
+		CategoryColorCodes.define :environment, "#AFE074"
+		CategoryColorCodes.define :health, "#90E074"
+		CategoryColorCodes.define :women, "#FEA074"
+		CategoryColorCodes.define :youth, "#24E074"
+	end
 end

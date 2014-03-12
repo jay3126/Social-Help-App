@@ -67,7 +67,34 @@
 		</div>
 
 		<div class="space-6"></div>
+		<div class="page-header">
+			<h1 style="background-color: #4f99c6 !important;color: #41474B;">Fund by Category</h1>
+		</div>
+		<% if @current_fund.present? %>
+			<div class="row">
+				<% Constants::IssueCategoryConstant.to_list.each do |cat| %>
+				<% cat = "Others" if cat.downcase == "any cause" %>
+					<div class="infobox infobox-blue2">
+						<div class="infobox-progress">
+						</div>
 
+						<div class="infobox-data">
+							<span class="infobox-text"><b><%= cat %></b></span>
+
+							<div class="infobox-content">
+								<span class="bigger-110"></span>
+								<%= @current_fund.send("fund_for_#{cat.downcase}") %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="space-6"></div>
+		<% end %>
+	
+		<div class="page-header">
+			<h1 style="background-color: #4f99c6 !important;color: #41474B;">Projects</h1>
+		</div>
 		<div class="infobox infobox-green infobox-small infobox-dark" style="width: 175px;">
 			<div class="infobox-progress">
 				<div class="easy-pie-chart percentage easyPieChart" data-percent="<%= comp_percentage %>" data-size="39" style="width: 39px; height: 39px; line-height: 39px;">
@@ -105,72 +132,33 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="space-6"></div>
 	<div class="space-6"></div>
+
+	<div class="infobox-container">
+		<div class="page-header">
+			<h1 style="background-color: #4f99c6 !important;color: #41474B;">Used Fund By Category</h1>
+		</div>
+	</div>
 	<div class="col-sm-5" style="max-width: 640px;margin: 0 auto;">
 		<div class="widget-box">
 			<div class="widget-header widget-header-flat widget-header-small">
 				<h5>
 					<i class="icon-signal"></i>
-					Projects Summary
+					Fund Used Pie Chart
 				</h5>
 			</div>
 
-			<div class="widget-body">
+			<div class="widget-body" style="height: 260px;">
 				<div class="widget-main">
 					<div id="piechart-placeholder" style="width: 90%; min-height: 150px; padding: 0px; position: relative;">
-						<canvas class="flot-base" width="352" height="150" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
-						<canvas class="flot-overlay" width="352" height="150" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
+						<canvas class="flot-base" width="352" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
+						<canvas class="flot-overlay" width="352" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
 						<div class="legend">
 							<div style="position: absolute; width: 95px; height: 110px; top: 15px; right: -30px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
-							<table style="position:absolute;top:15px;right:-30px;;font-size:smaller;color:#545454">
-								<tbody>
-									<tr>
-										<td class="legendColorBox">
-											<div style="border:1px solid null;padding:1px">
-												<div style="width:4px;height:0;border:5px solid #68BC31;overflow:hidden"></div>
-											</div>
-										</td>
-										<td class="legendLabel">social networks</td>
-									</tr>
-									<tr>
-										<td class="legendColorBox">
-											<div style="border:1px solid null;padding:1px">
-												<div style="width:4px;height:0;border:5px solid #2091CF;overflow:hidden"></div>
-											</div>
-										</td>
-										<td class="legendLabel">search engines</td>
-									</tr>
-									<tr>
-										<td class="legendColorBox">
-											<div style="border:1px solid null;padding:1px">
-												<div style="width:4px;height:0;border:5px solid #AF4E96;overflow:hidden"></div>
-											</div>
-										</td>
-										<td class="legendLabel">ad campaigns</td>
-									</tr>
-									<tr>
-										<td class="legendColorBox">
-											<div style="border:1px solid null;padding:1px">
-												<div style="width:4px;height:0;border:5px solid #DA5430;overflow:hidden"></div>
-											</div>
-										</td>
-										<td class="legendLabel">direct traffic</td>
-									</tr>
-									<tr>
-										<td class="legendColorBox">
-											<div style="border:1px solid null;padding:1px">
-												<div style="width:4px;height:0;border:5px solid #FEE074;overflow:hidden"></div>
-											</div>
-										</td>
-										<td class="legendLabel">other</td>
-									</tr>
-								</tbody>
-							</table>
 						</div>
 					</div>
-
-					<div class="hr hr8 hr-double"></div>
 				</div><!-- /widget-main -->
 			</div><!-- /widget-body -->
 		</div><!-- /widget-box -->
@@ -199,14 +187,15 @@
 			var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
 			$(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
 		});
-	  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
-	  var data = [
-								{ label: "social networks",  data: 38.7, color: "#68BC31"},
-								{ label: "search engines",  data: 24.5, color: "#2091CF"},
-								{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
-								{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
-								{ label: "other",  data: 10, color: "#FEE074"}
-							 ]
+	  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'220px'});
+	  var data = <%= raw @pie_chart_data %>;
+	  // var data = [
+			// 					{ "label": "social networks",  "data": 38.7, "color": "#68BC31"},
+			// 					{ "label": "search engines",  "data": 24.5, "color": "#2091CF"},
+			// 					{ "label": "ad campaigns",  "data": 8.2, "color": "#AF4E96"},
+			// 					{ "label": "direct traffic",  "data": 18.6, "color": "#DA5430"},
+			// 					{ "label": "other",  "data": 10, "color": "#FEE074"}
+			// 				 ]
 	  function drawPieChart(placeholder, data, position) {
 	 	  $.plot(placeholder, data, {
 			series: {

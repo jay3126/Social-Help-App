@@ -5,7 +5,11 @@ class ProjectFund < ActiveRecord::Base
 	def self.release_fund(report_id,user)
     project_report = ProjectReport.includes(:project).find_by(id: report_id)
 
-    amount = project_report.project.project_actual_cost
+    total_project_cost = project_report.project.project_actual_cost
+
+    # calculate percentage amount to release
+
+    amount = total_project_cost * (project_report.precentage_done/100.to_f)
     category = project_report.project.project_type
 
     res = deduct_fund(amount, category)
@@ -24,14 +28,28 @@ class ProjectFund < ActiveRecord::Base
 	end
 
 	def self.deduct_fund(amount, category)
+		fund_from_others_used = false
 		r = {status: 200}
 		social_fund = SocialFund.order("fiscal_year DESC").first
 		fund_avail = social_fund.send("fund_for_#{category.downcase}")
+		if fund_avail == 0 || fund_avail < amount
+			fund_avail = social_fund.fund_for_others
+			fund_from_others_used = true
+		end
 		if fund_avail < amount
 			r[:status] = 500
 			r[:message] = "Insufficient fund"
 		else
-			social_fund.update_attribute("fund_for_#{category.downcase}", (fund_avail - amount))
+			# update remaining fund as per category
+			if fund_from_others_used
+				social_fund.update_attribute("fund_for_others", (fund_avail - amount))
+			else
+				social_fund.update_attribute("fund_for_#{category.downcase}", (fund_avail - amount))
+			end
+			# update the total used/remaining fund also
+			social_fund.fund_used += amount
+			social_fund.fund_remains -= amount
+			social_fund.save
 		end
 		r
 	end

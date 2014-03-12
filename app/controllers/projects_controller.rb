@@ -27,8 +27,7 @@ class ProjectsController < ApplicationController
     issue = Issue.find_by(id: params[:project][:issue_id].to_i)
     @project = Project.new
     @project.project_name = issue.issue_title
-    @project.project_type = issue.issue_description
-    @project.project_name = issue.issue_title
+    @project.project_type = issue.category
     @project.area = issue.issue_area
     @project.project_actual_cost = params[:project][:project_actual_cost].to_i
     @project.assigned_by = current_user.id
@@ -111,7 +110,7 @@ class ProjectsController < ApplicationController
   end
 
   def pending_fund
-    @pending_reports = ProjectReport.includes(project: [:user]).where(status: "pending", fund_release: false)
+    @pending_reports = ProjectReport.includes(project: [:user]).where(status: "approved", fund_release: false)
     params[:cat] = "fund_release"
   end
 

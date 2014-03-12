@@ -39,7 +39,7 @@
 										<td><%= project.est_completion_date %></td>
 										<td><%= User.fetch_user_names(project.user_id) %></td>
 										<td><%= User.fetch_user_names(project.assigned_by) %></td>
-										<td><%= project.project_duration %></td>
+										<td><%= project.project_duration %> Month(s)</td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 												<a href="<%= project_path(id: project.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>

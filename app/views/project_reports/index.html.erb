@@ -18,7 +18,6 @@
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 180px;">Project Name</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 80px;">Complete</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 145px;">Assigned To</th>
-									<th class="sorting" role="columnheader" tabindex="0" style="width: 145px;">Assigned By</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 100px;">Project Duration</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 120px;">Remarks</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 100px;">Status</th>
@@ -32,8 +31,7 @@
 										<td><%= report.project.project_name %></td>
 										<td><%= report.percent_done %>%</td>
 										<td><%= report.user.name %></td>
-										<td>Anonymous</td>
-										<td><%= report.project.project_duration %></td>
+										<td><%= report.project.project_duration %> Month(s)</td>
 										<td><%= report.remarks %></td>
 										<td id="report_status_<%= report.id %>"><%= report.status %></td>
 										<td>

@@ -18,8 +18,8 @@ class IssuesController < ApplicationController
       if params[:cat].present?
         @issues = Issue.where(user_id: current_user.id, issue_status: params[:cat].split("_").map{|s| s.capitalize}.join(" "))
       else
-        @issues = Issue.where(user_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:review_pending])
-        params[:cat] = "review_pending"
+        @issues = Issue.where(user_id: current_user.id, issue_status: Constants::IssueStatusConstant.all_to_hash[:approved])
+        #params[:cat] = "review_pending"
       end
     else
       if params[:cat].present?

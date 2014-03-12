@@ -18,7 +18,25 @@ class UsersController < ApplicationController
 		elsif current_user.corporate?
 			@fiscal_stats = FiscalStat.where(user_id: current_user.id).order("fiscal_year desc")
 		elsif current_user.ngo?
-			@current_fund = SocialFund.order("fiscal_year DESC").first
+			# calculating total fund available/required by an NGO
+			@total_required_fund = 0
+			current_user.projects.each do |pr|
+				@total_required_fund += pr.project_actual_cost
+			end
+			@avl_fund_for_ngo = 0
+			# calculating project wise fund
+			@project_wise_fund = {}
+			@project_wise_fund[:project_name] = []
+			@project_wise_fund[:project_fund] = []
+			current_user.projects.each do |pr|
+				@project_wise_fund[:project_name] << pr.project_name
+				temp = 0
+				pr.project_funds.each do |pr_fund|
+					temp += pr_fund.fund_amount
+					@avl_fund_for_ngo += pr_fund.fund_amount	
+				end
+				@project_wise_fund[:project_fund] << temp
+			end
 			@all_projects = Project.where(user_id: current_user.id)
 			@completed_projects = @all_projects.where(user_id: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
 			@pending_projects = @all_projects.where(user_id: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])

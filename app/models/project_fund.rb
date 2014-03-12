@@ -9,7 +9,7 @@ class ProjectFund < ActiveRecord::Base
 
     # calculate percentage amount to release
 
-    amount = total_project_cost * (project_report.precentage_done/100.to_f)
+    amount = total_project_cost * (project_report.percent_done/100.to_f)
     category = project_report.project.project_type
 
     res = deduct_fund(amount, category)

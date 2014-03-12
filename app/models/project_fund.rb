@@ -63,11 +63,13 @@ class ProjectFund < ActiveRecord::Base
 		end
 
 		social_fund = SocialFund.order("fiscal_year desc").first
-		Constants::IssueCategoryConstant.to_list.each do |c|
-			c = "others" if c.downcase == "any cause"
-			avail = social_fund.send("fund_for_#{c.downcase}")
-			used = avail > 0 ? ((fund_used_category[c.downcase]/avail.to_f) * 100) : 0.0
-			r << {label: c, data: used, color: Constants::CategoryColorCodes.all_to_hash[c.downcase.to_sym]}
+		if social_fund.present?
+			Constants::IssueCategoryConstant.to_list.each do |c|
+				c = "others" if c.downcase == "any cause"
+				avail = social_fund.send("fund_for_#{c.downcase}")
+				used = avail > 0 ? ((fund_used_category[c.downcase]/avail.to_f) * 100) : 0.0
+				r << {label: c, data: used, color: Constants::CategoryColorCodes.all_to_hash[c.downcase.to_sym]}
+			end
 		end
 		r
 	end

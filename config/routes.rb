@@ -57,6 +57,8 @@ SocialHelpApp::Application.routes.draw do
   get "welfare_funds" => "users#welfare_funds"
   get "my_proposals" => "proposals#my_proposals"
   get "my_issues" => "issues#my_issues"
+  get "donate" => "users#donate"
+  post "receive_donation" => "users#receive_donation"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :project_reports
   has_many :proposals
+  has_many :donations
 
   validates :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, presence: true
   validate :specific_fields
@@ -89,6 +90,10 @@ class User < ActiveRecord::Base
 
   def inspector?
     self.role.to_s.downcase == "inspector"
+  end
+
+  def donor?
+    self.role.to_s.downcase == "donor"
   end
 
 end

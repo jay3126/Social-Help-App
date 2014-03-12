@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311114916) do
+ActiveRecord::Schema.define(version: 20140312101733) do
+
+  create_table "donations", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",     precision: 15, scale: 2, default: 0.0
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fiscal_stats", force: true do |t|
     t.integer  "fiscal_year"

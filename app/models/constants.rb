@@ -23,11 +23,11 @@ module Constants
 	VALID_CURRENCIES = ["INR"]
 
 	#Roles
-	ROLES = ["Corporate","NGO","Socialist","Analyst","Inspector"]
+	ROLES = ["Corporate","NGO","Socialist","Analyst","Inspector","Donor"]
 
 	class IssueCategoryConstant
 		include Enum
-		IssueCategoryConstant.define :any, "Any Cause"
+		IssueCategoryConstant.define :others, "Others"
 		IssueCategoryConstant.define :children, "Children"
 		IssueCategoryConstant.define :disabled, "Disabled"
 		IssueCategoryConstant.define :education, "Education"

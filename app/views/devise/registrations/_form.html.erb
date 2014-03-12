@@ -1,9 +1,10 @@
+<% resource.role = "Donor" if params[:donor].present? %>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-horizontal", id: "user_form", multipart: true}) do |f| %>
 	<div style="color: red;">
 		<%= devise_error_messages! %>
 	</div>
 
-	<div class="control-group">
+	<div class="control-group" id="role-div">
 		<%= f.label :role, "Register Me As: ", class: "control-label" %>
 		<div class="controls">
 			<%= f.select(:role, options_for_select(Constants::ROLES, resource.role),{prompt: "Select Your Role"}, onchange: "cascadeForm(this.value);") %>
@@ -220,6 +221,9 @@
 <% end %>
 <script>
 	<% if resource.role.present? %>
+		<% if params[:donor].present? %>
+			$("#role-div").addClass('hide');
+		<% end %>
 		cascadeForm("<%= resource.role %>");
 	<% end %>
 </script>

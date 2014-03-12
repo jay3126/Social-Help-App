@@ -34,6 +34,8 @@ class UsersController < ApplicationController
 			stats.each do |k,v|
 				@issue_stats[k.downcase.split(" ").join("_")] = v
 			end
+		elsif current_user.donor?
+			@donations = current_user.donations
 		end
 		params[:nav] = "dashboard"
 	end
@@ -71,10 +73,33 @@ class UsersController < ApplicationController
 		params[:nav] = "welfare-fund"
 	end
 
+	def donate
+		if current_user
+			@donation = Donation.new
+		else
+			redirect_to new_user_registration_url(donor: "donor")
+		end
+	end
+
+	def receive_donation
+		@donation = Donation.new(donation_params)
+		@donation.user_id = current_user.id
+		if @donation.save
+			SocialFund.update_social_fund(@donation.amount, @donation.category)
+			redirect_to dashboard_url
+		else
+			render action: "donate"
+		end
+	end
+
 	private
 
 	def user_profile_params
 		params.require(:user).permit(:name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, :company_group, :tan_number, :no_of_employees, :age, :gender, :adhaar_number, :voter_id, :nationality, :pan_number, :service_type, :owner, :year_established)
+	end
+
+	def donation_params
+		params.require(:donation).permit(:amount, :category)
 	end
 
 end

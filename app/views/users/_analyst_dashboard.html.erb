@@ -73,7 +73,6 @@
 		<% if @current_fund.present? %>
 			<div class="row">
 				<% Constants::IssueCategoryConstant.to_list.each do |cat| %>
-				<% cat = "Others" if cat.downcase == "any cause" %>
 					<div class="infobox infobox-blue2">
 						<div class="infobox-progress">
 						</div>

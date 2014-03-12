@@ -6,7 +6,7 @@ function cascadeForm(value){
 	}else if(value == "NGO"){
 		$("#ngo-details").removeClass("hide");
 		$("#company-ngo-common").removeClass("hide");
-	}else if(value == "Socialist"){
+	}else if(value == "Socialist" || value == "Donor"){
 		$("#individual-details").removeClass("hide")
 	}
 }

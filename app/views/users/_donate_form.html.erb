@@ -1,0 +1,50 @@
+<%= form_for @donation, url: receive_donation_path, html: {class: "form-horizontal"} do |f| %>
+	<% if @donation.errors.count > 0 %>
+		<div style="color: #f00;">
+			<h3><%= pluralize(@donation.errors.count, "error") %> prohibited this user to update profile</h3>
+			<ul>
+				<% @donation.errors.full_messages.each do |e| %>
+					<li><%= e %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="control-group">
+		<%= f.label :amount,"Amount", class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :amount, maxlength: 6, onkeypress: "return isNumber(event)" %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :category,"Choose Category", class: "control-label" %>
+		<div class="controls">
+			<%= f.select(:category, options_for_select(Constants::IssueCategoryConstant.to_list, @donation.category), {prompt: "Select category"}) %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= label :via,"Donate By", class: "control-label" %>
+		<div class="controls">
+			<%= select_tag(:via, options_for_select(["Net Banking","Credit Card","Debit Card"]), {prompt: "Select Donate By"}) %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :remark,"", class: "control-label" %>
+		<div class="controls">
+			<%= text_area_tag :remarks %>
+		</div>
+	</div>
+
+	<hr >
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn btn-success">
+				<i class="icon-dollar align-top bigger-125"></i>
+				Donate
+			</button>
+		</div>
+	</div>
+<% end %>

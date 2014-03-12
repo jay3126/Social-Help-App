@@ -12,6 +12,8 @@ module ApplicationHelper
 			render partial: "navs/analyst_left_panel"
 		when "inspector"
 			render partial: "navs/inspector_left_panel"
+		when "donor"
+			render partial: "navs/donor_left_panel"
 		end
 	end
 
@@ -27,6 +29,8 @@ module ApplicationHelper
 			render partial: "analyst_profile"
 		when "inspector"
 			render partial: "inspector_profile"
+		when "donor"
+			render partial: "donor_profile"
 		end
 	end
 
@@ -42,6 +46,8 @@ module ApplicationHelper
 			render partial: "analyst_dashboard"
 		when "inspector"
 			render partial: "inspector_dashboard"
+		when "donor"
+			render partial: "donor_dashboard"
 		end
 	end
 

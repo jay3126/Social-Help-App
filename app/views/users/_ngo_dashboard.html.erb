@@ -45,6 +45,37 @@
 
 		<div class="space-6"></div>
 
+		<% if @project_wise_fund.present? %>
+			<div class="page-header">
+				<h1 style="background-color: #4f99c6 !important;color: #41474B;">Allocated Fund Per Project</h1>
+			</div>
+
+			<div class="row">
+				<% @project_wise_fund.each do |pr_fund| %>
+					<div class="infobox infobox-blue2">
+						<div class="infobox-progress">
+						</div>
+
+						<div class="infobox-data">
+							<span class="infobox-text"><b><%= pr_fund[:project_name] %></b></span>
+
+							<div class="infobox-content">
+								<span class="bigger-110"></span>
+								<%= pr_fund[:project_fund].to_f %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="space-6"></div>
+		<% end %>
+	
+		<div class="page-header">
+			<h1 style="background-color: #4f99c6 !important;color: #41474B;">Projects</h1>
+		</div>	
+
+		<div class="space-6"></div>
+
 		<div class="infobox infobox-green infobox-small infobox-dark" style="width: 175px;">
 			<div class="infobox-progress">
 				<div class="easy-pie-chart percentage easyPieChart" data-percent="<%= comp_percentage %>" data-size="39" style="width: 39px; height: 39px; line-height: 39px;">

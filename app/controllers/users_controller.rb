@@ -29,17 +29,17 @@ class UsersController < ApplicationController
 			end
 			@avl_fund_for_ngo = 0
 			# calculating project wise fund
-			@project_wise_fund = {}
-			@project_wise_fund[:project_name] = []
-			@project_wise_fund[:project_fund] = []
+			@project_wise_fund = []
 			current_user.projects.each do |pr|
-				@project_wise_fund[:project_name] << pr.project_name
+				project_detail = {}
+				project_detail[:project_name] = pr.project_name
 				temp = 0
 				pr.project_funds.each do |pr_fund|
 					temp += pr_fund.fund_amount
 					@avl_fund_for_ngo += pr_fund.fund_amount	
 				end
-				@project_wise_fund[:project_fund] << temp
+				project_detail[:project_fund] = temp
+				@project_wise_fund << project_detail
 			end
 			@all_projects = Project.where(user_id: current_user.id)
 			@completed_projects = @all_projects.where(user_id: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])

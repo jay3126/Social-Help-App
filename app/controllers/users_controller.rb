@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+	def home
+		render layout: false
+	end
+
 	def edit
 		@user = current_user
 	end

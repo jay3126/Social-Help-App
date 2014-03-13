@@ -47,9 +47,9 @@ SocialHelpApp::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
+  # devise_scope :user do
+  #   root to: "devise/sessions#new"
+  # end
 
   get "profile" => "users#profile"
   get "dashboard" => "users#dashboard"
@@ -59,6 +59,7 @@ SocialHelpApp::Application.routes.draw do
   get "my_issues" => "issues#my_issues"
   get "donate" => "users#donate"
   post "receive_donation" => "users#receive_donation"
+  root to: "users#home"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

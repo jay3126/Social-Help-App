@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>:: Charity ::</title>
+		<%= javascript_include_tag "home/index"%>
+	  <%= stylesheet_link_tag "home/index", media: "all" %>
+	  <%= csrf_meta_tags %>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link rel="stylesheet" href="css/slider.css"> -->
+	<!--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="js/bjqs-1.3.min.js"></script>
+	
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+-->
+    <!--[if lt IE 9]>
+    <script>
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('hgroup');
+    </script>
+    <![endif]-->
+ 
+   
+    
+</head>
+ 
+<body>
+<!-- HEADER START -->
+<header>
+	<section class="header_wrapper"> 
+		<section class="logo_section">
+			<div class="logo"><a href="#"><img src="assets/logo.png" alt="Website Logo" /></a></div>
+			<div class="social_icons">
+				<ul>
+					<li><a href="<%= new_user_session_path %>">SIGNIN</a></li>
+					<li>&nbsp;</li>
+					<li><a href="<%= new_user_registration_path %>">SIGNUP</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</section>
+		<section class="menu_section">
+			<nav>
+			</nav>
+			<section class="search_box">
+				<form>
+					<input type="text" value="Search" class="s_field" />
+                    <input type="submit" value="Go" class="s_button" />
+                    <div class="clear"></div>
+				</form>
+			</section>
+		</section>
+	</section>
+</header>
+<!-- HEADER END -->
+
+<!-- SLIDER START -->
+<section class="slider shadow rounded_corners">
+<div id="banner-slide"> 
+
+<!-- start Basic Jquery Slider -->
+<ul class="bjqs">
+<li><a href=""><img src="assets/slider.png" title=""></a></li>
+<li><img src="assets/slider1.png" title=""></li>
+<li><img src="assets/slider2.png" title=""></li>
+<li><img src="assets/slider3.png" title=""></li>
+</ul>
+<!-- end Basic jQuery Slider --> 
+
+</div>
+<!-- End outer wrapper --> 
+
+<!-- attach the plug-in to the slider parent element and adjust the settings as required --> 
+<script class="secret-source">
+        jQuery(document).ready(function($) {
+          
+          $('#banner-slide').bjqs({
+            height        : 230,
+            width         : 1000,
+            responsive    : true,
+            randomstart   : true
+          });
+          
+        });
+      </script> 
+</div>
+
+</section>
+<!-- SLIDER END -->
+
+<!-- MAIN CONTAINER START -->
+<section class="wrapper">
+    <!-- LEFT SECTION START -->
+	<section class="left_section">
+        
+        <!-- POST ARTICLE START -->
+        <article class="post rounded_corners shadow">
+            <img src="assets/post_img.png" alt="" class="post_img" />
+            <h1>Sponsor treatment for an orphaned HIV+ child</h1>
+            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+            <p class="button"><a href="#">Donate Now</a></p>
+            <div class="clear"></div>
+        </article>
+        <!-- POST ARTICLE END -->
+        
+        <!-- POST ARTICLE START -->
+        <article class="post rounded_corners shadow">
+            <img src="assets/post_img1.png" alt="" class="post_img" />
+            <h1>Sponsor Dialysis for a poor kidney patient like Deepali</h1>
+            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+            <p class="button"><a href="#">Donate Now</a></p>
+            <div class="clear"></div>
+        </article>
+        <!-- POST ARTICLE END -->
+        
+        <!-- POST ARTICLE START -->
+        <article class="post rounded_corners shadow">
+            <img src="assets/post_img2.png" alt="" class="post_img" />
+            <h1>Sponsor medicine for a Hemophillia patient like Farooque</h1>
+            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+            <p class="button"><a href="#">Donate Now</a></p>
+            <div class="clear"></div>
+        </article>
+        <!-- POST ARTICLE END -->
+        
+        <!-- POST ARTICLE START -->
+        <article class="post rounded_corners shadow">
+            <img src="assets/post_img3.png" alt="" class="post_img" />
+            <h1>Sponsor chemotherapy for a poor cancer patient like Ravji</h1>
+            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+            <p class="button"><a href="#">Donate Now</a></p>
+            <div class="clear"></div>
+        </article>
+        <!-- POST ARTICLE END -->
+        
+         <article class="post aboutUs rounded_corners shadow">
+           <h1>ABOUT US</h1>
+            <p>We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.<br/>By helping you donate to these charities online, we ensure that your giving is efficient and impactful.<br/>We guarantee that 90% of your donation reaches the NGO you chose.</p>
+            <p class="button"><a href="#">Read More</a></p>
+			<div class="clear"></div>
+        </article>
+        
+        <div class="clear"></div>
+    </section>
+	<!-- LEFT SECTION END -->
+    
+    <!-- RIGHT SECTION START -->
+    <section class="right_section">
+        <!-- LATEST POST START -->
+        <section class="latest_post_block rounded_corners shadow">
+            <div class="sec_header">Choose Your Donation</div>
+            
+            <!-- POST START -->
+            <article class="latest_post">
+                <form>
+					<div class="elem">
+						<label>By Amount:</label>
+						<select class="select">
+							<option>Select</option>
+							<option>1234</option>
+							<option>74845</option>
+							<option>44545</option>
+							<option>87821</option>
+						</select>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="elem">
+						<label>By Cause:</label>
+						<select class="select">
+							<option>Select</option>
+							<option>1234</option>
+							<option>74845</option>
+							<option>44545</option>
+							<option>87821</option>
+						</select>
+						<div class="clear"></div>
+					</div>
+					<input type="button" value="Search" class="button" />
+				</form>
+            </article>
+            <!-- POST END -->
+            
+           
+        </section>
+        <!-- LATEST POST END -->
+         <section class="latest_post_block rounded_corners shadow">
+			<div class="cardText">Give Monthly Through Your Credit Card</div>
+			<article class="latest_post"><a href="#"><img src="assets/card.jpg" width="260" /></a></article>
+		 </section>
+		 
+		
+         <!-- TOP POST START -->
+        <section class="latest_post_block rounded_corners shadow">
+            <div class="sec_header">Donor Speak</div>
+            
+            <!-- POST START -->
+            <article class="latest_post">
+                <div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
+                <div class="latest_post_text">
+                    <p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
+                </div>
+                <div class="clear_10"></div>
+               
+                <p class="latest_post_reviews"><a href="#">Adam S.</a></p>
+                <div class="clear"></div>
+            </article>
+            <!-- POST END -->
+			
+			<!-- POST START -->
+            <article class="latest_post">
+                <div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
+                <div class="latest_post_text">
+                    <p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
+                </div>
+                <div class="clear_10"></div>
+               
+                <p class="latest_post_reviews"><a href="#">Adam S.</a></p>
+                <div class="clear"></div>
+            </article>
+            <!-- POST END -->
+			
+			<!-- POST START -->
+            <article class="latest_post">
+                <div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
+                <div class="latest_post_text">
+                    <p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
+                </div>
+                <div class="clear_10"></div>
+               
+                <p class="latest_post_reviews"><a href="#">Adam S.</a></p>
+                <div class="clear"></div>
+            </article>
+            <!-- POST END -->
+			
+            
+        </section>
+        <!-- TOP POST END -->
+        
+    </section>
+    <!-- RIGHT SECTION END -->
+    
+	<div class="clear"></div>
+</section>
+<!-- MAIN CONTAINER END -->
+
+<!-- FOOTER START -->
+	<footer>
+		<section class="footer_wrapper">
+		   <span>&copy; 2014,  All rights are reserved.</span>
+		</section>
+	</footer>
+<!-- FOOTER END -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

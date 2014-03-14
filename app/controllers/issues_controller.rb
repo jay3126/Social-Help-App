@@ -76,6 +76,7 @@ class IssuesController < ApplicationController
 
   def my_issues
     @issues = Issue.where(user_id: current_user.id)
+    params[:nav] = "my_issues"
     render 'index'
   end
 

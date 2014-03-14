@@ -66,6 +66,7 @@ class ProposalsController < ApplicationController
   # proposals for current user
   def my_proposals
     @proposals = Proposal.where(user_id: current_user.id)
+    params[:nav] = "my_proposal"
     render 'index'
   end
 

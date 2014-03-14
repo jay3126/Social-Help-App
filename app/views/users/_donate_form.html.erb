@@ -1,7 +1,7 @@
 <%= form_for @donation, url: receive_donation_path, html: {class: "form-horizontal"} do |f| %>
 	<% if @donation.errors.count > 0 %>
 		<div style="color: #f00;">
-			<h3><%= pluralize(@donation.errors.count, "error") %> prohibited this user to update profile</h3>
+			<h3><%= pluralize(@donation.errors.count, "error") %> occurred</h3>
 			<ul>
 				<% @donation.errors.full_messages.each do |e| %>
 					<li><%= e %></li>

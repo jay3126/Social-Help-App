@@ -22,11 +22,27 @@
 			</a>
 		</li>
 		
-		<li id="li_donate">
-			<a href="/donate">
+		<li>
+			<a href="#" class="dropdown-toggle">
 				<i class="icon-dollar"></i>
-				<span class="menu-text"> Donate </span>
+				<span class="menu-text"> Donations </span>
+				<b class="arrow icon-angle-down"></b>
 			</a>
+			<ul class="submenu">
+				<li id="li_donate">
+					<a href="/donate">
+						<i class="icon-double-angle-right"></i>
+						Donete Now
+					</a>
+				</li>
+
+				<li id="li_my_donations">
+					<a href="/my_donations">
+						<i class="icon-double-angle-right"></i>
+						My Donations
+					</a>
+				</li>
+			</ul>
 		</li>
 
 		<li id="li_profile">
@@ -47,6 +63,11 @@
 	<% if params[:nav].present? %>
 		var nav = "<%= params[:nav] %>"
 		$("#li_" + nav).addClass("active");
+	<% elsif params[:cat].present? %>
+		var category = "<%= params[:cat] %>"
+		var li = $("#li_" + category);
+		li.addClass("active");
+		li.parent().closest("li").addClass("open").addClass("active");
 	<% else %>
 		$("#li_dashboard").addClass("active");
 	<% end %>

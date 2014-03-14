@@ -98,6 +98,7 @@ class UsersController < ApplicationController
 	def donate
 		if current_user
 			@donation = Donation.new
+			params[:cat] = "donate"
 		else
 			redirect_to new_user_registration_url(donor: "donor")
 		end
@@ -112,6 +113,11 @@ class UsersController < ApplicationController
 		else
 			render action: "donate"
 		end
+	end
+
+	def my_donations
+		@donations = current_user.donations
+		params[:cat] = "my_donations"
 	end
 
 	private

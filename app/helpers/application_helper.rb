@@ -59,8 +59,8 @@ module ApplicationHelper
 			end
 		end
 
-		if current_user.ngo?
-			unless iss.users.all.include?(current_user)
+		if current_user.ngo? && iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:approved] && iss.category == current_user.service_type
+			unless iss.users.all.include?(current_user) 
 				opt << "<a onClick='return sendProposal(#{iss.id});' class='btn btn-xs btn-info' data-rel='tooltip' title='' data-original-title='Send Proposal'><i class='icon-download-alt bigger-120'></i></a>"
 			else
 				opt << "<a onClick='return false' class='btn btn-xs btn-info non-click' data-rel='tooltip' title='' data-original-title='Proposal Sent'><i class='icon-download-alt bigger-120 non-click'></i></a>"

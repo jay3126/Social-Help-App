@@ -41,7 +41,7 @@ class IssuesController < ApplicationController
   	@issue.user_id = current_user.id
   	@issue.issue_status = Constants::IssueStatusConstant.all_to_hash[:review_pending]
   	if @issue.save
-  		redirect_to root_url
+  		redirect_to :action => "index"
   	else
   		render :new
   	end

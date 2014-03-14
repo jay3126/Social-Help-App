@@ -42,7 +42,7 @@ class ProposalsController < ApplicationController
     if @proposal.save
       issue = Issue.where(id: params[:proposal][:issue_id]).first
       current_user.issues << issue
-      redirect_to issues_path
+      redirect_to :action => "my_proposals" 
     end
   end
 

@@ -104,7 +104,7 @@
             <img src="assets/post_img.png" alt="" class="post_img" />
             <h1>Sponsor treatment for an orphaned HIV+ child</h1>
             <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="#">Donate Now</a></p>
+            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
             <div class="clear"></div>
         </article>
         <!-- POST ARTICLE END -->
@@ -114,7 +114,7 @@
             <img src="assets/post_img1.png" alt="" class="post_img" />
             <h1>Sponsor Dialysis for a poor kidney patient like Deepali</h1>
             <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="#">Donate Now</a></p>
+            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
             <div class="clear"></div>
         </article>
         <!-- POST ARTICLE END -->
@@ -124,7 +124,7 @@
             <img src="assets/post_img2.png" alt="" class="post_img" />
             <h1>Sponsor medicine for a Hemophillia patient like Farooque</h1>
             <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="#">Donate Now</a></p>
+            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
             <div class="clear"></div>
         </article>
         <!-- POST ARTICLE END -->
@@ -134,7 +134,7 @@
             <img src="assets/post_img3.png" alt="" class="post_img" />
             <h1>Sponsor chemotherapy for a poor cancer patient like Ravji</h1>
             <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="#">Donate Now</a></p>
+            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
             <div class="clear"></div>
         </article>
         <!-- POST ARTICLE END -->
@@ -163,10 +163,11 @@
 						<label>By Amount:</label>
 						<select class="select">
 							<option>Select</option>
-							<option>1234</option>
-							<option>74845</option>
-							<option>44545</option>
-							<option>87821</option>
+							<option>500</option>
+							<option>1,000</option>
+							<option>1,500</option>
+							<option>2,000</option>
+                            <option>2,500</option>
 						</select>
 						<div class="clear"></div>
 					</div>
@@ -174,15 +175,13 @@
 					<div class="elem">
 						<label>By Cause:</label>
 						<select class="select">
-							<option>Select</option>
-							<option>1234</option>
-							<option>74845</option>
-							<option>44545</option>
-							<option>87821</option>
+                            <% Constants::IssueCategoryConstant.to_list.each do |c| %>
+                                <option><%= c %></option>
+                            <% end %>
 						</select>
 						<div class="clear"></div>
 					</div>
-					<input type="button" value="Search" class="button" />
+					<input type="button" onclick="signIn();" value="Donate" class="button" />
 				</form>
             </article>
             <!-- POST END -->
@@ -260,7 +259,11 @@
 
 </body>
 </html>
-
+<script>
+    function signIn(){
+        window.location = "/users/sign_in";
+    }
+</script>
 
 
 

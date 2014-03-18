@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="table-header">
-					Projects in Progress
+					<%= params[:cat].present? ? params[:cat].split("_").map{|a| a.capitalize}.join(' ') : "Pending Reports"%>
 				</div>
 				<div class="table-responsive">
 					<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
@@ -38,7 +38,8 @@
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 												<a href="<%= project_path(id: report.project_id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
 												<% if current_user.inspector? and params[:cat].present? and params[:cat] == "pending_reports" %>
-													<a href="#" onclick="approveReport(this, <%= report.id %>);" class="btn btn-xs btn-success"  data-rel="tooltip" title="" data-original-title="Approve Report"><i class="icon-check bigger-120"></i></a>
+													<a href="#" onclick="approveReport(this, <%= report.id %>);" class="btn btn-xs btn-success" data-action="approve"  data-rel="tooltip" title="" data-original-title="Approve Report"><i class="icon-check bigger-120"></i></a>
+													<a href="#" onclick="approveReport(this, <%= report.id %>);" class="btn btn-xs btn-danger" data-action="reject" data-rel="tooltip" title="" data-original-title="Reject Report"><i class="icon-minus bigger-120"></i></a>
 												<% end %>
 											</div>
 										</td>
@@ -64,9 +65,10 @@
 
 	function approveReport(btn, report_id){
 		if(confirm("Are you sure ?")){
+			var action = $(btn).attr("data-action");
 			$.ajax({
 				type: 'PUT',
-				url: "/project_reports/" + report_id + "/approve",
+				url: "/project_reports/" + report_id + "/" + action,
 				dataType: 'json',
 				data: {
 					authenticity_token: "<%= form_authenticity_token %>"
@@ -74,6 +76,13 @@
 				success: function(response){
 					$(btn).attr("disabled","disabled");
 					$(btn).tooltip("destroy");
+
+					act1 = action == "approve" ? "reject" : "approve";
+
+					var btn1 = $("a[data-action='" + act1 + "']");;
+					btn1.attr("disabled","disabled");
+					btn1.tooltip("destroy");
+
 					var statusTd = $("#report_status_" + report_id);
 					statusTd.text(response["report_status"]);
 				}

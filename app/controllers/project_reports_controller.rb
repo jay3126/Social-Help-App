@@ -3,7 +3,7 @@ class ProjectReportsController < ApplicationController
 	def index
 		if current_user.inspector?
 			if params[:cat].present?
-				cat = params[:cat] == "pending_reports" ? "pending" : "approved"
+				cat = params[:cat] == "pending_reports" ? "pending" : (params[:cat] == "rejected_reports" ? "rejected" : "approved")
 		    @project_reports = ProjectReport.where(status: cat)
 			else
 				@project_reports = ProjectReport.where(status: "pending")
@@ -40,6 +40,12 @@ class ProjectReportsController < ApplicationController
 		report = ProjectReport.find_by(id: params[:id])
 		report.update_attribute(:status, 'approved')
 		render json: {status: 200, report_status: "Approved"}
+	end
+
+	def reject
+		report = ProjectReport.find_by(id: params[:id])
+		report.update_attribute(:status, 'rejected')
+		render json: {status: 200, report_status: "Rejected"}
 	end
 
 	private

@@ -4,6 +4,7 @@ SocialHelpApp::Application.routes.draw do
   resources :project_reports, only: [:index, :create] do
     member do
       put 'approve'
+      put 'reject'
     end
   end
 

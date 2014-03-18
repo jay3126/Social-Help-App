@@ -4,9 +4,9 @@
 	<meta charset="utf-8" />
 	<title>:: Charity ::</title>
 		<%= javascript_include_tag "home/index", "slider/index"%>
-	  <%= stylesheet_link_tag "home/index", "slider/index", media: "all" %>
-	  <%= csrf_meta_tags %>
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= stylesheet_link_tag "home/index", "slider/index", media: "all" %>
+		<%= csrf_meta_tags %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- <link rel="stylesheet" href="css/slider.css"> -->
 	<!--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -14,20 +14,20 @@
 	
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 -->
-    <!--[if lt IE 9]>
-    <script>
-    document.createElement('header');
-    document.createElement('nav');
-    document.createElement('section');
-    document.createElement('article');
-    document.createElement('aside');
-    document.createElement('footer');
-    document.createElement('hgroup');
-    </script>
-    <![endif]-->
+		<!--[if lt IE 9]>
+		<script>
+		document.createElement('header');
+		document.createElement('nav');
+		document.createElement('section');
+		document.createElement('article');
+		document.createElement('aside');
+		document.createElement('footer');
+		document.createElement('hgroup');
+		</script>
+		<![endif]-->
  
-   
-    
+	 
+		
 </head>
  
 <body>
@@ -51,8 +51,8 @@
 			<section class="search_box">
 				<form>
 					<input type="text" value="Search" class="s_field" />
-                    <input type="submit" value="Go" class="s_button" />
-                    <div class="clear"></div>
+										<input type="submit" value="Go" class="s_button" />
+										<div class="clear"></div>
 				</form>
 			</section>
 		</section>
@@ -78,140 +78,140 @@
 
 <!-- attach the plug-in to the slider parent element and adjust the settings as required --> 
 <script class="secret-source">
-        jQuery(document).ready(function($) {
-          
-          $('#banner-slide').bjqs({
-            height        : 230,
-            width         : 1000,
-            responsive    : true,
-            randomstart   : true
-          });
-          
-        });
-      </script> 
+				jQuery(document).ready(function($) {
+					
+					$('#banner-slide').bjqs({
+						height        : 230,
+						width         : 1000,
+						responsive    : true,
+						randomstart   : true
+					});
+					
+				});
+			</script> 
 </div>
 
 </section>
 
 
 <!--for slider-->
-   <script type="text/javascript">
-    
-    $(window).load(function(){
-      $('.flexslider').flexslider({
-        animation: "slide",
-        animationLoop: false,
-        itemWidth: 210,
-        itemMargin: 5,
-        minItems: 2,
-        maxItems: 4
-      });
-    });
-  </script>
+	 <script type="text/javascript">
+		
+		$(window).load(function(){
+			$('.flexslider').flexslider({
+				animation: "slide",
+				animationLoop: false,
+				itemWidth: 210,
+				itemMargin: 5,
+				minItems: 2,
+				maxItems: 4
+			});
+		});
+	</script>
 
 	<section class="slider shadow rounded_corners">
-    <div class="flexslider carousel">
-      <ul class="slides">
-      	<% @corporate_partners.each do |user|%>
-      		<% if user.logo.present? %>
-	      		<li>
-  	    			<%= image_tag(user.logo.logo.url(:medium))%>
-    	  		</li>
-      		<%else%>
-	      		<li>
-  	    			<%= image_tag("missing.jpg")%>
-    	  		</li>    	
-      		<%end%>
-      	<%end%>
-      </ul>
-    </div>
+				<div class="flexslider carousel">
+					<ul class="slides">
+						<% @corporate_partners.each do |user|%>
+							<% if user.logo.present? %>
+								<li>
+									<%= image_tag(user.logo.logo.url(:medium), style: "height: 222px")%>
+								</li>
+							<%else%>
+								<li>
+									<%= image_tag("missing.jpg", style: "height: 222px")%>
+								</li>    	
+							<%end%>
+						<%end%>
+					</ul>
+				</div>
 	</section>
 
 	<section class="slider shadow rounded_corners">
-    <div class="flexslider carousel">
-      <ul class="slides">
-      	<% @registered_ngos.each do |user|%>
-      		<% if user.logo.present? %>
-	      		<li>
-  	    			<%= image_tag(user.logo.logo.url(:medium))%>
-    	  		</li>
-      		<%else%>
-	      		<li>
-  	    			<%= image_tag("missing.jpg")%>
-    	  		</li>    	
-      		<%end%>
-      	<%end%>
-      </ul>
-    </div>
+		<div class="flexslider carousel">
+			<ul class="slides">
+				<% @registered_ngos.each do |user|%>
+					<% if user.logo.present? %>
+						<li>
+							<%= image_tag(user.logo.logo.url(:medium), style: "height: 222px")%>
+						</li>
+					<%else%>
+						<li>
+							<%= image_tag("missing.jpg", style: "height: 222px")%>
+						</li>    	
+					<%end%>
+				<%end%>
+			</ul>
+		</div>
 	</section>
 
 <!-- SLIDER END -->
 
 <!-- MAIN CONTAINER START -->
 <section class="wrapper">
-    <!-- LEFT SECTION START -->
+		<!-- LEFT SECTION START -->
 	<section class="left_section">
-        
-        <!-- POST ARTICLE START -->
-        <article class="post rounded_corners shadow">
-            <img src="assets/post_img.png" alt="" class="post_img" />
-            <h1>Sponsor treatment for an orphaned HIV+ child</h1>
-            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-            <div class="clear"></div>
-        </article>
-        <!-- POST ARTICLE END -->
-        
-        <!-- POST ARTICLE START -->
-        <article class="post rounded_corners shadow">
-            <img src="assets/post_img1.png" alt="" class="post_img" />
-            <h1>Sponsor Dialysis for a poor kidney patient like Deepali</h1>
-            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-            <div class="clear"></div>
-        </article>
-        <!-- POST ARTICLE END -->
-        
-        <!-- POST ARTICLE START -->
-        <article class="post rounded_corners shadow">
-            <img src="assets/post_img2.png" alt="" class="post_img" />
-            <h1>Sponsor medicine for a Hemophillia patient like Farooque</h1>
-            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-            <div class="clear"></div>
-        </article>
-        <!-- POST ARTICLE END -->
-        
-        <!-- POST ARTICLE START -->
-        <article class="post rounded_corners shadow">
-            <img src="assets/post_img3.png" alt="" class="post_img" />
-            <h1>Sponsor chemotherapy for a poor cancer patient like Ravji</h1>
-            <p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-            <p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-            <div class="clear"></div>
-        </article>
-        <!-- POST ARTICLE END -->
-        
-         <article class="post aboutUs rounded_corners shadow">
-           <h1>ABOUT US</h1>
-            <p>We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.<br/>By helping you donate to these charities online, we ensure that your giving is efficient and impactful.<br/>We guarantee that 90% of your donation reaches the NGO you chose.</p>
-            <p class="button"><a href="#">Read More</a></p>
+				
+				<!-- POST ARTICLE START -->
+				<article class="post rounded_corners shadow">
+						<img src="assets/post_img.png" alt="" class="post_img" />
+						<h1>Sponsor treatment for an orphaned HIV+ child</h1>
+						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
+						<div class="clear"></div>
+				</article>
+				<!-- POST ARTICLE END -->
+				
+				<!-- POST ARTICLE START -->
+				<article class="post rounded_corners shadow">
+						<img src="assets/post_img1.png" alt="" class="post_img" />
+						<h1>Sponsor Dialysis for a poor kidney patient like Deepali</h1>
+						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
+						<div class="clear"></div>
+				</article>
+				<!-- POST ARTICLE END -->
+				
+				<!-- POST ARTICLE START -->
+				<article class="post rounded_corners shadow">
+						<img src="assets/post_img2.png" alt="" class="post_img" />
+						<h1>Sponsor medicine for a Hemophillia patient like Farooque</h1>
+						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
+						<div class="clear"></div>
+				</article>
+				<!-- POST ARTICLE END -->
+				
+				<!-- POST ARTICLE START -->
+				<article class="post rounded_corners shadow">
+						<img src="assets/post_img3.png" alt="" class="post_img" />
+						<h1>Sponsor chemotherapy for a poor cancer patient like Ravji</h1>
+						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
+						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
+						<div class="clear"></div>
+				</article>
+				<!-- POST ARTICLE END -->
+				
+				 <article class="post aboutUs rounded_corners shadow">
+					 <h1>ABOUT US</h1>
+						<p>We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.<br/>By helping you donate to these charities online, we ensure that your giving is efficient and impactful.<br/>We guarantee that 90% of your donation reaches the NGO you chose.</p>
+						<p class="button"><a href="#">Read More</a></p>
 			<div class="clear"></div>
-        </article>
-        
-        <div class="clear"></div>
-    </section>
+				</article>
+				
+				<div class="clear"></div>
+		</section>
 	<!-- LEFT SECTION END -->
-    
-    <!-- RIGHT SECTION START -->
-    <section class="right_section">
-        <!-- LATEST POST START -->
-        <section class="latest_post_block rounded_corners shadow">
-            <div class="sec_header">Choose Your Donation</div>
-            
-            <!-- POST START -->
-            <article class="latest_post">
-                <form>
+		
+		<!-- RIGHT SECTION START -->
+		<section class="right_section">
+				<!-- LATEST POST START -->
+				<section class="latest_post_block rounded_corners shadow">
+						<div class="sec_header">Choose Your Donation</div>
+						
+						<!-- POST START -->
+						<article class="latest_post">
+								<form>
 					<div class="elem">
 						<label>By Amount:</label>
 						<select class="select">
@@ -220,7 +220,7 @@
 							<option>1,000</option>
 							<option>1,500</option>
 							<option>2,000</option>
-                            <option>2,500</option>
+														<option>2,500</option>
 						</select>
 						<div class="clear"></div>
 					</div>
@@ -228,76 +228,76 @@
 					<div class="elem">
 						<label>By Cause:</label>
 						<select class="select">
-                            <% Constants::IssueCategoryConstant.to_list.each do |c| %>
-                                <option><%= c %></option>
-                            <% end %>
+														<% Constants::IssueCategoryConstant.to_list.each do |c| %>
+																<option><%= c %></option>
+														<% end %>
 						</select>
 						<div class="clear"></div>
 					</div>
 					<input type="button" onclick="signIn();" value="Donate" class="button" />
 				</form>
-            </article>
-            <!-- POST END -->
-            
-           
-        </section>
-        <!-- LATEST POST END -->
-         <section class="latest_post_block rounded_corners shadow">
+						</article>
+						<!-- POST END -->
+						
+					 
+				</section>
+				<!-- LATEST POST END -->
+				 <section class="latest_post_block rounded_corners shadow">
 			<div class="cardText">Give Monthly Through Your Credit Card</div>
 			<article class="latest_post"><a href="#"><img src="assets/card.jpg" width="260" /></a></article>
 		 </section>
 		 
 		
-         <!-- TOP POST START -->
-        <section class="latest_post_block rounded_corners shadow">
-            <div class="sec_header">Donor Speak</div>
-            
-            <!-- POST START -->
-            <article class="latest_post">
-                <div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
-                <div class="latest_post_text">
-                    <p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
-                </div>
-                <div class="clear_10"></div>
-               
-                <p class="latest_post_reviews"><a href="#">Adam S.</a></p>
-                <div class="clear"></div>
-            </article>
-            <!-- POST END -->
+				 <!-- TOP POST START -->
+				<section class="latest_post_block rounded_corners shadow">
+						<div class="sec_header">Donor Speak</div>
+						
+						<!-- POST START -->
+						<article class="latest_post">
+								<div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
+								<div class="latest_post_text">
+										<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
+								</div>
+								<div class="clear_10"></div>
+							 
+								<p class="latest_post_reviews"><a href="#">Adam S.</a></p>
+								<div class="clear"></div>
+						</article>
+						<!-- POST END -->
 			
 			<!-- POST START -->
-            <article class="latest_post">
-                <div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
-                <div class="latest_post_text">
-                    <p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
-                </div>
-                <div class="clear_10"></div>
-               
-                <p class="latest_post_reviews"><a href="#">Adam S.</a></p>
-                <div class="clear"></div>
-            </article>
-            <!-- POST END -->
+						<article class="latest_post">
+								<div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
+								<div class="latest_post_text">
+										<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
+								</div>
+								<div class="clear_10"></div>
+							 
+								<p class="latest_post_reviews"><a href="#">Adam S.</a></p>
+								<div class="clear"></div>
+						</article>
+						<!-- POST END -->
 			
 			<!-- POST START -->
-            <article class="latest_post">
-                <div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
-                <div class="latest_post_text">
-                    <p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
-                </div>
-                <div class="clear_10"></div>
-               
-                <p class="latest_post_reviews"><a href="#">Adam S.</a></p>
-                <div class="clear"></div>
-            </article>
-            <!-- POST END -->
+						<article class="latest_post">
+								<div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
+								<div class="latest_post_text">
+										<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
+								</div>
+								<div class="clear_10"></div>
+							 
+								<p class="latest_post_reviews"><a href="#">Adam S.</a></p>
+								<div class="clear"></div>
+						</article>
+						<!-- POST END -->
 			
-            
-        </section>
-        <!-- TOP POST END -->
-        
-    </section>
-    <!-- RIGHT SECTION END -->
-    
+						
+				</section>
+				<!-- TOP POST END -->
+				
+		</section>
+		<!-- RIGHT SECTION END -->
+		
 	<div class="clear"></div>
 </section>
 <!-- MAIN CONTAINER END -->
@@ -306,7 +306,7 @@
 <!-- FOOTER START -->
 	<footer>
 		<section class="footer_wrapper">
-		   <span>&copy; 2014,  All rights are reserved.</span>
+			 <span>&copy; 2014,  All rights are reserved.</span>
 		</section>
 	</footer>
 <!-- FOOTER END -->
@@ -314,9 +314,9 @@
 </body>
 </html>
 <script>
-    function signIn(){
-        window.location = "/users/sign_in";
-    }
+		function signIn(){
+				window.location = "/users/sign_in";
+		}
 </script>
 
 

@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title>:: Charity ::</title>
-		<%= javascript_include_tag "home/index"%>
-	  <%= stylesheet_link_tag "home/index", media: "all" %>
+		<%= javascript_include_tag "home/index", "slider/index"%>
+	  <%= stylesheet_link_tag "home/index", "slider/index", media: "all" %>
 	  <%= csrf_meta_tags %>
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -92,6 +92,59 @@
 </div>
 
 </section>
+
+
+<!--for slider-->
+   <script type="text/javascript">
+    
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: 210,
+        itemMargin: 5,
+        minItems: 2,
+        maxItems: 4
+      });
+    });
+  </script>
+
+	<section class="slider shadow rounded_corners">
+    <div class="flexslider carousel">
+      <ul class="slides">
+      	<% @corporate_partners.each do |user|%>
+      		<% if user.logo.present? %>
+	      		<li>
+  	    			<%= image_tag(user.logo.logo.url(:medium))%>
+    	  		</li>
+      		<%else%>
+	      		<li>
+  	    			<%= image_tag("missing.jpg")%>
+    	  		</li>    	
+      		<%end%>
+      	<%end%>
+      </ul>
+    </div>
+	</section>
+
+	<section class="slider shadow rounded_corners">
+    <div class="flexslider carousel">
+      <ul class="slides">
+      	<% @registered_ngos.each do |user|%>
+      		<% if user.logo.present? %>
+	      		<li>
+  	    			<%= image_tag(user.logo.logo.url(:medium))%>
+    	  		</li>
+      		<%else%>
+	      		<li>
+  	    			<%= image_tag("missing.jpg")%>
+    	  		</li>    	
+      		<%end%>
+      	<%end%>
+      </ul>
+    </div>
+	</section>
+
 <!-- SLIDER END -->
 
 <!-- MAIN CONTAINER START -->
@@ -248,6 +301,7 @@
 	<div class="clear"></div>
 </section>
 <!-- MAIN CONTAINER END -->
+
 
 <!-- FOOTER START -->
 	<footer>

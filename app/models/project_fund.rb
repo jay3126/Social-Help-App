@@ -1,15 +1,21 @@
 class ProjectFund < ActiveRecord::Base
 
 	belongs_to :project
+	belongs_to :project_report
 
 	def self.release_fund(report_id,user)
     project_report = ProjectReport.includes(:project).find_by(id: report_id)
 
     total_project_cost = project_report.project.project_actual_cost
 
-    # calculate percentage amount to release
+    deductable = 0
+    all_funds = ProjectFund.where(project_id: project_report.project_id).order("fund_amount DESC")
+    if all_funds.present?
+    	deductable = all_funds.first.project_report.percent_done
+    end
 
-    amount = total_project_cost * (project_report.percent_done/100.to_f)
+    # calculate percentage amount to release
+    amount = total_project_cost * ((project_report.percent_done - deductable)/100.to_f)
     category = project_report.project.project_type
 
     res = deduct_fund(amount, category)

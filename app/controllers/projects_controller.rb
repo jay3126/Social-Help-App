@@ -10,6 +10,16 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.includes(:user).find_by(id: params[:id])
+    @reports = ProjectReport.includes(:project_fund).where(project_id: params[:id]).order("updated_at DESC")
+    @fund_release = 0
+    @percent_done = 0
+    @reports.each do |p|
+      if p.fund_release
+        @fund_release += p.project_fund.fund_amount
+        @percent_done = p.percent_done > @percent_done ? p.percent_done : @percent_done
+      end
+    end
   end
 
   # GET /projects/new

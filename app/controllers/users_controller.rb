@@ -120,6 +120,26 @@ class UsersController < ApplicationController
 		params[:cat] = "my_donations"
 	end
 
+	def user_profile
+		user = User.includes(:logo).find_by(id: params[:id])
+		details = {
+			role: user.role,
+			email: user.email,
+			name: user.name,
+			address: user.address,
+			city: user.city,
+			phone_number: user.phone_number,
+			pic: user.logo.logo.url(:thumb)
+		}
+		details[:owner] = user.owner if user.ngo? or user.corporate?
+		if user.socialist?
+			details[:age] = user.age
+			details[:gender] = user.gender
+		end
+		details[:service_type] = user.service_type if user.ngo?
+		render json: details
+	end
+
 	private
 
 	def user_profile_params

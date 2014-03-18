@@ -39,6 +39,7 @@ SocialHelpApp::Application.routes.draw do
     collection do
       patch "update_profile"
       post "change_image"
+      get 'user_profile'
     end
   end
   devise_for :users, controllers: {registrations: "sign_up"}

@@ -41,7 +41,7 @@
                     <td>
                       <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                         <%if current_user.role == "Analyst"%>
-                          <%unless @project.present? %>
+                          <%if @project.present? %>
                             <button class="btn btn-xs btn-success" disabled="disabled" data-rel="tooltip" title="" data-original-title="Proposal Approved"><i class="icon-ok bigger-120"></i></button>                    
                           <%else%>
                             <button class="btn btn-xs btn-success proposal_<%= prop.id%>" onclick="approveProposal(<%= @avl_cat_fund%>, <%= params[:issue_id]%>, <%= prop.proposed_cost%>, <%= prop.proposed_duration%>, <%= prop.user_id%>, <%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Approve Proposal"><i class="icon-ok bigger-120"></i></button>

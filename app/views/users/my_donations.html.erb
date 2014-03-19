@@ -4,6 +4,9 @@
 	</div>
 	<div class="span9" style="margin-top: 40px;">
 		<div class="row">
+			<div class="space-6"></div>
+			<%= render "donation_stats"%>
+			<div class="space-6"></div>
 			<div class="col-xs-12">
 				<div class="table-header">
 					My Donations
@@ -26,7 +29,7 @@
 										<td><%= i + 1 %></td>
 										<td><%= donation.category %></td>
 										<td><%= donation.amount %></td>
-										<td><%= donation.created_at %></td>
+										<td><%= donation.created_at.to_date %></td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 											</div>

@@ -60,6 +60,11 @@ class UsersController < ApplicationController
 			end
 		elsif current_user.donor?
 			@donations = current_user.donations
+			@total_donate = @donations.inject(0) {|s,d| s + d.amount}
+			@donations_by_category = Hash.new(0)
+			@donations.each do |d|
+				@donations_by_category[d.category] += d.amount
+			end
 		end
 		params[:nav] = "dashboard"
 	end
@@ -111,7 +116,7 @@ class UsersController < ApplicationController
 		@donation.user_id = current_user.id
 		if @donation.save
 			SocialFund.update_social_fund(@donation.amount, @donation.category)
-			redirect_to dashboard_url
+			redirect_to my_donations_url
 		else
 			render action: "donate"
 		end
@@ -119,6 +124,11 @@ class UsersController < ApplicationController
 
 	def my_donations
 		@donations = current_user.donations
+		@total_donate = @donations.inject(0) {|s,d| s + d.amount}
+		@donations_by_category = Hash.new(0)
+		@donations.each do |d|
+			@donations_by_category[d.category] += d.amount
+		end		
 		params[:cat] = "my_donations"
 	end
 

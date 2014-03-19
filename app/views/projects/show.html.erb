@@ -28,10 +28,16 @@
 				<dt>Est completion date</dt>
 				<dd><%= (@project.created_at + (30 * @project.project_duration.to_i).days).to_date.to_s %></dd>
 				<dt>Assigned to</dt>
-				<dd><%= link_to "#{User.fetch_user_names(@project.user_id)}",'#',class: "profile-modal-link", "user-id"=> @project.user_id  %></dd>
+				<dd>
+					<% if current_user.id == @project.user_id %>
+						Me
+					<% else %>
+						<%= link_to "#{User.fetch_user_names(@project.user_id)}",'#',class: "profile-modal-link", "user-id"=> @project.user_id  %>
+					<% end %>
+				</dd>
 				<dt>Assigned by</dt>
 				<dd>
-					<% if current_user.id = @project.assigned_by %>
+					<% if current_user.id == @project.assigned_by %>
 						Me
 					<% else %>
 						<%= link_to "#{User.fetch_user_names(@project.assigned_by)}",'#',class: "profile-modal-link", "user-id"=> @project.assigned_by%>
@@ -52,7 +58,7 @@
 		</fieldset>
 		<fieldset>
 			<legend><strong>Fund/Time Status</strong></legend>
-			<% if current_user.analyst? %>
+			<% if current_user.analyst? or @project.user_id == current_user.id %>
 				<div class="infobox infobox-orange" style="margin-left: 20px;">
 					<div class="infobox-data">
 						<span class="infobox-text" style="font-weight: bold;">Fund Allocated</span>
@@ -72,14 +78,27 @@
 
 					<div class="infobox-content">
 						<span class="bigger-110"></span>
-						<%= (@project.created_at + (30 * @project.project_duration.to_i).days).month - Date.today.month %> months
+						<%= (@project.created_at + (30 * @project.project_duration.to_i).days).to_date.mjd - Date.today.mjd %> Days
 					</div>
 				</div>
 			</div>
+			<% if @project.project_status == "Completed" %>
+				<div class="infobox infobox-green" style="margin-left: 20px;">
+
+					<div class="infobox-data">
+						<span class="infobox-text" style="font-weight: bold;">Completed On</span>
+
+						<div class="infobox-content">
+							<span class="bigger-110"></span>
+							<%= @project.actual_completion_date %>
+						</div>
+					</div>
+				</div>
+			<% end %>
 		</fieldset>
 		<div class="space-6"></div>
 		<div class="space-6"></div>
-		<% if current_user.analyst? %>
+		<% if current_user.analyst? or @project.user_id == current_user.id %>
 			<fieldset>
 				<legend><strong>Log</strong></legend>
 				<div class="col-xs-12">

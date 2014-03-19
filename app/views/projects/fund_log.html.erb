@@ -18,7 +18,7 @@
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 150px;">Project Name</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 130px;">Category</th>
 									<th class="sorting" role="columnheader" tabindex="0" style="width: 138px;">Area</th>
-									<th class="sorting" role="columnheader" tabindex="0" style="width: 120px;">Amount</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 120px;">Amount(Rs)</th>
 									<th class="sorting_disabled" role="columnheader" style="width: 156px;"></th>
 								</tr>
 							</thead>
@@ -29,7 +29,7 @@
 										<td><%= log.project.project_name %></td>
 										<td><%= log.project.project_type %></td>
 										<td><%= log.project.area %></td>
-										<td><%= log.fund_amount %>%</td>
+										<td><%= log.fund_amount %></td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 												<a href="<%= project_path(log.project_id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>

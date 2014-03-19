@@ -34,18 +34,6 @@
 						<th>Status</th>
 						<td><%= @issue.issue_status %></td>
 					</tr>
-					<tr>
-						<th>Issue Start Date</th>
-						<td><%= @issue.created_at.to_date %></td>
-					</tr>
-					<tr>
-						<th>Issue Closed Date</th>
-						<% if @issue.issue_status %>
-							<td>Pending</td>
-						<% else %>
-							<td><%= @issue.created_at.to_date %></td>
-						<% end %>
-					</tr>
 				</tbody>
 			</table>
 		</div>

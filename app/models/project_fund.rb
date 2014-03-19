@@ -19,6 +19,11 @@ class ProjectFund < ActiveRecord::Base
     category = project_report.project.project_type
 
     res = deduct_fund(amount, category)
+    if project_report.percent_done == 100
+    	st = Constants::ProjectStatusConstant.all_to_hash[:completed]
+    	Project.find_by(id: project_report.project_id).update_attributes({project_status: st,actual_completion_date: Date.today.to_date})
+    end
+
     if res[:status] == 200
     	project_report.update_attribute(:fund_release, true)
 	    project_fund = ProjectFund.new

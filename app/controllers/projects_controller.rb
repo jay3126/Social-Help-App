@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
     @project.project_duration = params[:project][:project_duration].to_i
     @project.proposer_id = issue.user_id
     @project.issue_id = issue.id
+    @project.est_completion_date = (Date.today + (30 * @project.project_duration.to_i).days).to_date
     @project.save
 
     proposal = Proposal.find_by(id: params[:project][:prop_id])

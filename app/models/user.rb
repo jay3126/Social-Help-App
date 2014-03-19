@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :proposals
   has_many :donations
 
-  validates :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, presence: true
+  validates :role, :name, :address, :city, :pin_code, :state, :country, :phone_number, presence: true
   validate :specific_fields
 
   def specific_fields
@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
   			unless self.service_type.present?
   				self.errors.add :service_type, "must be present"
   			end
-  			unless self.owner.present?
-  				self.errors.add :owner, "must be present"
-  			end
+  			# unless self.owner.present?
+  			# 	self.errors.add :owner, "must be present"
+  			# end
   			unless self.year_established.present?
   				self.errors.add :year_established, "must be present"
   			end

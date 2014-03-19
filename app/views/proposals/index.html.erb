@@ -41,11 +41,13 @@
                     <td>
                       <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                         <%if current_user.role == "Analyst"%>
-                          <%if @project.present? %>
-                            <button class="btn btn-xs btn-success" disabled="disabled" data-rel="tooltip" title="" data-original-title="Proposal Approved"><i class="icon-ok bigger-120"></i></button>                    
+                          <%if @project.present? || prop.status == "Rejected"%>
+                            <button class="btn btn-xs btn-success" disabled="disabled" data-rel="tooltip" title=""><i class="icon-ok bigger-120"></i></button>
+                            <button class="btn btn-xs btn-danger proposal_<%= prop.id%>" disabled="disabled" onclick="rejectProposal(<%= prop.id%>);" data-rel="tooltip" title=""><i class="icon-minus bigger-120"></i>
+                            </button>                                               
                           <%else%>
                             <button class="btn btn-xs btn-success proposal_<%= prop.id%>" onclick="approveProposal(<%= @avl_cat_fund%>, <%= params[:issue_id]%>, <%= prop.proposed_cost%>, <%= prop.proposed_duration%>, <%= prop.user_id%>, <%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Approve Proposal"><i class="icon-ok bigger-120"></i></button>
-                            <button class="btn btn-xs btn-danger proposal_<%= prop.id%>" onclick="rejectProposal(<%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Reject Proposal"><i class="icon-minus bigger-120"></i></button> 
+                            <button class="btn btn-xs btn-danger proposal_<%= prop.id%>" onclick="rejectProposal(<%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Reject Proposal"><i class="icon-minus bigger-120"></i></button>                                                       
                           <%end%>
                         <%elsif current_user.role == "NGO" %>
                         <% already_present = Project.find_by(issue_id: prop.issue_id)%>
@@ -82,7 +84,7 @@
   function approveProposal(avl_fund, issue_id, prCost, prDuration, prUserId, prId){
     if (prCost > avl_fund){
       alert("Sorry You Don't Have Sufficient Fund To Allocate This Project.");
-      return false
+      return false;
     }
     $.ajax({
       type: "POST",
@@ -108,14 +110,14 @@
 
   }
 
-  function rejectProposal(issue_id){
+  function rejectProposal(prop_id){
     $.ajax({
       type: "GET",
       dataType: "json",
-      data: {id: issue_id},
+      data: {id: prop_id},
       url: "/reject_proposal",
       success: function(result){
-        var btn_name = '.proposal_'+result.iss_id
+        var btn_name = '.proposal_'+result.prop_id
         $(btn_name).attr("disabled", true);
       }
     });

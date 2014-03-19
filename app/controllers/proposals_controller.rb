@@ -74,7 +74,7 @@ class ProposalsController < ApplicationController
   def reject_proposal
     proposal = Proposal.where(id: params[:id]).first
     proposal.update_attributes(status: Constants::ProposalStatusConstant.all_to_hash[:rejected])
-    render json: {status: 500, iss_id: params[:id]}
+    render json: {status: 500, prop_id: params[:id]}
   end
 
   private

@@ -55,7 +55,7 @@ module ApplicationHelper
 		opt = ""
 		if iss.user_id == current_user.id
 			if iss.issue_status == Constants::IssueStatusConstant.all_to_hash[:review_pending]
-				opt << "<a href=#{edit_issue_path(id: iss.id)} class='btn btn-xs btn-danger'  data-rel='tooltip' title='' data-original-title='Edit Project'><i class='icon-edit bigger-120'></i></a>"
+				opt << "<a href=#{edit_issue_path(id: iss.id)} class='btn btn-xs btn-danger'  data-rel='tooltip' title='' data-original-title='Edit Issue'><i class='icon-edit bigger-120'></i></a>"
 			end
 		end
 

@@ -34,7 +34,7 @@
 					<% if current_user.id = @project.assigned_by %>
 						Me
 					<% else %>
-						<%= User.fetch_user_names(@project.assigned_by) %>
+						<%= link_to "#{User.fetch_user_names(@project.assigned_by)}",'#',class: "profile-modal-link", "user-id"=> @project.assigned_by%>
 					<% end %>
 				</dd>
 				<dt>Project duration</dt>

@@ -11,8 +11,9 @@ class SocialFund < ActiveRecord::Base
 		cat = category.present? ? category.downcase : "others"
 		current_fund = fund.send("fund_for_#{cat}")
 		total_amount = current_fund + amount
-		total_fund = fund.total_kitty_fund + total_amount
-		fund.update_attributes({"fund_for_#{cat}" => total_amount, total_kitty_fund: total_fund})
+		total_fund = fund.total_kitty_fund + amount
+		rem_fund = fund.fund_remains + amount
+		fund.update_attributes({"fund_for_#{cat}" => total_amount, total_kitty_fund: total_fund, fund_remains: rem_fund})
 		fund
 	end
 end

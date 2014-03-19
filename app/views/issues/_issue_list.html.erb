@@ -1,3 +1,9 @@
+<%
+	tooltip_title_show = "Show Project"
+	if params[:nav].present? and params[:nav] == "my_issues"
+		tooltip_title_show = "Show Issue"
+	end
+%>
 <div class="table-responsive">
 	<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
 		<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
@@ -26,7 +32,7 @@
 						<td id="issue_status_<%= iss.id %>"><%= iss.issue_status %></td>
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-								<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="Show Project"><i class="icon-eye-open bigger-120"></i></a>
+								<a href="<%= issue_path(iss.id) %>" class="btn btn-xs btn-info" data-rel="tooltip" title="" data-original-title="<%= tooltip_title_show %>"><i class="icon-eye-open bigger-120"></i></a>
 								<%= raw(issue_actions(iss)) %>
 							</div>
 						</td>

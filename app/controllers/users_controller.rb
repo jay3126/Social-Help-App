@@ -134,6 +134,10 @@ class UsersController < ApplicationController
 
 	def user_profile
 		user = User.includes(:logo).find_by(id: params[:id])
+		logo = "/assets/missing.jpg"
+		if user.logo.present?
+			logo = user.logo.logo.url(:thumb)
+		end
 		details = {
 			role: user.role,
 			email: user.email,
@@ -141,7 +145,7 @@ class UsersController < ApplicationController
 			address: user.address,
 			city: user.city,
 			phone_number: user.phone_number,
-			pic: user.logo.logo.url(:thumb)
+			pic: logo
 		}
 		details[:owner] = user.owner if user.ngo? or user.corporate?
 		if user.socialist?

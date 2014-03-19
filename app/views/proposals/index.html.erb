@@ -50,7 +50,7 @@
                             <button class="btn btn-xs btn-danger proposal_<%= prop.id%>" onclick="rejectProposal(<%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Reject Proposal"><i class="icon-minus bigger-120"></i></button>                                                       
                           <%end%>
                         <%elsif current_user.role == "NGO" %>
-                        <% already_present = Project.find_by(issue_id: prop.issue_id)%>
+                          <% already_present = Project.find_by(issue_id: prop.issue_id)%>
                           <%if already_present.present? %>
                             <button class="btn btn-xs btn-danger" disabled="disabled" data-rel="tooltip" title="" data-original-title="Can't Edit Now"><i class="icon-edit bigger-120"></i></button>                    
                           <%else%>

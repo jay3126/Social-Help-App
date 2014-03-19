@@ -22,9 +22,8 @@
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 100px;">Start Date</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 100px;">Completion Date</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Assigned To</th>
-									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Assigned By</th>
 									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 145px;">Project Duration</th>
-									<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 120px;"></th>
+									<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 120px;"></th>
 								</tr>
 							</thead>
 							<tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -34,11 +33,10 @@
 										<td><%= project.project_name %></td>
 										<td><%= project.project_type %></td>
 										<td><%= project.area %></td>
-										<td><%= project.project_est_cost %></td>
-										<td><%= project.est_start_date %></td>
-										<td><%= project.est_completion_date %></td>
+										<td><%= project.project_actual_cost %></td>
+										<td><%= project.created_at.to_date.to_s %></td>
+										<td><%= project.actual_completion_date %></td>
 										<td><%= User.fetch_user_names(project.user_id) %></td>
-										<td><%= User.fetch_user_names(project.assigned_by) %></td>
 										<td><%= project.project_duration %> Month(s)</td>
 										<td>
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">

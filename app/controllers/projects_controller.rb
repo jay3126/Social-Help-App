@@ -68,9 +68,9 @@ class ProjectsController < ApplicationController
 
   def completed_projects
     if params["spec"].present? && params["spec"] == "true"
-      @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true, proposer_id: current_user.id)
+      @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:completed], verified: true, proposer_id: current_user.id)
     else
-  	  @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], verified: true )
+  	  @projects = Project.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:completed], verified: true )
     end
     params[:cat] = "comp_projects"
   end
@@ -85,9 +85,9 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @issue = Issue.find_by_id(params[:issue_id])
 		respond_to do |format|
-			if @project.update_attributes(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed], closed_by: current_user.id, closed_on: Date.today)
-        @issue.update(issue_status: Constants::IssueStatusConstant.all_to_hash[:closed], closed_by: current_user.id, closed_on: Date.today)
-				format.html { redirect_to dashboard_path, notice: 'Project was successfully closed.' }
+			if @project.update_attributes(project_status: Constants::ProjectStatusConstant.all_to_hash[:completed], closed_by: current_user.id, closed_on: Date.today)
+        @issue.update(issue_status: Constants::IssueStatusConstant.all_to_hash[:completed], closed_by: current_user.id, closed_on: Date.today)
+				format.html { redirect_to dashboard_path, notice: 'Project was successfully completed.' }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }

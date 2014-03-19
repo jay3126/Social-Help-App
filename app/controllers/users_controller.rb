@@ -44,12 +44,12 @@ class UsersController < ApplicationController
 				@project_wise_fund << project_detail
 			end
 			@all_projects = Project.where(user_id: current_user.id)
-			@completed_projects = @all_projects.where(user_id: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
+			@completed_projects = @all_projects.where(user_id: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:completed])
 			@pending_projects = @all_projects.where(user_id: current_user.id, project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
 		elsif current_user.analyst?
 			@current_fund = SocialFund.order("fiscal_year DESC").first
 			@all_projects = Project.all
-			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:closed])
+			@completed_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:completed])
 			@pending_projects = @all_projects.where(project_status: Constants::ProjectStatusConstant.all_to_hash[:in_progress])
 			@pie_chart_data = ProjectFund.fund_used_stats().to_json
 		elsif current_user.inspector?

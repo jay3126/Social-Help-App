@@ -1,0 +1,46 @@
+<div class="row-fluid">
+	<div class="span3">
+		<%= render_panel(current_user.role) %>
+	</div>
+	<div class="span9" style="margin-top: 40px;">
+		<div class="row">
+			<div class="space-6"></div>
+			<div class="col-xs-12">
+				<div class="table-header">
+					All Donations
+				</div>
+				<div class="table-responsive">
+					<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+						<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+							<thead>
+								<tr role="row">
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 80px;">S. No.</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 180px;">Category</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 118px;">Amount</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 118px;">Donated By</th>
+									<th class="sorting" role="columnheader" tabindex="0" style="width: 180px;">Donated On</th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<% @donations.each_with_index do |donation,i| %>
+									<tr>
+										<td><%= i + 1 %></td>
+										<td><%= donation.category %></td>
+										<td><%= donation.amount %></td>
+										<td><%= donation.user.name %></td>
+										<td><%= donation.created_at.to_date %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<% unless @donations.present? %>
+					<div class="col-xs-12" style="width: 100%;text-align: center;background-color: #F3E1C2;">
+						<b>No one gave any Donation(s)</b>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

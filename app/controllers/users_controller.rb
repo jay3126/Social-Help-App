@@ -127,6 +127,11 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def view_donations
+		@donations = Donation.all
+		params[:cat] = "donation"
+	end
+
 	def my_donations
 		@donations = current_user.donations
 		@total_donate = @donations.inject(0) {|s,d| s + d.amount}

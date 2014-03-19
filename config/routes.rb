@@ -63,6 +63,7 @@ SocialHelpApp::Application.routes.draw do
   post "receive_donation" => "users#receive_donation"
   get "my_donations" => "users#my_donations"
   get "reject_proposal" => "proposals#reject_proposal"
+  get "view_donations" => "users#view_donations"
   root to: "users#home"
 
   # Example of regular route:

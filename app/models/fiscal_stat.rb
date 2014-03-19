@@ -29,7 +29,7 @@ class FiscalStat < ActiveRecord::Base
 		# if present then will update kitty fund else will create new record
 		if social_fund.present?
 			case self.pref_cat
-			when "Any Cause", ""
+			when "Others", ""
 				social_fund.fund_for_others += self.available_social_fund
 			when "Children"
 				social_fund.fund_for_children += self.available_social_fund
@@ -63,7 +63,7 @@ class FiscalStat < ActiveRecord::Base
 			eld_value = self.pref_cat == "Elderly" ? self.available_social_fund : 0
 			env_value = self.pref_cat == "Environment" ? self.available_social_fund : 0
 			emp_value = self.pref_cat == "Employment" ? self.available_social_fund : 0
-			othr_value = self.pref_cat == "Any Cause" || ""  ? self.available_social_fund : 0
+			othr_value = (self.pref_cat == "Others" || self.pref_cat == "")  ? self.available_social_fund : 0
 			youth_value = self.pref_cat == "Youth" ? self.available_social_fund : 0
 			dis_value = self.pref_cat == "Disabled" ? self.available_social_fund : 0
 			hlt_value = self.pref_cat == "Health" ? self.available_social_fund : 0

@@ -1,0 +1,37 @@
+	<div class="col-sm-7 infobox-container">
+		<div class="infobox infobox-blue2  ">
+
+			<div class="infobox-data">
+				<span class="infobox-text"><b>Total Donate</b></span>
+
+				<div class="infobox-content">
+					<span class="bigger-110"></span>
+					<%= @total_donate %> Rs.
+				</div>
+			</div>
+		</div>
+		<div class="space-6" style="margin-top: 10px;"></div>
+		<% if @donations_by_category.present? %>
+			<div class="page-header">
+				<h1 style="background-color: #4f99c6 !important;color: #41474B;">Donation by Category</h1>
+			</div>
+			<div class="row">
+				<% @donations_by_category.each do |cat,amount| %>
+					<div class="infobox infobox-blue2">
+						<div class="infobox-progress">
+						</div>
+
+						<div class="infobox-data">
+							<span class="infobox-text"><i class="icon-group"></i><b> <%= cat %></b></span>
+
+							<div class="infobox-content">
+								<span class="bigger-110"></span>
+								<%= amount %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="space-6"></div>
+		<% end %>
+	</div>

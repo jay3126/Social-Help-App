@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="table-header">
-					All Issues
+					<%= (params[:nav].present? and params[:nav] == "my_issues") ? "My Issues" : "All Issues"%>
 				</div>
 				<%= render 'issue_list' %>
 			</div>

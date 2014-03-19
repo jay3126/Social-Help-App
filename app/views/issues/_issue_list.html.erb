@@ -37,11 +37,11 @@
 	</div>
 </div>
 <% unless @issues.present? %>
-	<div class="col-xs-12">
+	<div class="col-xs-12" style="width: 100%;text-align: center;background-color: #F3E1C2;">
 		<% if @comp %>
-			<b>No completed issue(s)</b>
+			<strong>No completed issue(s)</strong>
 		<% else %>
-			<b>You have not submitted any issue(s)</b>
+			<strong>No issue(s)</strong>
 		<% end %>
 	</div>
 <% end %>

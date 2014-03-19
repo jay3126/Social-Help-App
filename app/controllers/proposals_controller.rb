@@ -39,6 +39,7 @@ class ProposalsController < ApplicationController
   def create
     @proposal = Proposal.new(proposal_params)
     @proposal.user_id = current_user.id
+    @proposal.status = Constants::ProposalStatusConstant.all_to_hash[:pending]
     if @proposal.save
       issue = Issue.where(id: params[:proposal][:issue_id]).first
       current_user.issues << issue
@@ -70,6 +71,12 @@ class ProposalsController < ApplicationController
     render 'index'
   end
 
+  def reject_proposal
+    proposal = Proposal.where(id: params[:id]).first
+    proposal.update_attributes(status: Constants::ProposalStatusConstant.all_to_hash[:rejected])
+    render json: {status: 500, iss_id: params[:id]}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proposal
@@ -78,6 +85,6 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposal).permit(:issue_id, :proposed_cost, :proposed_duration, :desc, :accepted, :user_id)
+      params.require(:proposal).permit(:issue_id, :proposed_cost, :proposed_duration, :desc, :status, :user_id)
     end
 end

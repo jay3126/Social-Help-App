@@ -54,6 +54,13 @@ module Constants
 		ProjectStatusConstant.define :completed, "Completed"
 	end
 
+	class ProposalStatusConstant
+		include Enum
+		ProposalStatusConstant.define :pending, "Pending"
+		ProposalStatusConstant.define :approved, "Approved"
+		ProposalStatusConstant.define :rejected, "Rejected"
+	end
+
 	class CategoryColorCodes
 		include Enum
 		CategoryColorCodes.define :others, "#68BC31"

@@ -51,9 +51,9 @@ class ProjectsController < ApplicationController
     @project.save
 
     proposal = Proposal.find_by(id: params[:project][:prop_id])
-    proposal.update(accepted: true)
+    proposal.update(status: Constants::ProposalStatusConstant.all_to_hash[:approved])
 
-    render json: {status: 500}
+    render json: {status: 500, prop_id: params[:project][:prop_id]}
   end
 
   def ongoing_projects

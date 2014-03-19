@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312101733) do
+ActiveRecord::Schema.define(version: 20140319070849) do
 
   create_table "donations", force: true do |t|
     t.integer  "user_id"
@@ -141,9 +141,9 @@ ActiveRecord::Schema.define(version: 20140312101733) do
     t.integer  "user_id"
     t.integer  "issue_id"
     t.string   "desc"
-    t.boolean  "accepted",                                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "social_funds", force: true do |t|

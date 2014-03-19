@@ -3,66 +3,65 @@
     <%= render_panel(current_user.role) %>
   </div>
 
-  <div class="panel-sign-in span9"  style="margin-top: 40px;">
-    <div class="panel-heading-sign-in">
-      <h4>List Of Proposals</h4>
-    </div>
-    <div class="panel-body-sign-in">
-      <%if @proposals.present?%>
-        <table class="table">
-          <thead>
-            <th>Related Issue Name</th>
-            <th>Proposed Cost</th>
-            <th>Proposed Duration</th>
-            <th>Description</th>
-            <th>
-              <%if current_user.role == "Analyst"%>
-                Proposed By
-              <%else%>
-                Accepted
-              <%end%>
-            </th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            <% @proposals.each do |prop| %>
-              <tr>
-                <td><%= prop.issue.issue_title %></td>
-                <td><%= prop.proposed_cost %></td>
-                <td><%= prop.proposed_duration %> Months</td>
-                <td><%= prop.desc %></td>     
-                <td>
-                  <%if current_user.role == "Analyst"%>
-                    <%= prop.user.name%>
-                  <%else%>
-                    <%= prop.accepted ? "Yes" : "No" %>
-                  <%end%>
-                </td>
-                <td>
-                  <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                    <%if current_user.role == "Analyst"%>
-                      <%if @project.present? %>
-                        <button class="btn btn-xs btn-success" disabled="disabled" data-rel="tooltip" title="" data-original-title="Proposal Approved"><i class="icon-ok bigger-120"></i></button>                    
-                      <%else%>
-                        <button class="btn btn-xs btn-success proposal" onclick="approveProject(<%= @avl_cat_fund%>, <%= params[:issue_id]%>, <%= prop.proposed_cost%>, <%= prop.proposed_duration%>, <%= prop.user_id%>, <%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Approve Proposal"><i class="icon-ok bigger-120"></i></button>
-                      <%end%>
-                    <%elsif current_user.role == "NGO" %>
-                    <% already_present = Project.find_by(issue_id: prop.issue_id)%>
-                      <%if already_present.present? %>
-                        <button class="btn btn-xs btn-danger" disabled="disabled" data-rel="tooltip" title="" data-original-title="Can't Edit Now"><i class="icon-edit bigger-120"></i></button>                    
-                      <%else%>
-                        <a href="<%= edit_proposal_path(prop) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Proposal"><i class="icon-edit bigger-120"></i></a>
-                      <%end%>
-                    <%end%>
-                  </div>  
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <%else%>
-        <p>No Proposal Found.</p>
-      <%end%>
+  <div class="span9"  style="margin-top: 40px;">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="table-header">
+          My Proposals
+        </div>
+        <div class="table-responsive">
+          <div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+            <table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+              <thead>
+                <tr role="row">
+                  <th class="sorting" role="columnheader" tabindex="0" style="width: 80px;">S. No.</th>
+                  <th class="sorting" role="columnheader" tabindex="0" style="width: 150px;">Issue Name</th>
+                  <th class="sorting" role="columnheader" tabindex="0" style="width: 130px;">Proposed Cost</th>
+                  <th class="sorting" role="columnheader" tabindex="0" style="width: 138px;">Duration</th>
+                  <th class="sorting" role="columnheader" tabindex="0" style="width: 120px;">Description</th>
+                  <th class="sorting" role="columnheader" tabindex="0" style="width: 120px;"><%= current_user.role == "Analyst" ? "Proposed By" : "Accepted"%></th>
+                  <th class="sorting_disabled" role="columnheader" style="width: 156px;"></th>
+                </tr>
+              </thead>
+              <tbody role="alert" aria-live="polite" aria-relevant="all">
+                <% @proposals.each_with_index do |prop,i| %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= prop.issue.issue_title %></td>
+                    <td><%= prop.proposed_cost %></td>
+                    <td><%= prop.proposed_duration %> Months</td>
+                    <td><%= log.fund_amount %>%</td>
+                    <td><%= prop.desc %></td>
+                    <td>
+                      <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                        <%if current_user.role == "Analyst"%>
+                          <%if @project.present? %>
+                            <button class="btn btn-xs btn-success" disabled="disabled" data-rel="tooltip" title="" data-original-title="Proposal Approved"><i class="icon-ok bigger-120"></i></button>                    
+                          <%else%>
+                            <button class="btn btn-xs btn-success proposal" onclick="approveProject(<%= @avl_cat_fund%>, <%= params[:issue_id]%>, <%= prop.proposed_cost%>, <%= prop.proposed_duration%>, <%= prop.user_id%>, <%= prop.id%>);" data-rel="tooltip" title="" data-original-title="Approve Proposal"><i class="icon-ok bigger-120"></i></button>
+                          <%end%>
+                        <%elsif current_user.role == "NGO" %>
+                        <% already_present = Project.find_by(issue_id: prop.issue_id)%>
+                          <%if already_present.present? %>
+                            <button class="btn btn-xs btn-danger" disabled="disabled" data-rel="tooltip" title="" data-original-title="Can't Edit Now"><i class="icon-edit bigger-120"></i></button>                    
+                          <%else%>
+                            <a href="<%= edit_proposal_path(prop) %>" class="btn btn-xs btn-danger"  data-rel="tooltip" title="" data-original-title="Edit Proposal"><i class="icon-edit bigger-120"></i></a>
+                          <%end%>
+                        <%end%>
+                      </div> 
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <% unless @proposals.present? %>
+          <div class="col-xs-12" style="width: 100%;text-align: center;background-color: #F3E1C2;">
+            <strong>No Proposal(s)</strong>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

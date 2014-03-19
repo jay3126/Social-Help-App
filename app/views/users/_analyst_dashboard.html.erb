@@ -67,10 +67,10 @@
 		</div>
 
 		<div class="space-6"></div>
+		<% if @current_fund.present? %>
 		<div class="page-header">
 			<h1 style="background-color: #4f99c6 !important;color: #41474B;">Fund by Category</h1>
 		</div>
-		<% if @current_fund.present? %>
 			<div class="row">
 				<% Constants::IssueCategoryConstant.to_list.each do |cat| %>
 					<div class="infobox infobox-blue2">
@@ -132,36 +132,37 @@
 		</div>
 	</div>
 
-	<div class="space-6"></div>
-	<div class="space-6"></div>
-
-	<div class="infobox-container">
-		<div class="page-header">
-			<h1 style="background-color: #4f99c6 !important;color: #41474B;">Used Fund By Category</h1>
-		</div>
-	</div>
-	<div class="col-sm-5" style="max-width: 640px;margin: 0 auto;">
-		<div class="widget-box">
-			<div class="widget-header widget-header-flat widget-header-small">
-				<h5>
-					<i class="icon-signal"></i>
-					Fund Used Pie Chart
-				</h5>
+	<% if @pie_chart_data.present? and JSON.parse(@pie_chart_data).present? %>
+		<div class="space-6"></div>
+		<div class="space-6"></div>
+		<div class="infobox-container">
+			<div class="page-header">
+				<h1 style="background-color: #4f99c6 !important;color: #41474B;">Used Fund By Category</h1>
 			</div>
+		</div>
+		<div class="col-sm-5" style="max-width: 640px;margin: 0 auto;">
+			<div class="widget-box">
+				<div class="widget-header widget-header-flat widget-header-small">
+					<h5>
+						<i class="icon-signal"></i>
+						Fund Used Pie Chart
+					</h5>
+				</div>
 
-			<div class="widget-body" style="height: 260px;">
-				<div class="widget-main">
-					<div id="piechart-placeholder" style="width: 90%; min-height: 150px; padding: 0px; position: relative;">
-						<canvas class="flot-base" width="352" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
-						<canvas class="flot-overlay" width="352" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
-						<div class="legend">
-							<div style="position: absolute; width: 95px; height: 110px; top: 15px; right: -30px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
+				<div class="widget-body" style="height: 260px;">
+					<div class="widget-main">
+						<div id="piechart-placeholder" style="width: 90%; min-height: 150px; padding: 0px; position: relative;">
+							<canvas class="flot-base" width="352" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
+							<canvas class="flot-overlay" width="352" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;"></canvas>
+							<div class="legend">
+								<div style="position: absolute; width: 95px; height: 110px; top: 15px; right: -30px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
+							</div>
 						</div>
-					</div>
-				</div><!-- /widget-main -->
-			</div><!-- /widget-body -->
-		</div><!-- /widget-box -->
-	</div>	
+					</div><!-- /widget-main -->
+				</div><!-- /widget-body -->
+			</div><!-- /widget-box -->
+		</div>
+	<% end %>
 </div>
 <script>
 	jQuery(function($){

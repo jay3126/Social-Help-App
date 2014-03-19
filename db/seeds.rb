@@ -93,3 +93,116 @@ ngos.each_with_index do |n,i|
 	logo.save
 	image.close
 end
+
+## Creating different users
+users = []
+users << {
+	email: "analyst@help.com",
+	role: "Analyst",
+	name: "Ajay Singh",
+	address: "J-93, Noida Extention",
+	city: "Noida",
+	state: "Uttar Pradesh",
+	pin_code: 20301,
+	country: "India",
+	mobile_number: 9812345678,
+	phone_number: 25454763,
+	fax_number: 33224466,
+	about: "Ajay Singh is the Analyst for the Social Help Application"
+}
+
+users << {
+	email: "inspector@help.com",
+	role: "Inspector",
+	name: "Mukesh Singh",
+	address: "C-134, Sector 39",
+	city: "Noida",
+	state: "Uttar Pradesh",
+	pin_code: 20301,
+	country: "India",
+	mobile_number: 9812345678,
+	phone_number: 25454763,
+	fax_number: 33224466,
+	about: "Mukesh Singh is the Inspector for the Social Help Application"
+}
+
+users << {
+	email: "corporate@help.com",
+	role: "Corporate",
+	name: "R Systems International",
+	address: "C-40, Sector 59",
+	city: "Noida",
+	state: "Uttar Pradesh",
+	pin_code: 201307,
+	country: "India",
+	mobile_number: 9812345678,
+	phone_number: 1204303500,
+	fax_number: 1202587123,
+	website_address: "http://www.rsystems.com/",
+	about: "R Systems, founded in 1993, is a specialized IT Services & Solutions and IT-enabled Services provider catering to a wide range of global customers. We are endowed with the industry's highest quality certifications and standards, including SEI CMMI Level 5, PCMM Level 5, ISO 27001:2005 and ISO 9001:2008. We operate from 13 development centres spread across Asia Pacific, Europe, and North America, with 2500+ employees.",
+	company_group: "IT Services & Solutions",
+	tan_number: "TTGGK9876Y",
+	no_of_employees: 5000,
+	owner: "Satinder Singh Rekhi",
+	year_established: 1993
+}
+
+users << {
+	email: "socialist@help.com",
+	role: "Socialist",
+	name: "Piush Gupta",
+	address: "A-122, Second Floor, Indirapuram",
+	city: "Ghaziabad",
+	state: "Uttar Pradesh",
+	pin_code: 20302,
+	country: "India",
+	mobile_number: 9812345678,
+	phone_number: 25454763,
+	website_address: "http://www.socialist.com/",
+	about: "Piush Gupta is a socialist working for his society and city",
+	age: 28,
+	gender: "Male",
+	adhaar_number: "ADHAAR12345",
+	voter_id: "EC123456",
+	nationality: "Indian",
+	pan_number: "AAPPH5466K"
+}
+
+users << {
+	email: "donor@help.com",
+	role: "Donor",
+	name: "Mohammad Faizan",
+	address: "J-3A/4, Third Floor, Khirki Extention, Malviya Nagar",
+	city: "New Delhi",
+	state: "Delhi",
+	pin_code: 110017,
+	country: "India",
+	mobile_number: 9812345678,
+	phone_number: 25454763,
+	about: "Mohammad Faizan is a universal donor and can donate for any category",
+	age: 25,
+	gender: "Male",
+	adhaar_number: "ADHAAR12345",
+	voter_id: "EC123456",
+	nationality: "Indian",
+	pan_number: "AAPPH5466K"
+}
+
+users.each do |h|
+	u = User.new
+	h.each do |k,v|
+		u.send("#{k}=",v)
+	end
+	u.password = 12345
+	u.password_confirmation = 12345
+	u.save
+	image_name = "avatar5.png"
+	image_name = "rsystems.jpg" if u.role == "Corporate"
+	file_path = "#{Rails.root}/app/assets/images/#{image_name}"
+	image = File.open(file_path)
+	logo = Logo.new
+	logo.user_id = u.id
+	logo.logo = image
+	logo.save
+	image.close
+end

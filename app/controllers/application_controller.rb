@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
 
  	def configure_permitted_parameters
    devise_parameter_sanitizer.for(:sign_up) { |u| 
-      u.permit(:email, :password, :password_confirmation, :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, :service_type, :owner, :year_established, :age, :gender, :adhaar_number, :voter_id, :nationality, :pan_number, :company_group, :tan_number, :no_of_employees)
+      u.permit(:email, :password, :password_confirmation, :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, :service_type, :owner, :year_established, :age, :gender, :adhaar_number, :voter_id, :nationality, :pan_number, :company_group, :tan_number, :no_of_employees, :website_address, :about)
    }
    devise_parameter_sanitizer.for(:account_update) { |u| 
-      u.permit(:email, :password, :password_confirmation, :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, :service_type, :owner, :year_established, :age, :gender, :adhaar_number, :voter_id, :nationality, :pan_number, :company_group, :tan_number, :no_of_employees)
+      u.permit(:email, :password, :password_confirmation, :role, :name, :address, :city, :pin_code, :state, :country, :mobile_number, :phone_number, :fax_number, :service_type, :owner, :year_established, :age, :gender, :adhaar_number, :voter_id, :nationality, :pan_number, :company_group, :tan_number, :no_of_employees, :website_address, :about)
    }
 	end
 

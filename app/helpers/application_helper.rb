@@ -84,4 +84,38 @@ module ApplicationHelper
 		opt
 	end
 
+	def render_tabs(role)
+		case role.downcase
+		when "corporate"
+			render partial: "corporate_tabs"
+		when "socialist"
+			render partial: "socialist_tabs"
+		when "ngo"
+			render partial: "ngo_tabs"
+		when "analyst"
+			render partial: "analyst_tabs"
+		when "inspector"
+			render partial: "inspector_tabs"
+		when "donor"
+			render partial: "donor_tabs"
+		end
+	end
+
+	def render_profile_details(role)
+		case role.downcase
+		when "corporate"
+			render partial: "corporate_details"
+		when "socialist"
+			render partial: "socialist_details"
+		when "ngo"
+			render partial: "ngo_details"
+		when "analyst"
+			render partial: "analyst_details"
+		when "inspector"
+			render partial: "inspector_details"
+		when "donor"
+			render partial: "donor_details"
+		end
+	end
+
 end

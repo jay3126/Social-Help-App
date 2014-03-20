@@ -4,28 +4,75 @@
 	</div>
 
 	<div class="span9"  style="margin-top: 40px;">
-		<% unless current_user.ngo?%>
-			<div style="text-align: center">
-				<div class="logo" style="width: 160px;height: 160px;position: relative;margin: 0 auto;">
-					<% if current_user.logo.present? %>
-						<% color = "fff"%>
-						<%= image_tag(current_user.logo.logo.url(:medium), class: "img-polaroid", style: "width: 160px;height: 160px;")%>
-					<% else %>
-						<% color = "f00"%>
-						<%= image_tag("missing.jpg", class: "img-polaroid", style: "width: 160px;height: 160px;")%>
-					<% end %>
-					<div id="change-img" class="hide" style="width: 100%;height: 100%;position: absolute;top: 0;cursor: pointer;">
-						<span style="line-height: 160px;color: #<%= color %>;">Change Image</span>
+		<div class="">
+			<div id="user-profile-2" class="user-profile">
+				<div class="tabbable">
+					<%= render_tabs(current_user.role) %>
+					<div class="tab-content no-border padding-24">
+						<div id="home" class="tab-pane in active">
+							<div class="row">
+								<div class="col-xs-12 col-sm-3 center">
+									<span class="profile-picture logo" style="position: relative;">
+										<% if current_user.logo.present? %>
+											<% color = "fff"%>
+											<%= image_tag(current_user.logo.logo.url(:medium), class: "editable img-responsive", style: "width: 150px;height: 160px;",id: "avatar2")%>
+										<% else %>
+											<% color = "f00"%>
+											<%= image_tag("missing.jpg", class: "editable img-responsive",style: "width: 150px;height: 160px;",id: "avatar2")%>
+										<% end %>
+										<div id="change-img" class="hide" style="width: 100%;height: 100%;position: absolute;top: 0;cursor: pointer;">
+											<span style="line-height: 160px;color: #<%= color %>;">Change Image</span>
+										</div>
+									</span>
+
+									<div class="space space-4"></div>
+
+									<a href="#" class="btn btn-sm btn-block btn-primary" style="width: 240px;height:35px;">
+										<i class="icon-envelope-alt bigger-120"></i>
+										<span class="bigger-110">Send a message</span>
+									</a>
+								</div><!-- /span -->
+								<%= render_profile_details(current_user.role) %>
+							</div><!-- /row-fluid -->
+
+							<div class="space-20"></div>
+							<div class="row">
+								<%= link_to "Edit", edit_users_path, class: "btn btn-primary", style: "width: 120px;"%>
+							</div>
+							<div class="space-20"></div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6">
+									<div class="widget-box transparent">
+										<div class="widget-header widget-header-small">
+											<h4 class="smaller">
+												<i class="icon-check bigger-110"></i>
+												About
+											</h4>
+										</div>
+
+										<div class="widget-body">
+											<div class="widget-main">
+												<%= current_user.about %>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div><!-- #home -->
+
+						<div id="feed" class="tab-pane">
+							<% if current_user.ngo? %>
+								Projects Completed bny this NGO belongs here
+							<% elsif current_user.socialist? %>
+								Issues created by this socialist belongs here
+							<% elsif current_user.donor? %>
+								Donations given by this donor belongs here
+							<% end %>
+						</div><!-- /#feed -->
 					</div>
 				</div>
 			</div>
-		<% end %>
-		<%= render_profile(current_user.role) %>
-		<% unless current_user.ngo? %>
-			<dl class="dl-horizontal">
-				<dd><%= link_to "Edit", edit_users_path, class: "btn btn-primary", style: "width: 120px;"%></dd>
-			</dl>
-		<% end %>
+		</div>
 	</div>
 </div>
 

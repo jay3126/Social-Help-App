@@ -1,0 +1,88 @@
+<div class="col-xs-12 col-sm-9">
+	<h4 class="blue">
+		<span class="middle"><%= current_user.name %></span>
+
+		<span class="label label-purple arrowed-in-right">
+			<i class="smaller-80 align-middle"></i>
+			<%= current_user.role %>
+		</span>
+	</h4>
+
+	<div class="profile-user-info">
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Email </div>
+
+			<div class="profile-info-value">
+				<span><%= current_user.email %></span>
+			</div>
+		</div>
+
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Location </div>
+
+			<div class="profile-info-value">
+				<i class="icon-map-marker light-orange bigger-110"></i>
+				<span><%= current_user.address %></span>
+			</div>
+		</div>
+
+		<div class="profile-info-row">
+			<div class="profile-info-name"> City/Country </div>
+
+			<div class="profile-info-value">
+				<i class="light-orange bigger-110"></i>
+				<span><%= current_user.city %></span>
+				<span><%= current_user.pin_code %></span>
+				<span><%= current_user.country%></span>
+			</div>
+		</div>
+
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Mobile Number </div>
+
+			<div class="profile-info-value">
+				<span><%= current_user.mobile_number.present? ? current_user.mobile_number : "#" %></span>
+			</div>
+		</div>
+
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Phone_number </div>
+
+			<div class="profile-info-value">
+				<span><%= current_user.phone_number.present? ? current_user.phone_number : "#" %></span>
+			</div>
+		</div>
+
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Fax </div>
+
+			<div class="profile-info-value">
+				<span><%= current_user.fax_number.present? ? current_user.fax_number : "#" %></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="hr hr-8 dotted"></div>
+
+	<div class="profile-user-info">
+		<div class="profile-info-row">
+			<div class="profile-info-name">
+				<i class="middle icon-facebook-sign bigger-150 blue"></i>
+			</div>
+
+			<div class="profile-info-value">
+				<a href="#">Find me on Facebook</a>
+			</div>
+		</div>
+
+		<div class="profile-info-row">
+			<div class="profile-info-name">
+				<i class="middle icon-twitter-sign bigger-150 light-blue"></i>
+			</div>
+
+			<div class="profile-info-value">
+				<a href="#">Follow me on Twitter</a>
+			</div>
+		</div>
+	</div>
+</div><!-- /span -->

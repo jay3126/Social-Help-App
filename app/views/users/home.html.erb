@@ -2,32 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>:: Charity ::</title>
-		<%= javascript_include_tag "home/index", "slider/index"%>
-		<%= stylesheet_link_tag "home/index", "slider/index", media: "all" %>
-		<%= csrf_meta_tags %>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- <link rel="stylesheet" href="css/slider.css"> -->
-	<!--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="js/bjqs-1.3.min.js"></script>
+	<title>:: Social Help ::</title> 
+	<%= javascript_include_tag "home/index", "slider/index"%>
+	<%= stylesheet_link_tag "home/index", "slider/index", media: "all" %>
 	
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
--->
-		<!--[if lt IE 9]>
-		<script>
-		document.createElement('header');
-		document.createElement('nav');
-		document.createElement('section');
-		document.createElement('article');
-		document.createElement('aside');
-		document.createElement('footer');
-		document.createElement('hgroup');
-		</script>
-		<![endif]-->
+  <!--[if lt IE 9]>
+    <script>
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('hgroup');
+    </script>
+    <![endif]-->
  
-	 
-		
+   
+    
 </head>
  
 <body>
@@ -36,304 +28,282 @@
 	<section class="header_wrapper"> 
 		<section class="logo_section">
 			<div class="logo"><a href="#"><img src="assets/logo.png" alt="Website Logo" /></a></div>
-			<div class="social_icons">
-				<ul>
-					<li><a href="<%= new_user_session_path %>">SIGNIN</a></li>
-					<li>&nbsp;</li>
-					<li><a href="<%= new_user_registration_path %>">SIGNUP</a></li>
-				</ul>
+			<div class="logIn">
+				<span class="signInText"><a href="<%= new_user_session_path %>">User Login</a></span>
+				<span class="signUpText">New user <strong><a href="<%= new_user_registration_path %>">Signup</a></strong></span>
+				<div class="clear"></div>
+				<form>
+					<input type="text" value="Username" class="s_field" />
+					<input type="password" value="Password" class="s_field" />
+					<input type="submit" value="GO" class="s_button" />
+					<div class="clear"></div>
+				</form>
+				<span class="forgotText"><a href="#">forgot password</a><span>
 			</div>
 			<div class="clear"></div>
 		</section>
+		<div class="clear"></div>
+		
 		<section class="menu_section">
 			<nav>
+				<ul>                                                                                    
+					<li><a href="#">HOME</a></li>
+					<li><a href="#">donate</a></li>
+					<li><a href="#">payroll giving</a></li>
+					<li><a href="#">iGive</a></li>
+					<li><a href="#">help center</a></li>
+					
+				</ul>
 			</nav>
-			<section class="search_box">
-				<form>
-					<input type="text" value="Search" class="s_field" />
-										<input type="submit" value="Go" class="s_button" />
-										<div class="clear"></div>
-				</form>
-			</section>
+			<div class="donateNow"><a href="<%= new_user_registration_path %>">DONATE NOW</a></div>
 		</section>
+		
 	</section>
 </header>
 <!-- HEADER END -->
 
 <!-- SLIDER START -->
-<section class="slider shadow rounded_corners">
-<div id="banner-slide"> 
-
+<section class="slider">
+<div class="banner_s" id="banner-slide"> 
 <!-- start Basic Jquery Slider -->
 <ul class="bjqs">
-<li><a href=""><img src="assets/slider.png" title=""></a></li>
-<li><img src="assets/slider1.png" title=""></li>
-<li><img src="assets/slider2.png" title=""></li>
-<li><img src="assets/slider3.png" title=""></li>
+<li><img src="assets/img1.png" title=""></li>
+<!--<li><img src="assets/img2.png" title=""></li>-->
+<li><img src="assets/img3.png" title=""></li>
 </ul>
 <!-- end Basic jQuery Slider --> 
 
 </div>
+<div class="search_form">
+	<div class="big_button"><a href="<%= new_user_session_path %>">CREATE YOUR CAUSE</a></div>
+	<div class="big_button"><a href="<%= new_user_session_path %>">CHOOSE YOUR CAUSE</a></div>
+	 <form>
+		<div class="elem">
+			<label>By Amount:</label>
+			<select class="select s_field">
+				<option>Select</option>
+				<option>1234</option>
+				<option>74845</option>
+				<option>44545</option>
+				<option>87821</option>
+			</select>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="elem">
+			<label>By Cause:</label>
+			<select class="select s_field">
+				<option>Select</option>
+				<option>1234</option>
+				<option>74845</option>
+				<option>44545</option>
+				<option>87821</option>
+			</select>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<input type="button" value="Search now" class="search_button" />
+		<a href="#" class="adv_search">Advanced Search</a>
+		<div class="clear"></div>
+	</form>
+</div>
 <!-- End outer wrapper --> 
 
-<!-- attach the plug-in to the slider parent element and adjust the settings as required --> 
-<script class="secret-source">
-				jQuery(document).ready(function($) {
-					
-					$('#banner-slide').bjqs({
-						height        : 230,
-						width         : 1000,
-						responsive    : true,
-						randomstart   : true
-					});
-					
-				});
-			</script> 
 </div>
 
 </section>
-
-
-<!--for slider-->
-	 <script type="text/javascript">
-		
-		$(window).load(function(){
-			$('.flexslider').flexslider({
-				animation: "slide",
-				animationLoop: false,
-				itemWidth: 210,
-				itemMargin: 5,
-				minItems: 2,
-				maxItems: 4
-			});
-		});
-	</script>
-
-	<section class="slider shadow rounded_corners">
-				<div class="flexslider carousel">
-					<ul class="slides">
-						<% @corporate_partners.each do |user|%>
-							<% if user.logo.present? %>
-								<li>
-									<%= image_tag(user.logo.logo.url(:medium), style: "height: 222px")%>
-								</li>
-							<%else%>
-								<li>
-									<%= image_tag("missing.jpg", style: "height: 222px")%>
-								</li>    	
-							<%end%>
-						<%end%>
-					</ul>
-				</div>
-	</section>
-
-	<section class="slider shadow rounded_corners">
-		<div class="flexslider carousel">
-			<ul class="slides">
-				<% @registered_ngos.each do |user|%>
-					<% if user.logo.present? %>
-						<li>
-							<%= image_tag(user.logo.logo.url(:medium), style: "height: 222px")%>
-						</li>
-					<%else%>
-						<li>
-							<%= image_tag("missing.jpg", style: "height: 222px")%>
-						</li>    	
-					<%end%>
-				<%end%>
-			</ul>
-		</div>
-	</section>
-
 <!-- SLIDER END -->
 
 <!-- MAIN CONTAINER START -->
 <section class="wrapper">
-		<!-- LEFT SECTION START -->
-	<section class="left_section">
-				
-				<!-- POST ARTICLE START -->
-				<article class="post rounded_corners shadow">
-						<img src="assets/post_img.png" alt="" class="post_img" />
-						<h1>Sponsor treatment for an orphaned HIV+ child</h1>
-						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-						<div class="clear"></div>
-				</article>
-				<!-- POST ARTICLE END -->
-				
-				<!-- POST ARTICLE START -->
-				<article class="post rounded_corners shadow">
-						<img src="assets/post_img1.png" alt="" class="post_img" />
-						<h1>Sponsor Dialysis for a poor kidney patient like Deepali</h1>
-						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-						<div class="clear"></div>
-				</article>
-				<!-- POST ARTICLE END -->
-				
-				<!-- POST ARTICLE START -->
-				<article class="post rounded_corners shadow">
-						<img src="assets/post_img2.png" alt="" class="post_img" />
-						<h1>Sponsor medicine for a Hemophillia patient like Farooque</h1>
-						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-						<div class="clear"></div>
-				</article>
-				<!-- POST ARTICLE END -->
-				
-				<!-- POST ARTICLE START -->
-				<article class="post rounded_corners shadow">
-						<img src="assets/post_img3.png" alt="" class="post_img" />
-						<h1>Sponsor chemotherapy for a poor cancer patient like Ravji</h1>
-						<p class="post_by"><span>DONATE: <a href="#">5500</a></span></p>
-						<p class="button"><a href="<%= new_user_session_path %>">Donate Now</a></p>
-						<div class="clear"></div>
-				</article>
-				<!-- POST ARTICLE END -->
-				
-				 <article class="post aboutUs rounded_corners shadow">
-					 <h1>ABOUT US</h1>
-						<p>We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.<br/>By helping you donate to these charities online, we ensure that your giving is efficient and impactful.<br/>We guarantee that 90% of your donation reaches the NGO you chose.</p>
-						<p class="button"><a href="#">Read More</a></p>
-			<div class="clear"></div>
-				</article>
-				
-				<div class="clear"></div>
-		</section>
-	<!-- LEFT SECTION END -->
-		
-		<!-- RIGHT SECTION START -->
-		<section class="right_section">
-				<!-- LATEST POST START -->
-				<section class="latest_post_block rounded_corners shadow">
-						<div class="sec_header">Choose Your Donation</div>
-						
-						<!-- POST START -->
-						<article class="latest_post">
-								<form>
-					<div class="elem">
-						<label>By Amount:</label>
-						<select class="select">
-							<option>Select</option>
-							<option>500</option>
-							<option>1,000</option>
-							<option>1,500</option>
-							<option>2,000</option>
-														<option>2,500</option>
-						</select>
-						<div class="clear"></div>
+	
+	<div class="causeOfMonth">
+		<div class="global_header">
+			<span class="headerName">Cause Of The Month</span>
+		</div>
+		<div class="com_box_container">
+			<div class="com_box">
+				<img src="assets/com_img1.png" />
+				<p class="com_title">Child Education</p>
+				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
+				<a href="#" class="com_button">Donate Now</a>
+			</div>
+			<div class="com_box">
+				<img src="assets/com_img2.png" />
+				<p class="com_title">Construction</p>
+				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
+				<a href="#" class="com_button">Donate Now</a>
+			</div>
+			<div class="com_box">
+				<img src="assets/com_img3.png" />
+				<p class="com_title">Child Education</p>
+				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
+				<a href="#" class="com_button">Donate Now</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- LEFT START -->
+    <div class="left_section">
+		<div class="about_us">
+			<div class="global_header">
+				<span class="headerName">About Us</span>
+			</div>
+			<div class="aboutText">
+				<p>We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.<br/><br/>
+By helping you donate to these charities online, we ensure that your giving is efficient and impactful.<br/>
+We guarantee that 90% of your donation reaches the NGO you chose.<br/>
+We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.
+</p>
+			</div>
+			<div class="testimonials">
+				<div class="global_header">
+					<span class="headerName">Testimonial</span>
+				</div>
+			
+
+			<div class="testimonialText">
+				<div id="demo1" class="row">
+					<div class="item large-12 columns">
+					<div class="panel">
+					<blockquote>
+					<p>We connect individuals with 200+ grassroot NGOs working for the poor in India. All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.</p>
+					</blockquote>
+					<p class="testBy">A. Thomas</p>
 					</div>
-					
-					<div class="elem">
-						<label>By Cause:</label>
-						<select class="select">
-														<% Constants::IssueCategoryConstant.to_list.each do |c| %>
-																<option><%= c %></option>
-														<% end %>
-						</select>
-						<div class="clear"></div>
 					</div>
-					<input type="button" onclick="signIn();" value="Donate" class="button" />
-				</form>
-						</article>
-						<!-- POST END -->
-						
-					 
-				</section>
-				<!-- LATEST POST END -->
-				 <section class="latest_post_block rounded_corners shadow">
-			<div class="cardText">Give Monthly Through Your Credit Card</div>
-			<article class="latest_post"><a href="#"><img src="assets/card.jpg" width="260" /></a></article>
-		 </section>
-		 
-		
-				 <!-- TOP POST START -->
-				<section class="latest_post_block rounded_corners shadow">
-						<div class="sec_header">Donor Speak</div>
-						
-						<!-- POST START -->
-						<article class="latest_post">
-								<div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
-								<div class="latest_post_text">
-										<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
-								</div>
-								<div class="clear_10"></div>
-							 
-								<p class="latest_post_reviews"><a href="#">Adam S.</a></p>
-								<div class="clear"></div>
-						</article>
-						<!-- POST END -->
-			
-			<!-- POST START -->
-						<article class="latest_post">
-								<div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
-								<div class="latest_post_text">
-										<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
-								</div>
-								<div class="clear_10"></div>
-							 
-								<p class="latest_post_reviews"><a href="#">Adam S.</a></p>
-								<div class="clear"></div>
-						</article>
-						<!-- POST END -->
-			
-			<!-- POST START -->
-						<article class="latest_post">
-								<div class="latest_post_img"><a href="#"><img src="assets/testi.png" alt="" /></a></div>
-								<div class="latest_post_text">
-										<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></p>
-								</div>
-								<div class="clear_10"></div>
-							 
-								<p class="latest_post_reviews"><a href="#">Adam S.</a></p>
-								<div class="clear"></div>
-						</article>
-						<!-- POST END -->
-			
-						
-				</section>
-				<!-- TOP POST END -->
+					<div class="item large-12 columns">
+					<div class="panel">
+					<blockquote>
+					<p>All organizations have been pre-screened by us so that you can trust that they will use your donation correctly.</p>
+					</blockquote>
+					<p class="testBy">V. Thomas</p>
+					</div>
+					</div>
+					<div class="item large-12 columns">
+					<div class="panel">
+					<blockquote>
+					<p>All organizations have been pre-screened by us so that you can trust that they will use your donation correctly. We connect individuals with 200+ grassroot NGOs working for the poor in India.</p>
+					</blockquote>
+					<p class="testBy">S. Thomas</p>
+					</div>
+					</div>
+				</div>
+			</div>
 				
-		</section>
-		<!-- RIGHT SECTION END -->
+			</div>
+		</div>
+	</div>
+	<!-- LEFT END -->
+	<!-- RIGHT START -->
+	<div class="right_section">
+		<div class="register">
+			<div class="global_header">
+				<span class="headerName">Register</span>
+			</div>
+			<div class="card"><a href="#"><img src="assets/card.png" /></a></div>
+		</div>
 		
+		<div class="NGO">
+			<div class="global_header">
+				<span class="headerName">NGOs</span>
+			</div>
+			<div class="imgNGO">
+				<div class="row">
+					<div class="large-12 columns">
+						<ul id="demo2" class="large-12 columns">
+							<% @registered_ngos.each do |user|%>
+								<% if user.logo.present? %>
+									<li>
+										<%= image_tag(user.logo.logo.url(:medium))%>
+									</li>
+								<%else%>
+									<li>
+										<%= image_tag("missing.jpg")%>
+									</li>    	
+								<%end%>
+							<%end%>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="clear"></div>
+	
+	<div class="sponsor">
+		<div class="global_header">
+			<span class="headerName">Corporate partners</span>
+		</div>
+		<ul id="flexiselDemo3">
+			<% @corporate_partners.each do |user|%>
+				<% if user.logo.present? %>
+					<li>
+						<%= image_tag(user.logo.logo.url(:medium))%>
+					</li>
+				<%else%>
+					<li>
+						<%= image_tag("missing.jpg")%>
+					</li>    	
+				<%end%>
+			<%end%>
+		</ul>    
+	</div>
+	
+	
+	
+	<!-- RIGHT END -->
 	<div class="clear"></div>
 </section>
 <!-- MAIN CONTAINER END -->
 
-
 <!-- FOOTER START -->
 	<footer>
 		<section class="footer_wrapper">
-			 <span>&copy; 2014,  All rights are reserved.</span>
+		   <span>&copy; 2014,  All rights are reserved.</span>
 		</section>
 	</footer>
 <!-- FOOTER END -->
 
+<script class="secret-source">
+		/*MAIN SLIDER*/
+        jQuery(document).ready(function($) {
+          
+          $('#banner-slide').bjqs({
+            height        : 370,
+            width         : 680,
+            responsive    : true,
+            randomstart   : true
+          });
+          
+        });
+		/**END MAIN SLIDER */
+		/* SPONSORS */
+		 $("#flexiselDemo3").flexisel({
+        visibleItems: 5,
+        animationSpeed: 1000,
+        autoPlay: true,
+        autoPlaySpeed: 5000,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+	/* END SPONSORS */	
+      </script> 
+
 </body>
 </html>
-<script>
-		function signIn(){
-				window.location = "/users/sign_in";
-		}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

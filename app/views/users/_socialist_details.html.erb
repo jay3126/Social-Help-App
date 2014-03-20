@@ -22,7 +22,7 @@
 
 			<div class="profile-info-value">
 				<i class="icon-map-marker light-orange bigger-110"></i>
-				<span><%= current_user.address %></span>
+				<span data-rel="tooltip" title="" data-original-title="<%= current_user.address %>"><%= truncate(current_user.address,length: 35, omission: "...") %></span>
 			</div>
 		</div>
 

@@ -1,10 +1,63 @@
-<%= render '/common_fields'%>
-<fieldset>
-	<legend>Other Details</legend>
-		<dl class="dl-horizontal large-font">
-	  	<dt>Service Type : </dt>
-	  	<dd><%= current_user.service_type %></dd>
-	  	<dt>Year Established : </dt>
-	  	<dd><%= current_user.year_established %></dd>
-	  </dl>
-</fieldset>
+<div class="">
+	<div id="user-profile-2" class="user-profile">
+		<div class="tabbable">
+			<%= render "ngo_tabs"%>
+			<div class="tab-content no-border padding-24">
+				<div id="home" class="tab-pane in active">
+					<div class="row">
+						<div class="col-xs-12 col-sm-3 center">
+							<span class="profile-picture logo" style="position: relative;">
+								<% if current_user.logo.present? %>
+									<% color = "fff"%>
+									<%= image_tag(current_user.logo.logo.url(:medium), class: "editable img-responsive",id: "avatar2")%>
+								<% else %>
+									<% color = "f00"%>
+									<%= image_tag("missing.jpg", class: "editable img-responsive",id: "avatar2")%>
+								<% end %>
+								<div id="change-img" class="hide" style="width: 100%;height: 100%;position: absolute;top: 0;cursor: pointer;">
+									<span style="line-height: 160px;color: #<%= color %>;">Change Image</span>
+								</div>
+							</span>
+
+							<div class="space space-4"></div>
+
+							<a href="#" class="btn btn-sm btn-block btn-primary" style="width: 240px;height:35px;">
+								<i class="icon-envelope-alt bigger-120"></i>
+								<span class="bigger-110">Send a message</span>
+							</a>
+						</div><!-- /span -->
+						<%= render "ngo_details"%>
+					</div><!-- /row-fluid -->
+
+					<div class="space-20"></div>
+					<div class="row">
+						<%= link_to "Edit", edit_users_path, class: "btn btn-primary", style: "width: 120px;"%>
+					</div>
+					<div class="space-20"></div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<div class="widget-box transparent">
+								<div class="widget-header widget-header-small">
+									<h4 class="smaller">
+										<i class="icon-check bigger-110"></i>
+										About
+									</h4>
+								</div>
+
+								<div class="widget-body">
+									<div class="widget-main">
+										<%= current_user.about %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- #home -->
+
+				<div id="feed" class="tab-pane">
+					Projects Completed bny this NGO belongs here
+				</div><!-- /#feed -->
+			</div>
+		</div>
+	</div>
+</div>

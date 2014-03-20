@@ -4,24 +4,28 @@
 	</div>
 
 	<div class="span9"  style="margin-top: 40px;">
-		<div style="text-align: center">
-			<div class="logo" style="width: 160px;height: 160px;position: relative;margin: 0 auto;">
-				<% if current_user.logo.present? %>
-					<% color = "fff"%>
-					<%= image_tag(current_user.logo.logo.url(:medium), class: "img-polaroid", style: "width: 160px;height: 160px;")%>
-				<% else %>
-					<% color = "f00"%>
-					<%= image_tag("missing.jpg", class: "img-polaroid", style: "width: 160px;height: 160px;")%>
-				<% end %>
-				<div id="change-img" class="hide" style="width: 100%;height: 100%;position: absolute;top: 0;cursor: pointer;">
-					<span style="line-height: 160px;color: #<%= color %>;">Change Image</span>
+		<% unless current_user.ngo?%>
+			<div style="text-align: center">
+				<div class="logo" style="width: 160px;height: 160px;position: relative;margin: 0 auto;">
+					<% if current_user.logo.present? %>
+						<% color = "fff"%>
+						<%= image_tag(current_user.logo.logo.url(:medium), class: "img-polaroid", style: "width: 160px;height: 160px;")%>
+					<% else %>
+						<% color = "f00"%>
+						<%= image_tag("missing.jpg", class: "img-polaroid", style: "width: 160px;height: 160px;")%>
+					<% end %>
+					<div id="change-img" class="hide" style="width: 100%;height: 100%;position: absolute;top: 0;cursor: pointer;">
+						<span style="line-height: 160px;color: #<%= color %>;">Change Image</span>
+					</div>
 				</div>
 			</div>
-		</div>
+		<% end %>
 		<%= render_profile(current_user.role) %>
-		<dl class="dl-horizontal">
-			<dd><%= link_to "Edit", edit_users_path, class: "btn btn-primary", style: "width: 120px;"%></dd>
-		</dl>
+		<% unless current_user.ngo? %>
+			<dl class="dl-horizontal">
+				<dd><%= link_to "Edit", edit_users_path, class: "btn btn-primary", style: "width: 120px;"%></dd>
+			</dl>
+		<% end %>
 	</div>
 </div>
 

@@ -7,8 +7,8 @@
 		current_fund = @current_fund.total_kitty_fund.to_f
 		used_fund = @current_fund.fund_used.to_f
 		rem_fund = @current_fund.fund_remains.to_f
-		rem_pecent = ((used_fund/current_fund) * 100).to_i
-		used_pecent = ((rem_fund/current_fund) * 100).to_i
+		rem_pecent = ((used_fund/current_fund) * 100).round
+		used_pecent = ((rem_fund/current_fund) * 100).round
 	end
 
 	total_projects = @all_projects.count

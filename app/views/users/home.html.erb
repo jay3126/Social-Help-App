@@ -27,17 +27,17 @@
 <header>
 	<section class="header_wrapper"> 
 		<section class="logo_section">
-			<div class="logo"><a href="#"><img src="assets/logo.png" alt="Website Logo" /></a></div>
+			<div class="logo"><a href="<%= root_path %>"><img src="/assets/logo.png" alt="Website Logo" /></a></div>
 			<div class="logIn">
 				<span class="signInText"><a href="<%= new_user_session_path %>">User Login</a></span>
 				<span class="signUpText">New user <strong><a href="<%= new_user_registration_path %>">Signup</a></strong></span>
 				<div class="clear"></div>
-				<form>
-					<input type="text" value="Username" class="s_field" />
-					<input type="password" value="Password" class="s_field" />
+				<%= form_for(@user, :url => "/users/sign_in") do |f| %>
+					<input type="email" placeholder="Email" name="user[email]" class="s_field" />
+					<input type="password" placeholder="Password" name="user[password]" class="s_field" />
 					<input type="submit" value="GO" class="s_button" />
 					<div class="clear"></div>
-				</form>
+				<%end%>
 				<span class="forgotText"><a href="#">forgot password</a><span>
 			</div>
 			<div class="clear"></div>
@@ -67,9 +67,9 @@
 <div class="banner_s" id="banner-slide"> 
 <!-- start Basic Jquery Slider -->
 <ul class="bjqs">
-<li><img src="assets/img1.png" title=""></li>
-<!--<li><img src="assets/img2.png" title=""></li>-->
-<li><img src="assets/img3.png" title=""></li>
+<li><img src="/assets/img1.png" title=""></li>
+<!--<li><img src="/assets/img2.png" title=""></li>-->
+<li><img src="/assets/img3.png" title=""></li>
 </ul>
 <!-- end Basic jQuery Slider --> 
 
@@ -123,19 +123,19 @@
 		</div>
 		<div class="com_box_container">
 			<div class="com_box">
-				<img src="assets/com_img1.png" />
+				<img src="/assets/com_img1.png" />
 				<p class="com_title">Child Education</p>
 				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
 				<a href="#" class="com_button">Donate Now</a>
 			</div>
 			<div class="com_box">
-				<img src="assets/com_img2.png" />
+				<img src="/assets/com_img2.png" />
 				<p class="com_title">Construction</p>
 				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
 				<a href="#" class="com_button">Donate Now</a>
 			</div>
 			<div class="com_box">
-				<img src="assets/com_img3.png" />
+				<img src="/assets/com_img3.png" />
 				<p class="com_title">Child Education</p>
 				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
 				<a href="#" class="com_button">Donate Now</a>
@@ -201,7 +201,7 @@ We connect individuals with 200+ grassroot NGOs working for the poor in India. A
 			<div class="global_header">
 				<span class="headerName">Register</span>
 			</div>
-			<div class="card"><a href="#"><img src="assets/card.png" /></a></div>
+			<div class="card"><a href="#"><img src="/assets/card.png" /></a></div>
 		</div>
 		
 		<div class="NGO">

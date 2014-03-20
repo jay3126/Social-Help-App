@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 	def home
+		@user = User.new
 		@corporate_partners = User.includes(:logo).where(role: "Corporate")
 		@registered_ngos = User.includes(:logo).where(Role: "NGO")
 		render layout: false

@@ -43,7 +43,7 @@ SocialHelpApp::Application.routes.draw do
       get 'user_profile'
     end
   end
-  devise_for :users, controllers: {registrations: "sign_up"}
+  devise_for :users, controllers: {registrations: "sign_up", sessions: "sessions"}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

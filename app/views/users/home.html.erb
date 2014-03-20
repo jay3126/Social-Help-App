@@ -47,8 +47,8 @@
 		<section class="menu_section">
 			<nav>
 				<ul>                                                                                    
-					<li><a href="#">HOME</a></li>
-					<li><a href="#">donate</a></li>
+					<li><a href="<%= root_url %>">HOME</a></li>
+					<li><a href="<%= new_user_registration_path %>">donate</a></li>
 					<li><a href="#">payroll giving</a></li>
 					<li><a href="#">iGive</a></li>
 					<li><a href="#">help center</a></li>
@@ -75,17 +75,19 @@
 
 </div>
 <div class="search_form">
-	<div class="big_button"><a href="<%= new_user_session_path %>">CREATE YOUR CAUSE</a></div>
-	<div class="big_button"><a href="<%= new_user_session_path %>">CHOOSE YOUR CAUSE</a></div>
+	<div class="big_button"><a href="<%= new_user_registration_path %>">CREATE YOUR CAUSE</a></div>
+	<div class="big_button"><a href="<%= new_user_registration_path %>">CHOOSE YOUR CAUSE</a></div>
 	 <form>
 		<div class="elem">
 			<label>By Amount:</label>
 			<select class="select s_field">
 				<option>Select</option>
-				<option>1234</option>
-				<option>74845</option>
-				<option>44545</option>
-				<option>87821</option>
+				<option>500</option>
+				<option>1,000</option>
+				<option>1,500</option>
+				<option>2,000</option>
+				<option>2,500</option>
+				<option>3,000</option>
 			</select>
 			<div class="clear"></div>
 		</div>
@@ -94,16 +96,15 @@
 			<label>By Cause:</label>
 			<select class="select s_field">
 				<option>Select</option>
-				<option>1234</option>
-				<option>74845</option>
-				<option>44545</option>
-				<option>87821</option>
+				<% Constants::IssueCategoryConstant.to_list.each do |c|%>
+					<option><%= c %></option>
+				<% end %>
 			</select>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
-		<input type="button" value="Search now" class="search_button" />
-		<a href="#" class="adv_search">Advanced Search</a>
+		<input type="button" value="Donate" class="search_button" onclick="signIn();" />
+		<!-- <a href="#" class="adv_search">Advanced Search</a> -->
 		<div class="clear"></div>
 	</form>
 </div>
@@ -126,19 +127,19 @@
 				<img src="/assets/com_img1.png" />
 				<p class="com_title">Child Education</p>
 				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
-				<a href="#" class="com_button">Donate Now</a>
+				<a href="<%= new_user_session_path %>" class="com_button">Donate Now</a>
 			</div>
 			<div class="com_box">
 				<img src="/assets/com_img2.png" />
 				<p class="com_title">Construction</p>
 				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
-				<a href="#" class="com_button">Donate Now</a>
+				<a href="<%= new_user_session_path %>" class="com_button">Donate Now</a>
 			</div>
 			<div class="com_box">
 				<img src="/assets/com_img3.png" />
 				<p class="com_title">Child Education</p>
 				<div class="com_info"><p>Donate a Sewing Machine to destitute woman or widow in need</p></div>
-				<a href="#" class="com_button">Donate Now</a>
+				<a href="<%= new_user_session_path %>" class="com_button">Donate Now</a>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -268,6 +269,10 @@ We connect individuals with 200+ grassroot NGOs working for the poor in India. A
 
 <script class="secret-source">
 		/*MAIN SLIDER*/
+		function signIn(){
+				window.location = "/users/sign_in";
+		}
+
         jQuery(document).ready(function($) {
           
           $('#banner-slide').bjqs({
